@@ -1,0 +1,497 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4FBCEAFA27C1FA3300BCF88C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEAF927C1FA3300BCF88C /* AppDelegate.swift */; };
+		4FBCEAFC27C1FA3300BCF88C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEAFB27C1FA3300BCF88C /* ViewController.swift */; };
+		4FBCEAFE27C1FA3400BCF88C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FBCEAFD27C1FA3400BCF88C /* Assets.xcassets */; };
+		4FBCEB0127C1FA3400BCF88C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FBCEAFF27C1FA3400BCF88C /* Main.storyboard */; };
+		4FBCEB0927C1FA5600BCF88C /* MainWindowController.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0827C1FA5600BCF88C /* MainWindowController.swift.swift */; };
+		4FBCEB0C27C1FB1D00BCF88C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBCEB0B27C1FB1D00BCF88C /* WebKit.framework */; platformFilter = maccatalyst; };
+		4FBCEB0E27C20BBA00BCF88C /* SlideOverServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0D27C20BBA00BCF88C /* SlideOverServiceImpl.swift */; };
+		4FBCEB1027C2709F00BCF88C /* SlideOverState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0F27C2709F00BCF88C /* SlideOverState.swift */; };
+		4FBCEB1227C27B7700BCF88C /* MousePositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB1127C27B7700BCF88C /* MousePositionService.swift */; };
+		4FBCEB1A27C27EC800BCF88C /* slideover_for_macosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB1927C27EC800BCF88C /* slideover_for_macosTests.swift */; };
+		4FBCEB2127C27EE200BCF88C /* MousePointServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB2027C27EE200BCF88C /* MousePointServiceTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4FBCEB1B27C27EC800BCF88C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FBCEAEE27C1FA3300BCF88C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4FBCEAF527C1FA3300BCF88C;
+			remoteInfo = "slideover-for-macos";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4FBCEAF627C1FA3300BCF88C /* slideover-for-macos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "slideover-for-macos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FBCEAF927C1FA3300BCF88C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4FBCEAFB27C1FA3300BCF88C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4FBCEAFD27C1FA3400BCF88C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4FBCEB0027C1FA3400BCF88C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4FBCEB0227C1FA3400BCF88C /* slideover_for_macos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = slideover_for_macos.entitlements; sourceTree = "<group>"; };
+		4FBCEB0827C1FA5600BCF88C /* MainWindowController.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift.swift; sourceTree = "<group>"; };
+		4FBCEB0B27C1FB1D00BCF88C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		4FBCEB0D27C20BBA00BCF88C /* SlideOverServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverServiceImpl.swift; sourceTree = "<group>"; };
+		4FBCEB0F27C2709F00BCF88C /* SlideOverState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverState.swift; sourceTree = "<group>"; };
+		4FBCEB1127C27B7700BCF88C /* MousePositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MousePositionService.swift; sourceTree = "<group>"; };
+		4FBCEB1727C27EC800BCF88C /* slideover-for-macosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "slideover-for-macosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FBCEB1927C27EC800BCF88C /* slideover_for_macosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = slideover_for_macosTests.swift; sourceTree = "<group>"; };
+		4FBCEB2027C27EE200BCF88C /* MousePointServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MousePointServiceTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4FBCEAF327C1FA3300BCF88C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FBCEB0C27C1FB1D00BCF88C /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FBCEB1427C27EC800BCF88C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4FBCEAED27C1FA3300BCF88C = {
+			isa = PBXGroup;
+			children = (
+				4FBCEAF827C1FA3300BCF88C /* slideover-for-macos */,
+				4FBCEB1827C27EC800BCF88C /* slideover-for-macosTests */,
+				4FBCEAF727C1FA3300BCF88C /* Products */,
+				4FBCEB0A27C1FB1D00BCF88C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		4FBCEAF727C1FA3300BCF88C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4FBCEAF627C1FA3300BCF88C /* slideover-for-macos.app */,
+				4FBCEB1727C27EC800BCF88C /* slideover-for-macosTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4FBCEAF827C1FA3300BCF88C /* slideover-for-macos */ = {
+			isa = PBXGroup;
+			children = (
+				4FBCEAF927C1FA3300BCF88C /* AppDelegate.swift */,
+				4FBCEAFB27C1FA3300BCF88C /* ViewController.swift */,
+				4FBCEB0D27C20BBA00BCF88C /* SlideOverServiceImpl.swift */,
+				4FBCEB1127C27B7700BCF88C /* MousePositionService.swift */,
+				4FBCEB0F27C2709F00BCF88C /* SlideOverState.swift */,
+				4FBCEB0827C1FA5600BCF88C /* MainWindowController.swift.swift */,
+				4FBCEAFD27C1FA3400BCF88C /* Assets.xcassets */,
+				4FBCEAFF27C1FA3400BCF88C /* Main.storyboard */,
+				4FBCEB0227C1FA3400BCF88C /* slideover_for_macos.entitlements */,
+			);
+			path = "slideover-for-macos";
+			sourceTree = "<group>";
+		};
+		4FBCEB0A27C1FB1D00BCF88C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4FBCEB0B27C1FB1D00BCF88C /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4FBCEB1827C27EC800BCF88C /* slideover-for-macosTests */ = {
+			isa = PBXGroup;
+			children = (
+				4FBCEB1927C27EC800BCF88C /* slideover_for_macosTests.swift */,
+				4FBCEB2027C27EE200BCF88C /* MousePointServiceTests.swift */,
+			);
+			path = "slideover-for-macosTests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4FBCEAF527C1FA3300BCF88C /* slideover-for-macos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FBCEB0527C1FA3400BCF88C /* Build configuration list for PBXNativeTarget "slideover-for-macos" */;
+			buildPhases = (
+				4FBCEAF227C1FA3300BCF88C /* Sources */,
+				4FBCEAF327C1FA3300BCF88C /* Frameworks */,
+				4FBCEAF427C1FA3300BCF88C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "slideover-for-macos";
+			productName = "slideover-for-macos";
+			productReference = 4FBCEAF627C1FA3300BCF88C /* slideover-for-macos.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4FBCEB1627C27EC800BCF88C /* slideover-for-macosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FBCEB1D27C27EC800BCF88C /* Build configuration list for PBXNativeTarget "slideover-for-macosTests" */;
+			buildPhases = (
+				4FBCEB1327C27EC800BCF88C /* Sources */,
+				4FBCEB1427C27EC800BCF88C /* Frameworks */,
+				4FBCEB1527C27EC800BCF88C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4FBCEB1C27C27EC800BCF88C /* PBXTargetDependency */,
+			);
+			name = "slideover-for-macosTests";
+			productName = "slideover-for-macosTests";
+			productReference = 4FBCEB1727C27EC800BCF88C /* slideover-for-macosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4FBCEAEE27C1FA3300BCF88C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					4FBCEAF527C1FA3300BCF88C = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					4FBCEB1627C27EC800BCF88C = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 4FBCEAF527C1FA3300BCF88C;
+					};
+				};
+			};
+			buildConfigurationList = 4FBCEAF127C1FA3300BCF88C /* Build configuration list for PBXProject "slideover-for-macos" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4FBCEAED27C1FA3300BCF88C;
+			productRefGroup = 4FBCEAF727C1FA3300BCF88C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4FBCEAF527C1FA3300BCF88C /* slideover-for-macos */,
+				4FBCEB1627C27EC800BCF88C /* slideover-for-macosTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4FBCEAF427C1FA3300BCF88C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FBCEAFE27C1FA3400BCF88C /* Assets.xcassets in Resources */,
+				4FBCEB0127C1FA3400BCF88C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FBCEB1527C27EC800BCF88C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4FBCEAF227C1FA3300BCF88C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FBCEAFC27C1FA3300BCF88C /* ViewController.swift in Sources */,
+				4FBCEB1027C2709F00BCF88C /* SlideOverState.swift in Sources */,
+				4FBCEB0927C1FA5600BCF88C /* MainWindowController.swift.swift in Sources */,
+				4FBCEAFA27C1FA3300BCF88C /* AppDelegate.swift in Sources */,
+				4FBCEB1227C27B7700BCF88C /* MousePositionService.swift in Sources */,
+				4FBCEB0E27C20BBA00BCF88C /* SlideOverServiceImpl.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FBCEB1327C27EC800BCF88C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FBCEB2127C27EE200BCF88C /* MousePointServiceTests.swift in Sources */,
+				4FBCEB1A27C27EC800BCF88C /* slideover_for_macosTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4FBCEB1C27C27EC800BCF88C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4FBCEAF527C1FA3300BCF88C /* slideover-for-macos */;
+			targetProxy = 4FBCEB1B27C27EC800BCF88C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4FBCEAFF27C1FA3400BCF88C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4FBCEB0027C1FA3400BCF88C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4FBCEB0327C1FA3400BCF88C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4FBCEB0427C1FA3400BCF88C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		4FBCEB0627C1FA3400BCF88C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "slideover-for-macos/slideover_for_macos.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2CMV7D36JC;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nhiro1109.slideover-for-macos";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4FBCEB0727C1FA3400BCF88C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "slideover-for-macos/slideover_for_macos.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2CMV7D36JC;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nhiro1109.slideover-for-macos";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		4FBCEB1E27C27EC800BCF88C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2CMV7D36JC;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nhiro1109.slideover-for-macosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/slideover-for-macos.app/Contents/MacOS/slideover-for-macos";
+			};
+			name = Debug;
+		};
+		4FBCEB1F27C27EC800BCF88C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2CMV7D36JC;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nhiro1109.slideover-for-macosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/slideover-for-macos.app/Contents/MacOS/slideover-for-macos";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4FBCEAF127C1FA3300BCF88C /* Build configuration list for PBXProject "slideover-for-macos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FBCEB0327C1FA3400BCF88C /* Debug */,
+				4FBCEB0427C1FA3400BCF88C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FBCEB0527C1FA3400BCF88C /* Build configuration list for PBXNativeTarget "slideover-for-macos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FBCEB0627C1FA3400BCF88C /* Debug */,
+				4FBCEB0727C1FA3400BCF88C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FBCEB1D27C27EC800BCF88C /* Build configuration list for PBXNativeTarget "slideover-for-macosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FBCEB1E27C27EC800BCF88C /* Debug */,
+				4FBCEB1F27C27EC800BCF88C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4FBCEAEE27C1FA3300BCF88C /* Project object */;
+}
