@@ -63,6 +63,12 @@ class MainWindowController: NSWindowController {
     }
 }
 
+extension MainWindowController: NSWindowDelegate {
+    func windowWillClose(_ notification: Notification) {
+        NSApplication.shared.terminate(nil)
+    }
+}
+
 extension MainWindowController: NSSearchFieldDelegate {
     func controlTextDidEndEditing(_ obj: Notification) {
         let urlString = searchBar.stringValue

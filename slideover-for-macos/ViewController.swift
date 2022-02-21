@@ -9,7 +9,7 @@ protocol SlideOverViewable {
 
 class ViewController: NSViewController {
     
-    @IBOutlet weak var webView: WKWebView!
+    @IBOutlet var webView: WKWebView!
     private let slideOverService: SlideOverServiceImpl = .init()
     private var observers = [NSKeyValueObservation]()
     
@@ -21,17 +21,13 @@ class ViewController: NSViewController {
         super.viewDidLoad()
 
         setupWebView()
-        loadWebPage(url: URL(string: "https://qiita.com/"))
-    }
-    
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
+        loadWebPage(url: URL(string: "https://yahoo.co.jp/"))
     }
 
     private func setupWebView() {
+        webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36"
         webView.allowsBackForwardNavigationGestures = true
+        webView.allowsLinkPreview = true
         observers.append(webView.observe(\.title, options: [.new], changeHandler: { [weak self] webView, _ in
             self?.view.window?.title = webView.title ?? ""
         }))
@@ -61,5 +57,11 @@ extension ViewController: SlideOverViewable {
         if webView.canGoForward {
             webView.goForward()
         }
+    }
+}
+
+extension ViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        
     }
 }

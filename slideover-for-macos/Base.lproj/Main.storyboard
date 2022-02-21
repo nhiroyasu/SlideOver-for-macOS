@@ -748,7 +748,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="625" height="688"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <wkWebView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Gp-7X-0Rs">
+                            <wkWebView wantsLayer="YES" allowsBackForwardNavigationGestures="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Gp-7X-0Rs">
                                 <rect key="frame" x="0.0" y="0.0" width="625" height="688"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
