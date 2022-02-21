@@ -2,7 +2,7 @@ import Cocoa
 import WebKit
 
 protocol SlideOverViewable {
-    func loadWebView(url: URL?)
+    func loadWebPage(url: URL?)
     func browserBack()
     func browserForward()
 }
@@ -21,7 +21,7 @@ class ViewController: NSViewController {
         super.viewDidLoad()
 
         setupWebView()
-        loadWebView(url: URL(string: "https://qiita.com/"))
+        loadWebPage(url: URL(string: "https://qiita.com/"))
     }
     
     override var representedObject: Any? {
@@ -31,12 +31,12 @@ class ViewController: NSViewController {
     }
 
     private func setupWebView() {
+        webView.allowsBackForwardNavigationGestures = true
         observers.append(webView.observe(\.title, options: [.new], changeHandler: { [weak self] webView, _ in
             self?.view.window?.title = webView.title ?? ""
         }))
         observers.append(webView.observe(\.canGoBack, options: [.new], changeHandler: { [weak self] webView, _ in
             self?.contentWindow?.setBrowserBack(enable: webView.canGoBack)
-            print("change")
         }))
         observers.append(webView.observe(\.canGoForward, options: [.new], changeHandler: { [weak self] webView, _ in
             self?.contentWindow?.setBrowserForward(enable: webView.canGoForward)
@@ -45,7 +45,7 @@ class ViewController: NSViewController {
 }
 
 extension ViewController: SlideOverViewable {
-    public func loadWebView(url: URL?) {
+    public func loadWebPage(url: URL?) {
         guard let url = url else { return }
         let request = URLRequest(url: url)
         webView.load(request)

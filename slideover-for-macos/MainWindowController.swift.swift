@@ -67,7 +67,7 @@ extension MainWindowController: NSSearchFieldDelegate {
     func controlTextDidEndEditing(_ obj: Notification) {
         let urlString = searchBar.stringValue
         guard isValidUrl(url: urlString) else { return }
-        contentView?.loadWebView(url: URL(string: urlString))
+        contentView?.loadWebPage(url: URL(string: urlString))
     }
 }
 
