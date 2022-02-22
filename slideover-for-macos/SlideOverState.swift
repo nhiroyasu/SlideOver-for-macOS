@@ -12,7 +12,7 @@ class SlideOver {
     class Vertical {
         func computeWindowWidth(screenWidth: CGFloat) -> CGFloat {
             let maxWidthSize: CGFloat = 512.0
-            let minWidthSize: CGFloat = 256.0
+            let minWidthSize: CGFloat = 384.0
             
             let tempWidthSize: CGFloat = screenWidth / 6.0
             
