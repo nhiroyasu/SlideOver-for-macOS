@@ -710,7 +710,7 @@
                                     </searchField>
                                 </searchToolbarItem>
                                 <toolbarItem implicitItemIdentifier="DCE70A8D-5BAF-4A07-BE94-981DC7F16036" label="リロード" paletteLabel="リロード" tag="-1" image="arrow.clockwise" catalog="system" bordered="YES" sizingBehavior="auto" navigational="YES" id="B9i-cD-GM3"/>
-                                <toolbarItem implicitItemIdentifier="315E3839-F71A-43C6-9498-9DB592ACAC83" label="初期ページに設定" paletteLabel="初期ページに設定" tag="-1" image="checkmark.circle" catalog="system" bordered="YES" sizingBehavior="auto" id="2ro-Pl-SFg"/>
+                                <toolbarItem implicitItemIdentifier="315E3839-F71A-43C6-9498-9DB592ACAC83" label="初期ページに設定" paletteLabel="初期ページに設定" tag="-1" image="checkmark.circle" catalog="system" bordered="YES" title="初期ページに設定" sizingBehavior="auto" id="2ro-Pl-SFg"/>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="oD3-pz-Emn"/>
