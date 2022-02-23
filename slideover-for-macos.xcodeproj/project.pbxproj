@@ -13,11 +13,19 @@
 		4FBCEB0127C1FA3400BCF88C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FBCEAFF27C1FA3400BCF88C /* Main.storyboard */; };
 		4FBCEB0927C1FA5600BCF88C /* MainWindowController.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0827C1FA5600BCF88C /* MainWindowController.swift.swift */; };
 		4FBCEB0C27C1FB1D00BCF88C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBCEB0B27C1FB1D00BCF88C /* WebKit.framework */; platformFilter = maccatalyst; };
-		4FBCEB0E27C20BBA00BCF88C /* SlideOverServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0D27C20BBA00BCF88C /* SlideOverServiceImpl.swift */; };
+		4FBCEB0E27C20BBA00BCF88C /* SlideOverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0D27C20BBA00BCF88C /* SlideOverService.swift */; };
 		4FBCEB1027C2709F00BCF88C /* SlideOverComputable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0F27C2709F00BCF88C /* SlideOverComputable.swift */; };
 		4FBCEB1227C27B7700BCF88C /* MousePositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB1127C27B7700BCF88C /* MousePositionService.swift */; };
 		4FBCEB1A27C27EC800BCF88C /* slideover_for_macosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB1927C27EC800BCF88C /* slideover_for_macosTests.swift */; };
 		4FBCEB2127C27EE200BCF88C /* MousePointServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB2027C27EE200BCF88C /* MousePointServiceTests.swift */; };
+		4FBCEB2327C6244900BCF88C /* UserSettingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB2227C6244900BCF88C /* UserSettingService.swift */; };
+		4FBCEB2D27C626FD00BCF88C /* Injectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB2C27C626FD00BCF88C /* Injectable.swift */; };
+		4FBCEB2F27C6273800BCF88C /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB2E27C6273800BCF88C /* Dependencies.swift */; };
+		4FBCEB3127C627C600BCF88C /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB3027C627C600BCF88C /* Injector.swift */; };
+		4FBCEB3327C6282200BCF88C /* SwinjectInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB3227C6282200BCF88C /* SwinjectInjector.swift */; };
+		4FBCEB3527C6285000BCF88C /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB3427C6285000BCF88C /* AppContainer.swift */; };
+		4FBCEB3727C62A4000BCF88C /* Container+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB3627C62A4000BCF88C /* Container+.swift */; };
+		4FBCEB3A27C62B6000BCF88C /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 4FBCEB3927C62B6000BCF88C /* Swinject */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,12 +47,19 @@
 		4FBCEB0227C1FA3400BCF88C /* slideover_for_macos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = slideover_for_macos.entitlements; sourceTree = "<group>"; };
 		4FBCEB0827C1FA5600BCF88C /* MainWindowController.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift.swift; sourceTree = "<group>"; };
 		4FBCEB0B27C1FB1D00BCF88C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		4FBCEB0D27C20BBA00BCF88C /* SlideOverServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverServiceImpl.swift; sourceTree = "<group>"; };
+		4FBCEB0D27C20BBA00BCF88C /* SlideOverService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverService.swift; sourceTree = "<group>"; };
 		4FBCEB0F27C2709F00BCF88C /* SlideOverComputable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverComputable.swift; sourceTree = "<group>"; };
 		4FBCEB1127C27B7700BCF88C /* MousePositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MousePositionService.swift; sourceTree = "<group>"; };
 		4FBCEB1727C27EC800BCF88C /* slideover-for-macosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "slideover-for-macosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FBCEB1927C27EC800BCF88C /* slideover_for_macosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = slideover_for_macosTests.swift; sourceTree = "<group>"; };
 		4FBCEB2027C27EE200BCF88C /* MousePointServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MousePointServiceTests.swift; sourceTree = "<group>"; };
+		4FBCEB2227C6244900BCF88C /* UserSettingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingService.swift; sourceTree = "<group>"; };
+		4FBCEB2C27C626FD00BCF88C /* Injectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injectable.swift; sourceTree = "<group>"; };
+		4FBCEB2E27C6273800BCF88C /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
+		4FBCEB3027C627C600BCF88C /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
+		4FBCEB3227C6282200BCF88C /* SwinjectInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwinjectInjector.swift; sourceTree = "<group>"; };
+		4FBCEB3427C6285000BCF88C /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
+		4FBCEB3627C62A4000BCF88C /* Container+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +68,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FBCEB0C27C1FB1D00BCF88C /* WebKit.framework in Frameworks */,
+				4FBCEB3A27C62B6000BCF88C /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,14 +104,11 @@
 		4FBCEAF827C1FA3300BCF88C /* slideover-for-macos */ = {
 			isa = PBXGroup;
 			children = (
+				4FBCEB2B27C6262400BCF88C /* DI */,
+				4FBCEB2A27C625DB00BCF88C /* UI */,
+				4FBCEB2927C625C900BCF88C /* Service */,
 				4FBCEAF927C1FA3300BCF88C /* AppDelegate.swift */,
-				4FBCEAFB27C1FA3300BCF88C /* ViewController.swift */,
-				4FBCEB0D27C20BBA00BCF88C /* SlideOverServiceImpl.swift */,
-				4FBCEB1127C27B7700BCF88C /* MousePositionService.swift */,
-				4FBCEB0F27C2709F00BCF88C /* SlideOverComputable.swift */,
-				4FBCEB0827C1FA5600BCF88C /* MainWindowController.swift.swift */,
 				4FBCEAFD27C1FA3400BCF88C /* Assets.xcassets */,
-				4FBCEAFF27C1FA3400BCF88C /* Main.storyboard */,
 				4FBCEB0227C1FA3400BCF88C /* slideover_for_macos.entitlements */,
 			);
 			path = "slideover-for-macos";
@@ -118,6 +131,40 @@
 			path = "slideover-for-macosTests";
 			sourceTree = "<group>";
 		};
+		4FBCEB2927C625C900BCF88C /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				4FBCEB1127C27B7700BCF88C /* MousePositionService.swift */,
+				4FBCEB2227C6244900BCF88C /* UserSettingService.swift */,
+				4FBCEB0F27C2709F00BCF88C /* SlideOverComputable.swift */,
+				4FBCEB0D27C20BBA00BCF88C /* SlideOverService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		4FBCEB2A27C625DB00BCF88C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				4FBCEB0827C1FA5600BCF88C /* MainWindowController.swift.swift */,
+				4FBCEAFB27C1FA3300BCF88C /* ViewController.swift */,
+				4FBCEAFF27C1FA3400BCF88C /* Main.storyboard */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		4FBCEB2B27C6262400BCF88C /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				4FBCEB2C27C626FD00BCF88C /* Injectable.swift */,
+				4FBCEB2E27C6273800BCF88C /* Dependencies.swift */,
+				4FBCEB3027C627C600BCF88C /* Injector.swift */,
+				4FBCEB3227C6282200BCF88C /* SwinjectInjector.swift */,
+				4FBCEB3427C6285000BCF88C /* AppContainer.swift */,
+				4FBCEB3627C62A4000BCF88C /* Container+.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,6 +181,9 @@
 			dependencies = (
 			);
 			name = "slideover-for-macos";
+			packageProductDependencies = (
+				4FBCEB3927C62B6000BCF88C /* Swinject */,
+			);
 			productName = "slideover-for-macos";
 			productReference = 4FBCEAF627C1FA3300BCF88C /* slideover-for-macos.app */;
 			productType = "com.apple.product-type.application";
@@ -184,6 +234,9 @@
 				Base,
 			);
 			mainGroup = 4FBCEAED27C1FA3300BCF88C;
+			packageReferences = (
+				4FBCEB3827C62B6000BCF88C /* XCRemoteSwiftPackageReference "Swinject" */,
+			);
 			productRefGroup = 4FBCEAF727C1FA3300BCF88C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -218,12 +271,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FBCEB3527C6285000BCF88C /* AppContainer.swift in Sources */,
+				4FBCEB2D27C626FD00BCF88C /* Injectable.swift in Sources */,
 				4FBCEAFC27C1FA3300BCF88C /* ViewController.swift in Sources */,
 				4FBCEB1027C2709F00BCF88C /* SlideOverComputable.swift in Sources */,
+				4FBCEB2F27C6273800BCF88C /* Dependencies.swift in Sources */,
+				4FBCEB3327C6282200BCF88C /* SwinjectInjector.swift in Sources */,
 				4FBCEB0927C1FA5600BCF88C /* MainWindowController.swift.swift in Sources */,
+				4FBCEB3127C627C600BCF88C /* Injector.swift in Sources */,
 				4FBCEAFA27C1FA3300BCF88C /* AppDelegate.swift in Sources */,
 				4FBCEB1227C27B7700BCF88C /* MousePositionService.swift in Sources */,
-				4FBCEB0E27C20BBA00BCF88C /* SlideOverServiceImpl.swift in Sources */,
+				4FBCEB3727C62A4000BCF88C /* Container+.swift in Sources */,
+				4FBCEB2327C6244900BCF88C /* UserSettingService.swift in Sources */,
+				4FBCEB0E27C20BBA00BCF88C /* SlideOverService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +552,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4FBCEB3827C62B6000BCF88C /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4FBCEB3927C62B6000BCF88C /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4FBCEB3827C62B6000BCF88C /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4FBCEAEE27C1FA3300BCF88C /* Project object */;
 }

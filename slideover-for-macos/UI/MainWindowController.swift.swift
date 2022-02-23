@@ -13,6 +13,11 @@ class MainWindowController: NSWindowController {
     private var willMoveNotificationToken: AnyCancellable?
     @IBOutlet weak var browserBackItem: NSToolbarItem!
     @IBOutlet weak var browserForwardItem: NSToolbarItem!
+    @IBOutlet weak var browserReloadItem: NSToolbarItem! {
+        didSet {
+            browserReloadItem.action = #selector(didTapBrowserReloadItem(_:))
+        }
+    }
     @IBOutlet weak var searchBar: NSSearchField! {
         didSet {
             searchBar.delegate = self
@@ -60,6 +65,10 @@ class MainWindowController: NSWindowController {
     
     @objc func didTapBrowserForwardItem(_ sender: Any) {
         contentView?.browserForward()
+    }
+    
+    @objc func didTapBrowserReloadItem(_ sender: Any) {
+        contentView?.browserReload()
     }
 }
 

@@ -5,6 +5,7 @@ protocol SlideOverViewable {
     func loadWebPage(url: URL?)
     func browserBack()
     func browserForward()
+    func browserReload()
 }
 
 class ViewController: NSViewController {
@@ -59,6 +60,10 @@ extension ViewController: SlideOverViewable {
         if webView.canGoForward {
             webView.goForward()
         }
+    }
+    
+    func browserReload() {
+        webView.reload()
     }
 }
 
