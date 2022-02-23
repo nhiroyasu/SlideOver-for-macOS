@@ -25,6 +25,8 @@ class ViewController: NSViewController {
     }
 
     private func setupWebView() {
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
         webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36"
         webView.allowsBackForwardNavigationGestures = true
         webView.allowsLinkPreview = true
@@ -62,6 +64,12 @@ extension ViewController: SlideOverViewable {
 
 extension ViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        
+        if navigationAction.navigationType == .linkActivated && navigationAction.targetFrame?.isMainFrame != true {
+            webView.load(navigationAction.request)
+        }
+        decisionHandler(.allow)
     }
+}
+
+extension ViewController: WKUIDelegate {
 }

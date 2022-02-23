@@ -14,7 +14,7 @@
 		4FBCEB0927C1FA5600BCF88C /* MainWindowController.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0827C1FA5600BCF88C /* MainWindowController.swift.swift */; };
 		4FBCEB0C27C1FB1D00BCF88C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBCEB0B27C1FB1D00BCF88C /* WebKit.framework */; platformFilter = maccatalyst; };
 		4FBCEB0E27C20BBA00BCF88C /* SlideOverServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0D27C20BBA00BCF88C /* SlideOverServiceImpl.swift */; };
-		4FBCEB1027C2709F00BCF88C /* SlideOverState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0F27C2709F00BCF88C /* SlideOverState.swift */; };
+		4FBCEB1027C2709F00BCF88C /* SlideOverComputable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0F27C2709F00BCF88C /* SlideOverComputable.swift */; };
 		4FBCEB1227C27B7700BCF88C /* MousePositionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB1127C27B7700BCF88C /* MousePositionService.swift */; };
 		4FBCEB1A27C27EC800BCF88C /* slideover_for_macosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB1927C27EC800BCF88C /* slideover_for_macosTests.swift */; };
 		4FBCEB2127C27EE200BCF88C /* MousePointServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB2027C27EE200BCF88C /* MousePointServiceTests.swift */; };
@@ -40,7 +40,7 @@
 		4FBCEB0827C1FA5600BCF88C /* MainWindowController.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift.swift; sourceTree = "<group>"; };
 		4FBCEB0B27C1FB1D00BCF88C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		4FBCEB0D27C20BBA00BCF88C /* SlideOverServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverServiceImpl.swift; sourceTree = "<group>"; };
-		4FBCEB0F27C2709F00BCF88C /* SlideOverState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverState.swift; sourceTree = "<group>"; };
+		4FBCEB0F27C2709F00BCF88C /* SlideOverComputable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverComputable.swift; sourceTree = "<group>"; };
 		4FBCEB1127C27B7700BCF88C /* MousePositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MousePositionService.swift; sourceTree = "<group>"; };
 		4FBCEB1727C27EC800BCF88C /* slideover-for-macosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "slideover-for-macosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FBCEB1927C27EC800BCF88C /* slideover_for_macosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = slideover_for_macosTests.swift; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 				4FBCEAFB27C1FA3300BCF88C /* ViewController.swift */,
 				4FBCEB0D27C20BBA00BCF88C /* SlideOverServiceImpl.swift */,
 				4FBCEB1127C27B7700BCF88C /* MousePositionService.swift */,
-				4FBCEB0F27C2709F00BCF88C /* SlideOverState.swift */,
+				4FBCEB0F27C2709F00BCF88C /* SlideOverComputable.swift */,
 				4FBCEB0827C1FA5600BCF88C /* MainWindowController.swift.swift */,
 				4FBCEAFD27C1FA3400BCF88C /* Assets.xcassets */,
 				4FBCEAFF27C1FA3400BCF88C /* Main.storyboard */,
@@ -219,7 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FBCEAFC27C1FA3300BCF88C /* ViewController.swift in Sources */,
-				4FBCEB1027C2709F00BCF88C /* SlideOverState.swift in Sources */,
+				4FBCEB1027C2709F00BCF88C /* SlideOverComputable.swift in Sources */,
 				4FBCEB0927C1FA5600BCF88C /* MainWindowController.swift.swift in Sources */,
 				4FBCEAFA27C1FA3300BCF88C /* AppDelegate.swift in Sources */,
 				4FBCEB1227C27B7700BCF88C /* MousePositionService.swift in Sources */,

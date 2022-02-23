@@ -9,7 +9,7 @@ enum SlideOverKind {
     case bottomLeft
     case bottomRight
     
-    var state: SlideOverState {
+    var state: SlideOverComputable {
         switch self {
         case .left:
             return SlideOver.Left()
@@ -36,7 +36,7 @@ class SlideOverServiceImpl: SlideOverService {
     
     public func fixWindow(for window: NSWindow, type: SlideOverKind) {
         guard let screen = NSScreen.main else { return }
-        let windowRect = type.state.computeWindowRect(parentSize: screen.frame.size)
+        let windowRect = type.state.computeWindowRect(screenSize: screen.frame.size)
         window.setFrame(windowRect, display: true, animate: true)
     }
     

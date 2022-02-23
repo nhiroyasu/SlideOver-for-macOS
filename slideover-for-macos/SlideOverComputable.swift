@@ -4,8 +4,8 @@ fileprivate let marginTop: CGFloat = 64.0
 fileprivate let marginBottom: CGFloat = 64.0
 fileprivate let marginRight: CGFloat = 64.0
 
-protocol SlideOverState {
-    func computeWindowRect(parentSize: CGSize) -> CGRect
+protocol SlideOverComputable {
+    func computeWindowRect(screenSize: CGSize) -> CGRect
 }
 
 class SlideOver {
@@ -29,10 +29,10 @@ class SlideOver {
         }
     }
     
-    class Left: Vertical, SlideOverState {
-        func computeWindowRect(parentSize: CGSize) -> CGRect {
-            let width = computeWindowWidth(screenWidth: parentSize.width)
-            let height = computeWindowHeight(screenHeight: parentSize.height)
+    class Left: Vertical, SlideOverComputable {
+        func computeWindowRect(screenSize: CGSize) -> CGRect {
+            let width = computeWindowWidth(screenWidth: screenSize.width)
+            let height = computeWindowHeight(screenHeight: screenSize.height)
             let originX = computeOriginX()
             let originY = computeOriginY()
             let windowRect = CGRect(x: originX, y: originY, width: width, height: height)
@@ -50,11 +50,11 @@ class SlideOver {
         }
     }
     
-    class Right: Vertical, SlideOverState {
-        func computeWindowRect(parentSize: CGSize) -> CGRect {
-            let width = computeWindowWidth(screenWidth: parentSize.width)
-            let height = computeWindowHeight(screenHeight: parentSize.height)
-            let originX = computeOriginX(windowWidth: width, screenWidth: parentSize.width)
+    class Right: Vertical, SlideOverComputable {
+        func computeWindowRect(screenSize: CGSize) -> CGRect {
+            let width = computeWindowWidth(screenWidth: screenSize.width)
+            let height = computeWindowHeight(screenHeight: screenSize.height)
+            let originX = computeOriginX(windowWidth: width, screenWidth: screenSize.width)
             let originY = computeOriginY()
             let windowRect = CGRect(x: originX, y: originY, width: width, height: height)
             return windowRect
@@ -82,11 +82,11 @@ class SlideOver {
         }
     }
     
-    class TopLeft: Rectangle, SlideOverState {
-        func computeWindowRect(parentSize: CGSize) -> CGRect {
-            let size = computeWindowSize(screenHeight: parentSize.height)
+    class TopLeft: Rectangle, SlideOverComputable {
+        func computeWindowRect(screenSize: CGSize) -> CGRect {
+            let size = computeWindowSize(screenHeight: screenSize.height)
             let originX = computeOriginX()
-            let originY = computeOriginY(windowHeight: size.height, screenHeight: parentSize.height)
+            let originY = computeOriginY(windowHeight: size.height, screenHeight: screenSize.height)
             let windowRect = CGRect(origin: CGPoint(x: originX, y: originY), size: size)
             return windowRect
         }
@@ -102,11 +102,11 @@ class SlideOver {
         }
     }
     
-    class TopRight: Rectangle, SlideOverState {
-        func computeWindowRect(parentSize: CGSize) -> CGRect {
-            let size = computeWindowSize(screenHeight: parentSize.height)
-            let originX = computeOriginX(windowWidth: size.width, screenWidth: parentSize.width)
-            let originY = computeOriginY(windowHeight: size.height, screenHeight: parentSize.height)
+    class TopRight: Rectangle, SlideOverComputable {
+        func computeWindowRect(screenSize: CGSize) -> CGRect {
+            let size = computeWindowSize(screenHeight: screenSize.height)
+            let originX = computeOriginX(windowWidth: size.width, screenWidth: screenSize.width)
+            let originY = computeOriginY(windowHeight: size.height, screenHeight: screenSize.height)
             let windowRect = CGRect(origin: CGPoint(x: originX, y: originY), size: size)
             return windowRect
         }
@@ -123,9 +123,9 @@ class SlideOver {
         }
     }
     
-    class BottomLeft: Rectangle, SlideOverState {
-        func computeWindowRect(parentSize: CGSize) -> CGRect {
-            let size = computeWindowSize(screenHeight: parentSize.height)
+    class BottomLeft: Rectangle, SlideOverComputable {
+        func computeWindowRect(screenSize: CGSize) -> CGRect {
+            let size = computeWindowSize(screenHeight: screenSize.height)
             let originX = computeOriginX()
             let originY = computeOriginY()
             let windowRect = CGRect(origin: CGPoint(x: originX, y: originY), size: size)
@@ -143,10 +143,10 @@ class SlideOver {
         }
     }
     
-    class BottomRight: Rectangle, SlideOverState {
-        func computeWindowRect(parentSize: CGSize) -> CGRect {
-            let size = computeWindowSize(screenHeight: parentSize.height)
-            let originX = computeOriginX(windowWidth: size.width, screenWidth: parentSize.width)
+    class BottomRight: Rectangle, SlideOverComputable {
+        func computeWindowRect(screenSize: CGSize) -> CGRect {
+            let size = computeWindowSize(screenHeight: screenSize.height)
+            let originX = computeOriginX(windowWidth: size.width, screenWidth: screenSize.width)
             let originY = computeOriginY()
             let windowRect = CGRect(origin: CGPoint(x: originX, y: originY), size: size)
             return windowRect
