@@ -6,6 +6,8 @@ class AppContainer {
     static func build() -> Container {
         let container = Container()
         
+        container.register(AlertService.self, impl: AlertServiceImpl())
+        container.register(URLValidationService.self, impl: URLValidationServiceImpl())
         container.register(UserSettingService.self, impl: UserSettingServiceImpl(userDefaults: UserDefaults.standard)).inObjectScope(.container)
         container.register(SlideOverService.self, impl: SlideOverServiceImpl())
         

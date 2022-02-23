@@ -30,9 +30,11 @@ class SlideOverWindowController: NSWindowController {
     }
     
     let action: SlideOverWindowAction
+    private let urlValidationService: URLValidationService
     
     init?(coder: NSCoder, injector: Injectable) {
         self.action = injector.build(SlideOverWindowAction.self)
+        self.urlValidationService = injector.build(URLValidationService.self)
         super.init(coder: coder)
     }
     
@@ -80,10 +82,14 @@ extension SlideOverWindowController: NSWindowDelegate {
 }
 
 extension SlideOverWindowController: NSSearchFieldDelegate {
-    func controlTextDidEndEditing(_ obj: Notification) {
-        let urlString = searchBar.stringValue
-        guard isValidUrl(url: urlString) else { return }
-        contentView?.loadWebPage(url: URL(string: urlString))
+    func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
+        if (commandSelector == #selector(NSResponder.insertNewline(_:))) {
+            let urlString = searchBar.stringValue
+            action.inputSearchBar(input: urlString)
+            return false
+        }
+        
+        return false
     }
 }
 
@@ -115,10 +121,3 @@ extension SlideOverWindowController: SlideOverWindowControllable {
     }
 }
 
-
-func isValidUrl(url: String) -> Bool {
-    let urlRegEx = "^(https?://)?(www\\.)?([-a-z0-9]{1,63}\\.)*?[a-z0-9][-a-z0-9]{0,61}[a-z0-9]\\.[a-z]{2,6}(/[-\\w@\\+\\.~#\\?&/=%]*)?$"
-    let urlTest = NSPredicate(format:"SELF MATCHES %@", urlRegEx)
-    let result = urlTest.evaluate(with: url)
-    return result
-}

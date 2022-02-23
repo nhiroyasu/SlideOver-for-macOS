@@ -30,6 +30,8 @@
 		4FBCEB4027C63B6C00BCF88C /* SlideOverWindowAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB3F27C63B6C00BCF88C /* SlideOverWindowAction.swift */; };
 		4FBCEB4227C63B8D00BCF88C /* SlideOverWindowUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB4127C63B8D00BCF88C /* SlideOverWindowUseCase.swift */; };
 		4FBCEB4427C667EF00BCF88C /* SlideOverWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB4327C667EF00BCF88C /* SlideOverWebView.swift */; };
+		4FBCEB4727C680A400BCF88C /* AlearService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB4627C680A400BCF88C /* AlearService.swift */; };
+		4FBCEB4927C6810300BCF88C /* URLValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB4827C6810300BCF88C /* URLValidationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		4FBCEB3F27C63B6C00BCF88C /* SlideOverWindowAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverWindowAction.swift; sourceTree = "<group>"; };
 		4FBCEB4127C63B8D00BCF88C /* SlideOverWindowUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverWindowUseCase.swift; sourceTree = "<group>"; };
 		4FBCEB4327C667EF00BCF88C /* SlideOverWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverWebView.swift; sourceTree = "<group>"; };
+		4FBCEB4627C680A400BCF88C /* AlearService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlearService.swift; sourceTree = "<group>"; };
+		4FBCEB4827C6810300BCF88C /* URLValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLValidationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,8 @@
 				4FBCEB2227C6244900BCF88C /* UserSettingService.swift */,
 				4FBCEB0F27C2709F00BCF88C /* SlideOverComputable.swift */,
 				4FBCEB0D27C20BBA00BCF88C /* SlideOverService.swift */,
+				4FBCEB4627C680A400BCF88C /* AlearService.swift */,
+				4FBCEB4827C6810300BCF88C /* URLValidationService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -312,12 +318,14 @@
 				4FBCEAFC27C1FA3300BCF88C /* SlideOverViewController.swift in Sources */,
 				4FBCEB1027C2709F00BCF88C /* SlideOverComputable.swift in Sources */,
 				4FBCEB2F27C6273800BCF88C /* Dependencies.swift in Sources */,
+				4FBCEB4727C680A400BCF88C /* AlearService.swift in Sources */,
 				4FBCEB4227C63B8D00BCF88C /* SlideOverWindowUseCase.swift in Sources */,
 				4FBCEB3327C6282200BCF88C /* SwinjectInjector.swift in Sources */,
 				4FBCEB0927C1FA5600BCF88C /* SlideOverWindowController.swift.swift in Sources */,
 				4FBCEB3127C627C600BCF88C /* Injector.swift in Sources */,
 				4FBCEAFA27C1FA3300BCF88C /* AppDelegate.swift in Sources */,
 				4FBCEB1227C27B7700BCF88C /* MousePositionService.swift in Sources */,
+				4FBCEB4927C6810300BCF88C /* URLValidationService.swift in Sources */,
 				4FBCEB3727C62A4000BCF88C /* Container+.swift in Sources */,
 				4FBCEB4427C667EF00BCF88C /* SlideOverWebView.swift in Sources */,
 				4FBCEB2327C6244900BCF88C /* UserSettingService.swift in Sources */,

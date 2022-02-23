@@ -4,12 +4,14 @@ import Combine
 
 protocol SlideOverWindowUseCase {
     func setUp()
+    func loadWebPage(url: URL?)
     func registerInitialPage(url: URL?)
 }
 
 class SlideOverWindowInteractor: SlideOverWindowUseCase {
     
     private var userSettingService: UserSettingService
+    private var urlValidationService: URLValidationService
     private let presenter: SlideOverWindowPresenter
     
     private var didMoveNotificationToken: AnyCancellable?
@@ -19,6 +21,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     
     public init(injector: Injectable) {
         self.userSettingService = injector.build(UserSettingService.self)
+        self.urlValidationService = injector.build(URLValidationService.self)
         self.presenter = injector.build(SlideOverWindowPresenter.self)
     }
     
@@ -32,6 +35,10 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         } else {
             presenter.setInitialPage(url: defaultInitialPage)
         }
+    }
+    
+    func loadWebPage(url: URL?) {
+        presenter.loadWebPage(url: url)
     }
     
     func registerInitialPage(url: URL?) {
