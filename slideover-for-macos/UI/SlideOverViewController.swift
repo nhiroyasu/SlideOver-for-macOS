@@ -6,28 +6,30 @@ protocol SlideOverViewable {
     func browserBack()
     func browserForward()
     func browserReload()
+    var currentUrl: URL? { get }
 }
 
-class ViewController: NSViewController {
+class SlideOverViewController: NSViewController {
     
-    @IBOutlet var webView: WKWebView!
-    private let slideOverService: SlideOverServiceImpl = .init()
+    @IBOutlet var webView: WKWebView! {
+        didSet {
+            webView.uiDelegate = self
+            webView.navigationDelegate = self
+        }
+    }
     private var observers = [NSKeyValueObservation]()
     
-    private var contentWindow: MainWindowControllable? {
-        view.window?.windowController as? MainWindowControllable
+    private var contentWindow: SlideOverWindowControllable? {
+        view.window?.windowController as? SlideOverWindowControllable
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupWebView()
-        loadWebPage(url: URL(string: "https://yahoo.co.jp/"))
     }
 
     private func setupWebView() {
-        webView.uiDelegate = self
-        webView.navigationDelegate = self
         webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36"
         webView.allowsBackForwardNavigationGestures = true
         webView.allowsLinkPreview = true
@@ -43,7 +45,7 @@ class ViewController: NSViewController {
     }
 }
 
-extension ViewController: SlideOverViewable {
+extension SlideOverViewController: SlideOverViewable {
     public func loadWebPage(url: URL?) {
         guard let url = url else { return }
         let request = URLRequest(url: url)
@@ -65,16 +67,20 @@ extension ViewController: SlideOverViewable {
     func browserReload() {
         webView.reload()
     }
-}
-
-extension ViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if navigationAction.navigationType == .linkActivated && navigationAction.targetFrame?.isMainFrame != true {
-            webView.load(navigationAction.request)
-        }
-        decisionHandler(.allow)
+    
+    var currentUrl: URL? {
+        webView.url
     }
 }
 
-extension ViewController: WKUIDelegate {
+extension SlideOverViewController: WKNavigationDelegate {
+}
+
+extension SlideOverViewController: WKUIDelegate {
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        if navigationAction.targetFrame == nil {
+            webView.load(navigationAction.request)
+        }
+        return nil
+    }
 }

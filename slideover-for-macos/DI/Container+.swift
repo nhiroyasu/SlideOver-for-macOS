@@ -3,9 +3,9 @@ import Swinject
 
 extension Container {
     @discardableResult
-    func register<Service, Arg1>(
+    func register<Service>(
         _ serviceType: Service.Type,
-        factory: @escaping (Resolver, Arg1) -> Service
+        factory: @escaping (Resolver) -> Service
     ) -> ServiceEntry<Service> {
         self.register(serviceType, name: nil, factory: factory)
     }

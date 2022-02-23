@@ -4,7 +4,7 @@ import Swinject
 class Injector: Injectable {
     
     static let shared: Injector = Injector(container: AppContainer.build())
-    private let container: Container
+    let container: Container
     
     init(container: Container) {
         self.container = container

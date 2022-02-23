@@ -34,14 +34,20 @@ protocol SlideOverService {
 
 class SlideOverServiceImpl: SlideOverService {
     
+    private var mousePointService: MousePointService? {
+        MousePointServiceImpl.current
+    }
+    
     public func fixWindow(for window: NSWindow, type: SlideOverKind) {
         guard let screen = NSScreen.main else { return }
         let windowRect = type.state.computeWindowRect(screenSize: screen.frame.size)
-        window.setFrame(windowRect, display: true, animate: true)
+        DispatchQueue.main.async {
+            window.setFrame(windowRect, display: true, animate: true)
+        }
     }
     
     func fixMovedWindow(for window: NSWindow) {
-        guard let mousePointService = MousePointServiceImpl.current else { return }
+        guard let mousePointService = mousePointService else { return }
         
         if mousePointService.getHorizontalQuadSplit() == .first &&
             mousePointService.getVerticalQuadSplit() == .first {

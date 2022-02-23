@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <plugIn identifier="com.apple.WebKit2IBPlugin" version="19529"/>
@@ -685,13 +685,13 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" customClass="MainWindowController" customModule="slideover_for_macos" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="slideOverWindowController" id="B8D-0N-5wS" customClass="SlideOverWindowController" customModule="slideover_for_macos" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <toolbar key="toolbar" implicitIdentifier="8CC2B5F0-8092-4679-9283-2218D3A053F0" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="xSY-ux-uBJ">
+                        <toolbar key="toolbar" implicitIdentifier="8CC2B5F0-8092-4679-9283-2218D3A053F0" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="regular" id="xSY-ux-uBJ">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="smc-Yb-1aA"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="ZB3-N6-PjJ"/>
@@ -710,15 +710,13 @@
                                     </searchField>
                                 </searchToolbarItem>
                                 <toolbarItem implicitItemIdentifier="DCE70A8D-5BAF-4A07-BE94-981DC7F16036" label="リロード" paletteLabel="リロード" tag="-1" image="arrow.clockwise" catalog="system" bordered="YES" sizingBehavior="auto" navigational="YES" id="B9i-cD-GM3"/>
-                                <toolbarItem implicitItemIdentifier="315E3839-F71A-43C6-9498-9DB592ACAC83" label="初期ページに設定" paletteLabel="初期ページに設定" tag="-1" image="eye" catalog="system" bordered="YES" id="2ro-Pl-SFg">
-                                    <size key="minSize" width="32" height="25"/>
-                                    <size key="maxSize" width="32" height="25"/>
-                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="315E3839-F71A-43C6-9498-9DB592ACAC83" label="初期ページに設定" paletteLabel="初期ページに設定" tag="-1" image="checkmark.circle" catalog="system" bordered="YES" sizingBehavior="auto" id="2ro-Pl-SFg"/>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="oD3-pz-Emn"/>
                                 <toolbarItem reference="bxw-Kz-tTh"/>
                                 <toolbarItem reference="B9i-cD-GM3"/>
+                                <toolbarItem reference="2ro-Pl-SFg"/>
                                 <searchToolbarItem reference="Ad6-IK-6Y7"/>
                             </defaultToolbarItems>
                         </toolbar>
@@ -730,6 +728,7 @@
                         <outlet property="browserBackItem" destination="oD3-pz-Emn" id="5o1-1K-lAt"/>
                         <outlet property="browserForwardItem" destination="bxw-Kz-tTh" id="kLi-pa-BjK"/>
                         <outlet property="browserReloadItem" destination="B9i-cD-GM3" id="tDH-5U-jpl"/>
+                        <outlet property="registerInitialPageItem" destination="2ro-Pl-SFg" id="jow-cq-xbk"/>
                         <outlet property="searchBar" destination="lVO-rk-hs3" id="fca-6w-2h8"/>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
                     </connections>
@@ -738,10 +737,10 @@
             </objects>
             <point key="canvasLocation" x="79" y="252"/>
         </scene>
-        <!--View Controller-->
+        <!--Slide Over View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="slideover_for_macos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="SlideOverViewController" customModule="slideover_for_macos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="625" height="688"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -774,6 +773,6 @@
         <image name="arrow.backward" catalog="system" width="16" height="12"/>
         <image name="arrow.clockwise" catalog="system" width="14" height="16"/>
         <image name="arrow.forward" catalog="system" width="16" height="12"/>
-        <image name="eye" catalog="system" width="20" height="13"/>
+        <image name="checkmark.circle" catalog="system" width="15" height="15"/>
     </resources>
 </document>

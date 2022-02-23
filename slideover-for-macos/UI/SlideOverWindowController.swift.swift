@@ -1,21 +1,25 @@
 import AppKit
 import Combine
 
-protocol MainWindowControllable {
+protocol SlideOverWindowControllable {
     func setBrowserBack(enable: Bool)
     func setBrowserForward(enable: Bool)
+    func fixWindow(handle: @escaping (NSWindow?) -> Void)
+    func loadWebPage(url: URL?)
 }
 
-class MainWindowController: NSWindowController {
-    
-    private let slideOverService: SlideOverServiceImpl = .init()
-    private var didMoveNotificationToken: AnyCancellable?
-    private var willMoveNotificationToken: AnyCancellable?
+class SlideOverWindowController: NSWindowController {
+
     @IBOutlet weak var browserBackItem: NSToolbarItem!
     @IBOutlet weak var browserForwardItem: NSToolbarItem!
     @IBOutlet weak var browserReloadItem: NSToolbarItem! {
         didSet {
             browserReloadItem.action = #selector(didTapBrowserReloadItem(_:))
+        }
+    }
+    @IBOutlet weak var registerInitialPageItem: NSToolbarItem! {
+        didSet {
+            registerInitialPageItem.action = #selector(didTapRegisterInitialPageItem(_:))
         }
     }
     @IBOutlet weak var searchBar: NSSearchField! {
@@ -24,39 +28,30 @@ class MainWindowController: NSWindowController {
         }
     }
     
+    private let action: SlideOverWindowAction
+    
+    init?(coder: NSCoder, injector: Injectable) {
+        self.action = injector.build(SlideOverWindowAction.self)
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
     var contentView: SlideOverViewable? {
         window?.contentViewController as? SlideOverViewable
     }
     
     override func windowDidLoad() {
-        if let window = window {
-            window.level = .floating
-            window.styleMask = [.borderless, .utilityWindow, .titled, .closable]
-            window.collectionBehavior = [.canJoinAllSpaces]
-            
-            DispatchQueue.main.async {
-                self.slideOverService.fixWindow(for: window, type: .right)
-            }
-        }
-        
-        willMoveNotificationToken = NotificationCenter.default
-            .publisher(for: NSWindow.willMoveNotification, object: nil)
-            .sink { [weak self] notification in
-                self?.setMoveNotification()
-            }
+        window?.level = .floating
+        window?.styleMask = [.borderless, .utilityWindow, .titled, .closable]
+        window?.collectionBehavior = [.canJoinAllSpaces]
     }
     
-    private func setMoveNotification() {
-        didMoveNotificationToken = NotificationCenter.default.publisher(for: NSWindow.didMoveNotification, object: nil)
-            .delay(for: .milliseconds(100), tolerance: nil, scheduler: RunLoop.main, options: nil)
-            .filter({ _ in NSEvent.pressedMouseButtons == 0 })
-            .prefix(1)
-            .sink { notification in
-                guard let window = notification.object as? NSWindow else { return }
-                DispatchQueue.main.async {
-                    self.slideOverService.fixMovedWindow(for: window)
-                }
-            }
+    override func showWindow(_ sender: Any?) {
+        action.showWindow()
+        super.showWindow(sender)
     }
     
     @objc func didTapBrowserBackItem(_ sender: Any) {
@@ -70,15 +65,20 @@ class MainWindowController: NSWindowController {
     @objc func didTapBrowserReloadItem(_ sender: Any) {
         contentView?.browserReload()
     }
+    
+    @objc func didTapRegisterInitialPageItem(_ sender: Any) {
+        guard let url = contentView?.currentUrl else { return }
+        action.didTapInitialPageItem(currentUrl: url)
+    }
 }
 
-extension MainWindowController: NSWindowDelegate {
+extension SlideOverWindowController: NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
         NSApplication.shared.terminate(nil)
     }
 }
 
-extension MainWindowController: NSSearchFieldDelegate {
+extension SlideOverWindowController: NSSearchFieldDelegate {
     func controlTextDidEndEditing(_ obj: Notification) {
         let urlString = searchBar.stringValue
         guard isValidUrl(url: urlString) else { return }
@@ -86,7 +86,7 @@ extension MainWindowController: NSSearchFieldDelegate {
     }
 }
 
-extension MainWindowController: MainWindowControllable {
+extension SlideOverWindowController: SlideOverWindowControllable {
     func setBrowserBack(enable: Bool) {
         if enable {
             browserBackItem.action = #selector(didTapBrowserBackItem(_:))
@@ -103,6 +103,14 @@ extension MainWindowController: MainWindowControllable {
             browserForwardItem.action = nil
         }
         browserForwardItem.isEnabled = true
+    }
+    
+    func fixWindow(handle: @escaping (NSWindow?) -> Void) {
+        handle(window)
+    }
+    
+    func loadWebPage(url: URL?) {
+        contentView?.loadWebPage(url: url)
     }
 }
 
