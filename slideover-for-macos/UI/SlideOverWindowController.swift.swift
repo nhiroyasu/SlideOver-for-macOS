@@ -6,6 +6,7 @@ protocol SlideOverWindowControllable {
     func setBrowserForward(enable: Bool)
     func fixWindow(handle: @escaping (NSWindow?) -> Void)
     func loadWebPage(url: URL?)
+    var action: SlideOverWindowAction { get }
 }
 
 class SlideOverWindowController: NSWindowController {
@@ -28,7 +29,7 @@ class SlideOverWindowController: NSWindowController {
         }
     }
     
-    private let action: SlideOverWindowAction
+    let action: SlideOverWindowAction
     
     init?(coder: NSCoder, injector: Injectable) {
         self.action = injector.build(SlideOverWindowAction.self)

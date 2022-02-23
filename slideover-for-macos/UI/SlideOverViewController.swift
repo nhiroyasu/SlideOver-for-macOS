@@ -11,10 +11,11 @@ protocol SlideOverViewable {
 
 class SlideOverViewController: NSViewController {
     
-    @IBOutlet var webView: WKWebView! {
+    @IBOutlet var webView: SlideOverWebView! {
         didSet {
             webView.uiDelegate = self
             webView.navigationDelegate = self
+            webView.delegate = self
         }
     }
     private var observers = [NSKeyValueObservation]()
@@ -82,5 +83,22 @@ extension SlideOverViewController: WKUIDelegate {
             webView.load(navigationAction.request)
         }
         return nil
+    }
+}
+
+extension SlideOverViewController: SlideOverWebViewMenuDelegate {
+    func didTapCopyLink() {
+        guard let url = webView.url, let nsUrl = NSURL(string: url.absoluteString) else { return }
+        NSPasteboard.general.clearContents()
+        NSPasteboard.general.writeObjects([nsUrl])
+    }
+    
+    func didTapOpenBrowser() {
+        guard let url = webView.url else { return }
+        NSWorkspace.shared.open(url)
+    }
+    
+    func didTapRegisterInitialPage() {
+        contentWindow?.action.didTapInitialPageItem(currentUrl: webView.url)
     }
 }
