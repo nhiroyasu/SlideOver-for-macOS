@@ -3,6 +3,8 @@ protocol SlideOverWindowAction {
     func showWindow()
     func inputSearchBar(input: String)
     func didTapInitialPageItem(currentUrl url: URL?)
+    func didChangePage(url: URL?)
+    func didChangePosition(kind: SlideOverKind)
 }
 
 class SlideOverWindowActionImpl: SlideOverWindowAction {
@@ -29,5 +31,13 @@ class SlideOverWindowActionImpl: SlideOverWindowAction {
     
     func didTapInitialPageItem(currentUrl url: URL?) {
         useCase.registerInitialPage(url: url)
+    }
+    
+    func didChangePage(url: URL?) {
+        useCase.registerLatestPage(url: url)
+    }
+    
+    func didChangePosition(kind: SlideOverKind) {
+        useCase.registerLatestPositon(kind: kind)
     }
 }

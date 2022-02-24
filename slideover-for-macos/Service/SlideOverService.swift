@@ -1,7 +1,7 @@
 import Foundation
 import AppKit
 
-enum SlideOverKind {
+enum SlideOverKind: Int {
     case left
     case right
     case topLeft
@@ -34,12 +34,18 @@ protocol SlideOverService {
 
 class SlideOverServiceImpl: SlideOverService {
     
+    private var userSettingService: UserSettingService
     private var mousePointService: MousePointService? {
         MousePointServiceImpl.current
     }
     
+    init(injector: Injectable) {
+        self.userSettingService = injector.build(UserSettingService.self)
+    }
+    
     public func fixWindow(for window: NSWindow, type: SlideOverKind) {
         guard let screen = NSScreen.main else { return }
+        userSettingService.latestPosition = type
         let windowRect = type.state.computeWindowRect(screenSize: screen.frame.size)
         DispatchQueue.main.async {
             window.setFrame(windowRect, display: true, animate: true)

@@ -7,6 +7,8 @@ protocol SlideOverWindowUseCase {
     func loadWebPage(url: URL?)
     func searchGoogle(keyword: String)
     func registerInitialPage(url: URL?)
+    func registerLatestPage(url: URL?)
+    func registerLatestPositon(kind: SlideOverKind)
 }
 
 class SlideOverWindowInteractor: SlideOverWindowUseCase {
@@ -31,9 +33,9 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     func setUp() {
         observeMouseEvent()
         setWillMoveNotification()
-        presenter.fixWindow(type: .right)
+        presenter.fixWindow(type: userSettingService.latestPosition ?? .right)
         
-        if let url = userSettingService.initialPage {
+        if let url = userSettingService.latestPage {
             presenter.setInitialPage(url: url)
         } else {
             presenter.setInitialPage(url: defaultInitialPage)
@@ -52,6 +54,14 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     
     func registerInitialPage(url: URL?) {
         userSettingService.initialPage = url
+    }
+    
+    func registerLatestPage(url: URL?) {
+        userSettingService.latestPage = url
+    }
+    
+    func registerLatestPositon(kind: SlideOverKind) {
+        userSettingService.latestPosition = kind
     }
 }
 

@@ -43,6 +43,9 @@ class SlideOverViewController: NSViewController {
         observers.append(webView.observe(\.canGoForward, options: [.new], changeHandler: { [weak self] webView, _ in
             self?.contentWindow?.setBrowserForward(enable: webView.canGoForward)
         }))
+        observers.append(webView.observe(\.url, options: [.new], changeHandler: { [weak self] webView, _ in
+            self?.contentWindow?.action.didChangePage(url: webView.url)
+        }))
     }
 }
 

@@ -10,16 +10,18 @@ class AppContainer {
         container.register(URLValidationService.self, impl: URLValidationServiceImpl())
         container.register(URLEncodeService.self, impl: URLEncodeServiceImpl())
         container.register(UserSettingService.self, impl: UserSettingServiceImpl(userDefaults: UserDefaults.standard)).inObjectScope(.container)
-        container.register(SlideOverService.self, impl: SlideOverServiceImpl())
+        container.register(SlideOverService.self) { injector in
+            SlideOverServiceImpl(injector: injector)
+        }
         
-        container.register(SlideOverWindowAction.self) { r in
-            SlideOverWindowActionImpl(injector: SwinjectInjector(r))
+        container.register(SlideOverWindowAction.self) { injector in
+            SlideOverWindowActionImpl(injector: injector)
         }
-        container.register(SlideOverWindowUseCase.self) { r in
-            SlideOverWindowInteractor(injector: SwinjectInjector(r))
+        container.register(SlideOverWindowUseCase.self) { injector in
+            SlideOverWindowInteractor(injector: injector)
         }
-        container.register(SlideOverWindowPresenter.self) { r in
-            SlideOverWindowPresenterImpl(injector: SwinjectInjector(r))
+        container.register(SlideOverWindowPresenter.self) { injector in
+            SlideOverWindowPresenterImpl(injector: injector)
         }
         
         return container

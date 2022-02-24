@@ -2,6 +2,8 @@ import Foundation
 
 protocol UserSettingService {
     var initialPage: URL? { get set }
+    var latestPage: URL? { get set }
+    var latestPosition: SlideOverKind? { get set }
 }
 
 class UserSettingServiceImpl: UserSettingService {
@@ -17,6 +19,25 @@ class UserSettingServiceImpl: UserSettingService {
         }
         set {
             userDefaults.set(newValue, forKey: "initialPage")
+        }
+    }
+    
+    var latestPage: URL? {
+        get {
+            userDefaults.url(forKey: "latestPage")
+        }
+        set {
+            userDefaults.set(newValue, forKey: "latestPage")
+        }
+    }
+    
+    var latestPosition: SlideOverKind? {
+        get {
+            let raw = userDefaults.integer(forKey: "latestPosition")
+            return SlideOverKind(rawValue: raw)
+        }
+        set {
+            userDefaults.set(newValue?.rawValue, forKey: "latestPosition")
         }
     }
 }
