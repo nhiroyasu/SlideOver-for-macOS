@@ -28,6 +28,7 @@ class SlideOverWindowController: NSWindowController {
             searchBar.delegate = self
         }
     }
+    @IBOutlet weak var bookmarkItem: NSToolbarItem!
     
     let action: SlideOverWindowAction
     private let urlValidationService: URLValidationService
