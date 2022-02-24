@@ -32,6 +32,7 @@
 		4FBCEB4427C667EF00BCF88C /* SlideOverWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB4327C667EF00BCF88C /* SlideOverWebView.swift */; };
 		4FBCEB4727C680A400BCF88C /* AlearService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB4627C680A400BCF88C /* AlearService.swift */; };
 		4FBCEB4927C6810300BCF88C /* URLValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB4827C6810300BCF88C /* URLValidationService.swift */; };
+		4FBCEB4B27C7C8C100BCF88C /* URLEncodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB4A27C7C8C100BCF88C /* URLEncodeService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		4FBCEB4327C667EF00BCF88C /* SlideOverWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverWebView.swift; sourceTree = "<group>"; };
 		4FBCEB4627C680A400BCF88C /* AlearService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlearService.swift; sourceTree = "<group>"; };
 		4FBCEB4827C6810300BCF88C /* URLValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLValidationService.swift; sourceTree = "<group>"; };
+		4FBCEB4A27C7C8C100BCF88C /* URLEncodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEncodeService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				4FBCEB0D27C20BBA00BCF88C /* SlideOverService.swift */,
 				4FBCEB4627C680A400BCF88C /* AlearService.swift */,
 				4FBCEB4827C6810300BCF88C /* URLValidationService.swift */,
+				4FBCEB4A27C7C8C100BCF88C /* URLEncodeService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				4FBCEB0E27C20BBA00BCF88C /* SlideOverService.swift in Sources */,
 				4FBCEB4027C63B6C00BCF88C /* SlideOverWindowAction.swift in Sources */,
 				4FBCEB3D27C63A3000BCF88C /* SlideOverWindowPresenter.swift in Sources */,
+				4FBCEB4B27C7C8C100BCF88C /* URLEncodeService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

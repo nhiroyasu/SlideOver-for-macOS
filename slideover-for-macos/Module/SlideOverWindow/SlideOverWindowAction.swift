@@ -22,6 +22,8 @@ class SlideOverWindowActionImpl: SlideOverWindowAction {
     func inputSearchBar(input: String) {
         if urlValidationService.isUrl(text: input) {
             useCase.loadWebPage(url: URL(string: input))
+        } else {
+            useCase.searchGoogle(keyword: input)
         }
     }
     
