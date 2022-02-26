@@ -1,4 +1,5 @@
 import Foundation
+import QuartzCore
 
 protocol SlideOverWindowPresenter {
     func fixWindow(type: SlideOverKind)
@@ -7,6 +8,7 @@ protocol SlideOverWindowPresenter {
     func loadWebPage(url: URL?)
     func showHttpAlert()
     func showErrorAlert()
+    func setProgress(value: Double)
 }
 
 class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
@@ -54,6 +56,24 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     func showErrorAlert() {
         DispatchQueue.main.async {
             self.alertService.alert(msg: "入力した値が有効ではありません") {}
+        }
+    }
+    
+    func setProgress(value: Double) {
+        output?.progressBar?.layer?.opacity = 1.0
+        output?.progressBar?.doubleValue = value
+        if value == 100 {
+            guard let layer = output?.progressBar?.layer else { return }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                let animation = CABasicAnimation(keyPath: "opacity")
+                animation.duration = 0.8
+                animation.fromValue = 1.0
+                animation.toValue = 0.0
+                animation.autoreverses = false
+                animation.isRemovedOnCompletion = false
+                animation.fillMode = .forwards
+                layer.add(animation, forKey: nil)
+            }
         }
     }
 }

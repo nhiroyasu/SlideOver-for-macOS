@@ -7,6 +7,7 @@ protocol SlideOverViewable {
     func browserForward()
     func browserReload()
     var currentUrl: URL? { get }
+    var progressBar: NSProgressIndicator! { get }
 }
 
 class SlideOverViewController: NSViewController {
@@ -16,6 +17,11 @@ class SlideOverViewController: NSViewController {
             webView.uiDelegate = self
             webView.navigationDelegate = self
             webView.delegate = self
+        }
+    }
+    @IBOutlet weak var progressBar: NSProgressIndicator! {
+        didSet {
+            progressBar.doubleValue = 0
         }
     }
     private var observers = [NSKeyValueObservation]()
@@ -45,6 +51,9 @@ class SlideOverViewController: NSViewController {
         }))
         observers.append(webView.observe(\.url, options: [.new], changeHandler: { [weak self] webView, _ in
             self?.contentWindow?.action.didChangePage(url: webView.url)
+        }))
+        observers.append(webView.observe(\.estimatedProgress, options: [.new], changeHandler: { [weak self] webView, _ in
+            self?.contentWindow?.action.didUpdateProgress(value: webView.estimatedProgress)
         }))
     }
 }

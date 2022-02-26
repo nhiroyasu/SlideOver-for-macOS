@@ -5,6 +5,7 @@ protocol SlideOverWindowAction {
     func didTapInitialPageItem(currentUrl url: URL?)
     func didChangePage(url: URL?)
     func didChangePosition(kind: SlideOverKind)
+    func didUpdateProgress(value: Double)
 }
 
 class SlideOverWindowActionImpl: SlideOverWindowAction {
@@ -39,5 +40,9 @@ class SlideOverWindowActionImpl: SlideOverWindowAction {
     
     func didChangePosition(kind: SlideOverKind) {
         useCase.registerLatestPositon(kind: kind)
+    }
+    
+    func didUpdateProgress(value: Double) {
+        useCase.updateProgress(value: value)
     }
 }

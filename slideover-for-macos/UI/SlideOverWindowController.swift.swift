@@ -6,6 +6,7 @@ protocol SlideOverWindowControllable {
     func setBrowserForward(enable: Bool)
     func fixWindow(handle: @escaping (NSWindow?) -> Void)
     func loadWebPage(url: URL?)
+    var progressBar: NSProgressIndicator? { get }
     var action: SlideOverWindowAction { get }
 }
 
@@ -119,6 +120,10 @@ extension SlideOverWindowController: SlideOverWindowControllable {
     
     func loadWebPage(url: URL?) {
         contentView?.loadWebPage(url: url)
+    }
+    
+    var progressBar: NSProgressIndicator? {
+        contentView?.progressBar
     }
 }
 

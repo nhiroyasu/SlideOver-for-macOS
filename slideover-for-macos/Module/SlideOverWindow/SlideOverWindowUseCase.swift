@@ -9,6 +9,7 @@ protocol SlideOverWindowUseCase {
     func registerInitialPage(url: URL?)
     func registerLatestPage(url: URL?)
     func registerLatestPositon(kind: SlideOverKind)
+    func updateProgress(value progress: Double)
 }
 
 class SlideOverWindowInteractor: SlideOverWindowUseCase {
@@ -62,6 +63,10 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     
     func registerLatestPositon(kind: SlideOverKind) {
         userSettingService.latestPosition = kind
+    }
+    
+    func updateProgress(value progress: Double) {
+        presenter.setProgress(value: progress * 100)
     }
 }
 
