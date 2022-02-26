@@ -18,6 +18,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     private var urlValidationService: URLValidationService
     private var urlEncodeService: URLEncodeService
     private let presenter: SlideOverWindowPresenter
+    private let notificationManager: NotificationManager
     
     private var didMoveNotificationToken: AnyCancellable?
     private var willMoveNotificationToken: AnyCancellable?
@@ -29,9 +30,11 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         self.urlValidationService = injector.build(URLValidationService.self)
         self.urlEncodeService = injector.build(URLEncodeService.self)
         self.presenter = injector.build(SlideOverWindowPresenter.self)
+        self.notificationManager = injector.build(NotificationManager.self)
     }
     
     func setUp() {
+        observeReloadNotification()
         observeMouseEvent()
         setWillMoveNotification()
         presenter.fixWindow(type: userSettingService.latestPosition ?? .right)
@@ -93,5 +96,11 @@ extension SlideOverWindowInteractor {
             .sink { [weak self] event in
                 self?.presenter.adjustWindow()
             }
+    }
+    
+    private func observeReloadNotification() {
+        notificationManager.observe(name: .reload) { [weak self] _ in
+            self?.presenter.reload()
+        }
     }
 }

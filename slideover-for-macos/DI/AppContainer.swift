@@ -6,6 +6,7 @@ class AppContainer {
     static func build() -> Container {
         let container = Container()
         
+        container.register(NotificationManager.self, impl: NotificationManagerImpl())
         container.register(AlertService.self, impl: AlertServiceImpl())
         container.register(URLValidationService.self, impl: URLValidationServiceImpl())
         container.register(URLEncodeService.self, impl: URLEncodeServiceImpl())

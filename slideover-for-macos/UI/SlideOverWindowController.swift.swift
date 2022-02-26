@@ -8,6 +8,7 @@ protocol SlideOverWindowControllable {
     func loadWebPage(url: URL?)
     var progressBar: NSProgressIndicator? { get }
     var action: SlideOverWindowAction { get }
+    var contentView: SlideOverViewable? { get }
 }
 
 class SlideOverWindowController: NSWindowController {

@@ -11,6 +11,9 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     private var mainWindowController: SlideOverWindowController?
+    private var notificationManager: NotificationManager? {
+        Injector.shared.buildSafe(NotificationManager.self)
+    }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
@@ -32,6 +35,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
 
-
+    @IBAction func didTapReloadButton(_ sender: Any) {
+        notificationManager?.push(name: .reload, param: nil)
+    }
 }
 

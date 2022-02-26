@@ -33,6 +33,7 @@
 		4FBCEB4727C680A400BCF88C /* AlearService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB4627C680A400BCF88C /* AlearService.swift */; };
 		4FBCEB4927C6810300BCF88C /* URLValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB4827C6810300BCF88C /* URLValidationService.swift */; };
 		4FBCEB4B27C7C8C100BCF88C /* URLEncodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB4A27C7C8C100BCF88C /* URLEncodeService.swift */; };
+		4FBCEB4E27CA1E5500BCF88C /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB4D27CA1E5500BCF88C /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		4FBCEB4627C680A400BCF88C /* AlearService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlearService.swift; sourceTree = "<group>"; };
 		4FBCEB4827C6810300BCF88C /* URLValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLValidationService.swift; sourceTree = "<group>"; };
 		4FBCEB4A27C7C8C100BCF88C /* URLEncodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEncodeService.swift; sourceTree = "<group>"; };
+		4FBCEB4C27CA1AC400BCF88C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4FBCEB4D27CA1E5500BCF88C /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,7 @@
 		4FBCEAF827C1FA3300BCF88C /* slideover-for-macos */ = {
 			isa = PBXGroup;
 			children = (
+				4FBCEB4C27CA1AC400BCF88C /* Info.plist */,
 				4FBCEB2B27C6262400BCF88C /* DI */,
 				4FBCEB2A27C625DB00BCF88C /* UI */,
 				4FBCEB3B27C63A2300BCF88C /* Module */,
@@ -156,6 +160,7 @@
 				4FBCEB4627C680A400BCF88C /* AlearService.swift */,
 				4FBCEB4827C6810300BCF88C /* URLValidationService.swift */,
 				4FBCEB4A27C7C8C100BCF88C /* URLEncodeService.swift */,
+				4FBCEB4D27CA1E5500BCF88C /* NotificationManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 				4FBCEB2327C6244900BCF88C /* UserSettingService.swift in Sources */,
 				4FBCEB0E27C20BBA00BCF88C /* SlideOverService.swift in Sources */,
 				4FBCEB4027C63B6C00BCF88C /* SlideOverWindowAction.swift in Sources */,
+				4FBCEB4E27CA1E5500BCF88C /* NotificationManager.swift in Sources */,
 				4FBCEB3D27C63A3000BCF88C /* SlideOverWindowPresenter.swift in Sources */,
 				4FBCEB4B27C7C8C100BCF88C /* URLEncodeService.swift in Sources */,
 			);
@@ -497,6 +503,7 @@
 				DEVELOPMENT_TEAM = 2CMV7D36JC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "slideover-for-macos/Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -524,6 +531,7 @@
 				DEVELOPMENT_TEAM = 2CMV7D36JC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "slideover-for-macos/Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;

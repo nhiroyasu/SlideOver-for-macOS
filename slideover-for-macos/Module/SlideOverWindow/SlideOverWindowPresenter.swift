@@ -9,6 +9,7 @@ protocol SlideOverWindowPresenter {
     func showHttpAlert()
     func showErrorAlert()
     func setProgress(value: Double)
+    func reload()
 }
 
 class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
@@ -75,5 +76,9 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
                 layer.add(animation, forKey: nil)
             }
         }
+    }
+    
+    func reload() {
+        output?.contentView?.browserReload()
     }
 }
