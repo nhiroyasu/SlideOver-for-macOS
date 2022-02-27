@@ -17,6 +17,7 @@ class SlideOverViewController: NSViewController {
             webView.uiDelegate = self
             webView.navigationDelegate = self
             webView.delegate = self
+            webView.configuration.preferences._setFullScreenEnabled(true)
         }
     }
     @IBOutlet weak var progressBar: NSProgressIndicator! {
