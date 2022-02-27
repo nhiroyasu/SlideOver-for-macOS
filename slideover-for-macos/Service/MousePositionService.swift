@@ -39,9 +39,12 @@ protocol MousePointService {
 class MousePointServiceImpl: MousePointService {
     
     static var current: MousePointServiceImpl? {
-        guard let screenSize = NSScreen.main?.frame.size else { return nil }
-        let mouseLocationReverse = CGPoint(x: NSEvent.mouseLocation.x, y: screenSize.height - NSEvent.mouseLocation.y)
-        return .init(point: mouseLocationReverse, screenSize: screenSize)
+        guard let screenRect = NSScreen.main?.frame else { return nil }
+        let mouseLocationReverse = CGPoint(
+            x: NSEvent.mouseLocation.x - screenRect.origin.x,
+            y: screenRect.size.height - NSEvent.mouseLocation.y + screenRect.origin.y
+        )
+        return .init(point: mouseLocationReverse, screenSize: screenRect.size)
     }
     
     private let point: CGPoint

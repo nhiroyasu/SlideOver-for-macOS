@@ -46,7 +46,7 @@ class SlideOverServiceImpl: SlideOverService {
     public func fixWindow(for window: NSWindow, type: SlideOverKind) {
         guard let screen = NSScreen.main else { return }
         userSettingService.latestPosition = type
-        let windowRect = type.state.computeWindowRect(screenSize: screen.frame.size)
+        let windowRect = type.state.computeWindowRect(screenSize: screen.frame.size, screenOffset: screen.frame.origin)
         DispatchQueue.main.async {
             window.setFrame(windowRect, display: true, animate: true)
         }

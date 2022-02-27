@@ -5,7 +5,7 @@ fileprivate let marginBottom: CGFloat = 64.0
 fileprivate let marginRight: CGFloat = 64.0
 
 protocol SlideOverComputable {
-    func computeWindowRect(screenSize: CGSize) -> CGRect
+    func computeWindowRect(screenSize: CGSize, screenOffset: CGPoint) -> CGRect
 }
 
 class SlideOver {
@@ -30,45 +30,45 @@ class SlideOver {
     }
     
     class Left: Vertical, SlideOverComputable {
-        func computeWindowRect(screenSize: CGSize) -> CGRect {
+        func computeWindowRect(screenSize: CGSize, screenOffset: CGPoint) -> CGRect {
             let width = computeWindowWidth(screenWidth: screenSize.width)
             let height = computeWindowHeight(screenHeight: screenSize.height)
-            let originX = computeOriginX()
-            let originY = computeOriginY()
+            let originX = computeOriginX(offsetX: screenOffset.x)
+            let originY = computeOriginY(offsetY: screenOffset.y)
             let windowRect = CGRect(x: originX, y: originY, width: width, height: height)
             return windowRect
         }
         
-        private func computeOriginX() -> CGFloat {
+        private func computeOriginX(offsetX: CGFloat) -> CGFloat {
             let marginLeft: CGFloat = 64.0
-            return marginLeft
+            return marginLeft + offsetX
         }
         
-        private func computeOriginY() -> CGFloat {
+        private func computeOriginY(offsetY: CGFloat) -> CGFloat {
             let bestOriginY = marginBottom
-            return bestOriginY
+            return bestOriginY + offsetY
         }
     }
     
     class Right: Vertical, SlideOverComputable {
-        func computeWindowRect(screenSize: CGSize) -> CGRect {
+        func computeWindowRect(screenSize: CGSize, screenOffset: CGPoint) -> CGRect {
             let width = computeWindowWidth(screenWidth: screenSize.width)
             let height = computeWindowHeight(screenHeight: screenSize.height)
-            let originX = computeOriginX(windowWidth: width, screenWidth: screenSize.width)
-            let originY = computeOriginY()
+            let originX = computeOriginX(windowWidth: width, screenWidth: screenSize.width, offsetX: screenOffset.x)
+            let originY = computeOriginY(offsetY: screenOffset.y)
             let windowRect = CGRect(x: originX, y: originY, width: width, height: height)
             return windowRect
         }
         
-        private func computeOriginX(windowWidth: CGFloat, screenWidth: CGFloat) -> CGFloat {
+        private func computeOriginX(windowWidth: CGFloat, screenWidth: CGFloat, offsetX: CGFloat) -> CGFloat {
             let marginRight: CGFloat = 64.0
-            let bestOriginX: CGFloat = screenWidth - (windowWidth + marginRight)
+            let bestOriginX: CGFloat = screenWidth - (windowWidth + marginRight) + offsetX
             return bestOriginX
         }
         
-        private func computeOriginY() -> CGFloat {
+        private func computeOriginY(offsetY: CGFloat) -> CGFloat {
             let bestOriginY = marginBottom
-            return bestOriginY
+            return bestOriginY + offsetY
         }
     }
     
@@ -83,84 +83,84 @@ class SlideOver {
     }
     
     class TopLeft: Rectangle, SlideOverComputable {
-        func computeWindowRect(screenSize: CGSize) -> CGRect {
+        func computeWindowRect(screenSize: CGSize, screenOffset: CGPoint) -> CGRect {
             let size = computeWindowSize(screenHeight: screenSize.height)
-            let originX = computeOriginX()
-            let originY = computeOriginY(windowHeight: size.height, screenHeight: screenSize.height)
+            let originX = computeOriginX(offsetX: screenOffset.x)
+            let originY = computeOriginY(windowHeight: size.height, screenHeight: screenSize.height, offsetY: screenOffset.y)
             let windowRect = CGRect(origin: CGPoint(x: originX, y: originY), size: size)
             return windowRect
         }
         
-        private func computeOriginX() -> CGFloat {
+        private func computeOriginX(offsetX: CGFloat) -> CGFloat {
             let marginLeft: CGFloat = 64.0
-            return marginLeft
+            return marginLeft + offsetX
         }
         
-        private func computeOriginY(windowHeight: CGFloat, screenHeight: CGFloat) -> CGFloat {
+        private func computeOriginY(windowHeight: CGFloat, screenHeight: CGFloat, offsetY: CGFloat) -> CGFloat {
             let bestOriginY = screenHeight / 2.0 + marginBottom
-            return bestOriginY
+            return bestOriginY + offsetY
         }
     }
     
     class TopRight: Rectangle, SlideOverComputable {
-        func computeWindowRect(screenSize: CGSize) -> CGRect {
+        func computeWindowRect(screenSize: CGSize, screenOffset: CGPoint) -> CGRect {
             let size = computeWindowSize(screenHeight: screenSize.height)
-            let originX = computeOriginX(windowWidth: size.width, screenWidth: screenSize.width)
-            let originY = computeOriginY(windowHeight: size.height, screenHeight: screenSize.height)
+            let originX = computeOriginX(windowWidth: size.width, screenWidth: screenSize.width, offsetX: screenOffset.x)
+            let originY = computeOriginY(windowHeight: size.height, screenHeight: screenSize.height, offsetY: screenOffset.y)
             let windowRect = CGRect(origin: CGPoint(x: originX, y: originY), size: size)
             return windowRect
         }
         
-        private func computeOriginX(windowWidth: CGFloat, screenWidth: CGFloat) -> CGFloat {
+        private func computeOriginX(windowWidth: CGFloat, screenWidth: CGFloat, offsetX: CGFloat) -> CGFloat {
             let marginRight: CGFloat = 64.0
-            let bestOriginX: CGFloat = screenWidth - (windowWidth + marginRight)
+            let bestOriginX: CGFloat = screenWidth - (windowWidth + marginRight) + offsetX
             return bestOriginX
         }
         
-        private func computeOriginY(windowHeight: CGFloat, screenHeight: CGFloat) -> CGFloat {
+        private func computeOriginY(windowHeight: CGFloat, screenHeight: CGFloat, offsetY: CGFloat) -> CGFloat {
             let bestOriginY = screenHeight / 2.0 + marginBottom
-            return bestOriginY
+            return bestOriginY + offsetY
         }
     }
     
     class BottomLeft: Rectangle, SlideOverComputable {
-        func computeWindowRect(screenSize: CGSize) -> CGRect {
+        func computeWindowRect(screenSize: CGSize, screenOffset: CGPoint) -> CGRect {
             let size = computeWindowSize(screenHeight: screenSize.height)
-            let originX = computeOriginX()
-            let originY = computeOriginY()
+            let originX = computeOriginX(offsetX: screenOffset.x)
+            let originY = computeOriginY(offsetY: screenOffset.y)
             let windowRect = CGRect(origin: CGPoint(x: originX, y: originY), size: size)
             return windowRect
         }
         
-        private func computeOriginX() -> CGFloat {
+        private func computeOriginX(offsetX: CGFloat) -> CGFloat {
             let marginLeft: CGFloat = 64.0
-            return marginLeft
+            return marginLeft + offsetX
         }
         
-        private func computeOriginY() -> CGFloat {
+        private func computeOriginY(offsetY: CGFloat) -> CGFloat {
             let bestOriginY = marginBottom
-            return bestOriginY
+            return bestOriginY + offsetY
         }
     }
     
     class BottomRight: Rectangle, SlideOverComputable {
-        func computeWindowRect(screenSize: CGSize) -> CGRect {
+        func computeWindowRect(screenSize: CGSize, screenOffset: CGPoint) -> CGRect {
             let size = computeWindowSize(screenHeight: screenSize.height)
-            let originX = computeOriginX(windowWidth: size.width, screenWidth: screenSize.width)
-            let originY = computeOriginY()
+            let originX = computeOriginX(windowWidth: size.width, screenWidth: screenSize.width, offsetX: screenOffset.x)
+            let originY = computeOriginY(offsetY: screenOffset.y)
             let windowRect = CGRect(origin: CGPoint(x: originX, y: originY), size: size)
             return windowRect
         }
         
-        private func computeOriginX(windowWidth: CGFloat, screenWidth: CGFloat) -> CGFloat {
+        private func computeOriginX(windowWidth: CGFloat, screenWidth: CGFloat, offsetX: CGFloat) -> CGFloat {
             let marginRight: CGFloat = 64.0
-            let bestOriginX: CGFloat = screenWidth - (windowWidth + marginRight)
+            let bestOriginX: CGFloat = screenWidth - (windowWidth + marginRight) + offsetX
             return bestOriginX
         }
         
-        private func computeOriginY() -> CGFloat {
+        private func computeOriginY(offsetY: CGFloat) -> CGFloat {
             let bestOriginY = marginBottom
-            return bestOriginY
+            return bestOriginY + offsetY
         }
     }
 }
