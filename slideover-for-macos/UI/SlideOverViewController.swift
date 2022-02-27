@@ -8,6 +8,7 @@ protocol SlideOverViewable {
     func browserReload()
     var currentUrl: URL? { get }
     var progressBar: NSProgressIndicator! { get }
+    var webView: SlideOverWebView! { get }
 }
 
 class SlideOverViewController: NSViewController {
@@ -38,7 +39,6 @@ class SlideOverViewController: NSViewController {
     }
 
     private func setupWebView() {
-        webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36"
         webView.allowsBackForwardNavigationGestures = true
         webView.allowsLinkPreview = true
         observers.append(webView.observe(\.title, options: [.new], changeHandler: { [weak self] webView, _ in

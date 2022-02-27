@@ -9,6 +9,7 @@ protocol SlideOverWindowControllable {
     var progressBar: NSProgressIndicator? { get }
     var action: SlideOverWindowAction { get }
     var contentView: SlideOverViewable? { get }
+    var webDisplayTypeItem: NSToolbarItem! { get }
 }
 
 class SlideOverWindowController: NSWindowController {
@@ -28,6 +29,11 @@ class SlideOverWindowController: NSWindowController {
     @IBOutlet weak var searchBar: NSSearchField! {
         didSet {
             searchBar.delegate = self
+        }
+    }
+    @IBOutlet weak var webDisplayTypeItem: NSToolbarItem! {
+        didSet {
+            webDisplayTypeItem.action = #selector(didTapWebDisplayTypeItem(_:))
         }
     }
     @IBOutlet weak var bookmarkItem: NSToolbarItem!
@@ -76,6 +82,10 @@ class SlideOverWindowController: NSWindowController {
         guard let url = contentView?.currentUrl else { return }
         action.didTapInitialPageItem(currentUrl: url)
     }
+    
+    @objc func didTapWebDisplayTypeItem(_ sender: Any) {
+        action.didTapDisplayType()
+    }
 }
 
 extension SlideOverWindowController: NSWindowDelegate {
@@ -91,7 +101,6 @@ extension SlideOverWindowController: NSSearchFieldDelegate {
             action.inputSearchBar(input: urlString)
             return false
         }
-        
         return false
     }
 }

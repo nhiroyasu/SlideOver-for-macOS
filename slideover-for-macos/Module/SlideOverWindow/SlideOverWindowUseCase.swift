@@ -10,9 +10,14 @@ protocol SlideOverWindowUseCase {
     func registerLatestPage(url: URL?)
     func registerLatestPositon(kind: SlideOverKind)
     func updateProgress(value progress: Double)
+    func switchUserAgent()
 }
 
 class SlideOverWindowInteractor: SlideOverWindowUseCase {
+    
+    struct State {
+        var userAgent: UserAgent
+    }
     
     private var userSettingService: UserSettingService
     private var urlValidationService: URLValidationService
@@ -24,6 +29,9 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     private var willMoveNotificationToken: AnyCancellable?
     private let leftMouseUpSubject = PassthroughSubject<NSEvent, Never>()
     private let defaultInitialPage: URL? = URL(string: "https://google.com")
+    private let defaultUserAgent: UserAgent = .desktop
+    
+    private var state: State
     
     public init(injector: Injectable) {
         self.userSettingService = injector.build(UserSettingService.self)
@@ -31,6 +39,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         self.urlEncodeService = injector.build(URLEncodeService.self)
         self.presenter = injector.build(SlideOverWindowPresenter.self)
         self.notificationManager = injector.build(NotificationManager.self)
+        self.state = .init(userAgent: .desktop)
     }
     
     func setUp() {
@@ -43,6 +52,14 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
             presenter.setInitialPage(url: url)
         } else {
             presenter.setInitialPage(url: defaultInitialPage)
+        }
+        
+        if let userAgent = userSettingService.latestUserAgent {
+            state.userAgent = userAgent
+            presenter.setUserAgent(userAgent)
+        } else {
+            state.userAgent = defaultUserAgent
+            presenter.setUserAgent(defaultUserAgent)
         }
     }
     
@@ -70,6 +87,19 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     
     func updateProgress(value progress: Double) {
         presenter.setProgress(value: progress * 100)
+    }
+    
+    func switchUserAgent() {
+        let nextUserAgent: UserAgent
+        switch state.userAgent {
+        case .desktop:
+            nextUserAgent = .phone
+        case .phone:
+            nextUserAgent = .desktop
+        }
+        state.userAgent = nextUserAgent
+        userSettingService.latestUserAgent = nextUserAgent
+        presenter.setUserAgent(nextUserAgent)
     }
 }
 

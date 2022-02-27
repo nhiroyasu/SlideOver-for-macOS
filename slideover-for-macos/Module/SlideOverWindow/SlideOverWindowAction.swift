@@ -6,6 +6,7 @@ protocol SlideOverWindowAction {
     func didChangePage(url: URL?)
     func didChangePosition(kind: SlideOverKind)
     func didUpdateProgress(value: Double)
+    func didTapDisplayType()
 }
 
 class SlideOverWindowActionImpl: SlideOverWindowAction {
@@ -44,5 +45,9 @@ class SlideOverWindowActionImpl: SlideOverWindowAction {
     
     func didUpdateProgress(value: Double) {
         useCase.updateProgress(value: value)
+    }
+    
+    func didTapDisplayType() {
+        useCase.switchUserAgent()
     }
 }

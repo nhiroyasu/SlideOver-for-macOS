@@ -35,6 +35,7 @@
 		4FBCEB4B27C7C8C100BCF88C /* URLEncodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB4A27C7C8C100BCF88C /* URLEncodeService.swift */; };
 		4FBCEB4E27CA1E5500BCF88C /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB4D27CA1E5500BCF88C /* NotificationManager.swift */; };
 		4FBCEB5127CBAE5600BCF88C /* WKPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB5027CBAE5600BCF88C /* WKPreferences.m */; };
+		4FBCEB5427CBBC2500BCF88C /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB5327CBBC2500BCF88C /* UserAgent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		4FBCEB4D27CA1E5500BCF88C /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		4FBCEB4F27CBAE5500BCF88C /* slideover-for-macos-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "slideover-for-macos-Bridging-Header.h"; sourceTree = "<group>"; };
 		4FBCEB5027CBAE5600BCF88C /* WKPreferences.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPreferences.m; sourceTree = "<group>"; };
+		4FBCEB5327CBBC2500BCF88C /* UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				4FBCEB4C27CA1AC400BCF88C /* Info.plist */,
+				4FBCEB5227CBBC0200BCF88C /* Entity */,
 				4FBCEB2B27C6262400BCF88C /* DI */,
 				4FBCEB2A27C625DB00BCF88C /* UI */,
 				4FBCEB3B27C63A2300BCF88C /* Module */,
@@ -218,6 +221,14 @@
 				4FBCEB4327C667EF00BCF88C /* SlideOverWebView.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		4FBCEB5227CBBC0200BCF88C /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				4FBCEB5327CBBC2500BCF88C /* UserAgent.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,6 +349,7 @@
 				4FBCEB0927C1FA5600BCF88C /* SlideOverWindowController.swift.swift in Sources */,
 				4FBCEB3127C627C600BCF88C /* Injector.swift in Sources */,
 				4FBCEAFA27C1FA3300BCF88C /* AppDelegate.swift in Sources */,
+				4FBCEB5427CBBC2500BCF88C /* UserAgent.swift in Sources */,
 				4FBCEB1227C27B7700BCF88C /* MousePositionService.swift in Sources */,
 				4FBCEB4927C6810300BCF88C /* URLValidationService.swift in Sources */,
 				4FBCEB3727C62A4000BCF88C /* Container+.swift in Sources */,

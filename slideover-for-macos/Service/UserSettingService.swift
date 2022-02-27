@@ -4,6 +4,7 @@ protocol UserSettingService {
     var initialPage: URL? { get set }
     var latestPage: URL? { get set }
     var latestPosition: SlideOverKind? { get set }
+    var latestUserAgent: UserAgent? { get set }
 }
 
 class UserSettingServiceImpl: UserSettingService {
@@ -38,6 +39,16 @@ class UserSettingServiceImpl: UserSettingService {
         }
         set {
             userDefaults.set(newValue?.rawValue, forKey: "latestPosition")
+        }
+    }
+    
+    var latestUserAgent: UserAgent? {
+        get {
+            let raw = userDefaults.integer(forKey: "latestUserAgent")
+            return UserAgent(rawValue: raw)
+        }
+        set {
+            userDefaults.set(newValue?.rawValue, forKey: "latestUserAgent")
         }
     }
 }

@@ -10,6 +10,7 @@ protocol SlideOverWindowPresenter {
     func showErrorAlert()
     func setProgress(value: Double)
     func reload()
+    func setUserAgent(_ userAgent: UserAgent)
 }
 
 class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
@@ -80,5 +81,19 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     
     func reload() {
         output?.contentView?.browserReload()
+    }
+    
+    func setUserAgent(_ userAgent: UserAgent) {
+        self.output?.contentView?.webView.customUserAgent = userAgent.context
+        self.output?.contentView?.webView.reloadFromOrigin()
+        
+        switch userAgent {
+        case .desktop:
+            self.output?.webDisplayTypeItem.image = NSImage(systemSymbolName: "iphone", accessibilityDescription: nil)
+            self.output?.webDisplayTypeItem.label = "スマホ表示"
+        case .phone:
+            self.output?.webDisplayTypeItem.image = NSImage(systemSymbolName: "laptopcomputer", accessibilityDescription: nil)
+            self.output?.webDisplayTypeItem.label = "デスクトップ表示"
+        }
     }
 }
