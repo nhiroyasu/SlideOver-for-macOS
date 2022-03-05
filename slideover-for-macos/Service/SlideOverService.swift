@@ -30,6 +30,7 @@ enum SlideOverKind: Int {
 protocol SlideOverService {
     func fixWindow(for window: NSWindow, type: SlideOverKind)
     func fixMovedWindow(for window: NSWindow)
+    func reverseMoveWindow(for window: NSWindow)
 }
 
 class SlideOverServiceImpl: SlideOverService {
@@ -77,6 +78,25 @@ class SlideOverServiceImpl: SlideOverService {
         } else if mousePointService.getHorizontalSplit() == .right {
             // 右
             fixWindow(for: window, type: .right)
+        }
+    }
+    
+    func reverseMoveWindow(for window: NSWindow) {
+        switch userSettingService.latestPosition {
+        case .left:
+            fixWindow(for: window, type: .right)
+        case .right:
+            fixWindow(for: window, type: .left)
+        case .topLeft:
+            fixWindow(for: window, type: .topRight)
+        case .topRight:
+            fixWindow(for: window, type: .topLeft)
+        case .bottomLeft:
+            fixWindow(for: window, type: .bottomRight)
+        case .bottomRight:
+            fixWindow(for: window, type: .bottomLeft)
+        case .none:
+            break
         }
     }
 }

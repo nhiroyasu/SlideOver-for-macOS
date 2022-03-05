@@ -27,8 +27,10 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     private let notificationManager: NotificationManager
     
     private var didMoveNotificationToken: AnyCancellable?
+    private var didDoubleRightClickNotificationToken: AnyCancellable?
     private var willMoveNotificationToken: AnyCancellable?
     private let leftMouseUpSubject = PassthroughSubject<NSEvent, Never>()
+    private let rightMouseUpSubject = PassthroughSubject<NSEvent, Never>()
     private let defaultInitialPage: URL? = URL(string: "https://google.com")
     private let defaultUserAgent: UserAgent = .desktop
     
@@ -49,6 +51,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         observeClearCacheNotification()
         observeMouseEvent()
         setWillMoveNotification()
+        setRightMouseUpSubject()
         presenter.fixWindow(type: userSettingService.latestPosition ?? .right)
         
         if let url = userSettingService.latestPage {
@@ -112,6 +115,10 @@ extension SlideOverWindowInteractor {
             self?.leftMouseUpSubject.send(event)
             return event
         }
+        NSEvent.addLocalMonitorForEvents(matching: [.rightMouseUp]) { [weak self] event in
+            self?.rightMouseUpSubject.send(event)
+            return event
+        }
     }
    
     private func setWillMoveNotification() {
@@ -128,6 +135,18 @@ extension SlideOverWindowInteractor {
             .prefix(1)
             .sink { [weak self] event in
                 self?.presenter.adjustWindow()
+            }
+    }
+    
+    private func setRightMouseUpSubject() {
+        didDoubleRightClickNotificationToken = rightMouseUpSubject
+            .collect(.byTime(RunLoop.current, .milliseconds(600)))
+            .filter {
+                print("\($0.count)")
+                return $0.count >= 2
+            }
+            .sink { [weak self] _ in
+                self?.presenter.reverseWindow()
             }
     }
     

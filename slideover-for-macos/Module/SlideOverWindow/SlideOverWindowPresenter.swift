@@ -4,6 +4,7 @@ import QuartzCore
 protocol SlideOverWindowPresenter {
     func fixWindow(type: SlideOverKind)
     func adjustWindow()
+    func reverseWindow()
     func setInitialPage(url: URL?)
     func loadWebPage(url: URL?)
     func showHttpAlert()
@@ -38,6 +39,13 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         output?.fixWindow { [weak self] window in
             guard let self = self, let window = window else { return }
             self.slideOverService.fixMovedWindow(for: window)
+        }
+    }
+    
+    func reverseWindow() {
+        output?.fixWindow { [weak self] window in
+            guard let self = self, let window = window else { return }
+            self.slideOverService.reverseMoveWindow(for: window)
         }
     }
     
