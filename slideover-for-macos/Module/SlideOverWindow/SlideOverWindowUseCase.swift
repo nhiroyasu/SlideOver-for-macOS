@@ -32,6 +32,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     private let leftMouseUpSubject = PassthroughSubject<NSEvent, Never>()
     private let rightMouseUpSubject = PassthroughSubject<NSEvent, Never>()
     private let defaultInitialPage: URL? = URL(string: "https://google.com")
+    private let helpUrl: URL? = URL(string: "https://www.notion.so/nhiro/SlideOver-for-macOS-c330c5d9b23849afb4f80ad0a05cc568")
     private let defaultUserAgent: UserAgent = .desktop
     
     private var state: State
@@ -163,7 +164,7 @@ extension SlideOverWindowInteractor {
     
     private func observeHelpNotification() {
         notificationManager.observe(name: .openHelp) { [weak self] _ in
-            self?.presenter.loadWebPage(url: URL(string: "https://www.notion.so/nhiro/SlideOver-for-macOS-c330c5d9b23849afb4f80ad0a05cc568"))
+            self?.presenter.loadWebPage(url: self?.helpUrl)
         }
     }
 }
