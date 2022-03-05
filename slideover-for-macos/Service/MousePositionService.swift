@@ -27,6 +27,16 @@ enum MousePoint {
         case third
         case fourth
     }
+    
+    enum CornerHorizontal {
+        case left
+        case right
+    }
+    
+    enum CornerVertical {
+        case top
+        case bottom
+    }
 }
 
 protocol MousePointService {
@@ -34,6 +44,8 @@ protocol MousePointService {
     func getVerticalSplit() -> MousePoint.HalfVertical
     func getHorizontalQuadSplit() -> MousePoint.QuadHorizontal
     func getVerticalQuadSplit() -> MousePoint.QuadVertical
+    func getHorizontalCornerSplit() -> MousePoint.CornerHorizontal?
+    func getVerticalCornerSplit() -> MousePoint.CornerVertical?
 }
 
 class MousePointServiceImpl: MousePointService {
@@ -97,4 +109,23 @@ class MousePointServiceImpl: MousePointService {
         }
     }
     
+    func getHorizontalCornerSplit() -> MousePoint.CornerHorizontal? {
+        let cornerThreshold: CGFloat = 16.0
+        if point.x < cornerThreshold {
+            return .left
+        } else if point.x > screenSize.width - cornerThreshold {
+            return .right
+        }
+        return nil
+    }
+    
+    func getVerticalCornerSplit() -> MousePoint.CornerVertical? {
+        let cornerThreshold: CGFloat = 16.0
+        if point.y < cornerThreshold {
+            return .top
+        } else if point.y > screenSize.height - cornerThreshold {
+            return .bottom
+        }
+        return nil
+    }
 }

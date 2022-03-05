@@ -55,20 +55,20 @@ class SlideOverServiceImpl: SlideOverService {
     func fixMovedWindow(for window: NSWindow) {
         guard let mousePointService = mousePointService else { return }
         
-        if mousePointService.getHorizontalQuadSplit() == .first &&
-            mousePointService.getVerticalQuadSplit() == .first {
+        if mousePointService.getHorizontalCornerSplit() == .left &&
+            mousePointService.getVerticalCornerSplit() == .top {
             // 左上
             fixWindow(for: window, type: .topLeft)
-        } else if mousePointService.getHorizontalQuadSplit() == .first &&
-                    mousePointService.getVerticalQuadSplit() == .fourth {
+        } else if mousePointService.getHorizontalCornerSplit() == .left &&
+                    mousePointService.getVerticalCornerSplit() == .bottom {
             // 左下
             fixWindow(for: window, type: .bottomLeft)
-        } else if mousePointService.getHorizontalQuadSplit() == .fourth &&
-                    mousePointService.getVerticalQuadSplit() == .first {
+        } else if mousePointService.getHorizontalCornerSplit() == .right &&
+                    mousePointService.getVerticalCornerSplit() == .top {
             // 右上
             fixWindow(for: window, type: .topRight)
-        } else if mousePointService.getHorizontalQuadSplit() == .fourth &&
-                    mousePointService.getVerticalQuadSplit() == .fourth {
+        } else if mousePointService.getHorizontalCornerSplit() == .right &&
+                    mousePointService.getVerticalCornerSplit() == .bottom {
             // 右下
             fixWindow(for: window, type: .bottomRight)
         } else if mousePointService.getHorizontalSplit() == .left {
