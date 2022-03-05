@@ -141,10 +141,7 @@ extension SlideOverWindowInteractor {
     private func setRightMouseUpSubject() {
         didDoubleRightClickNotificationToken = rightMouseUpSubject
             .collect(.byTime(RunLoop.current, .milliseconds(600)))
-            .filter {
-                print("\($0.count)")
-                return $0.count >= 2
-            }
+            .filter { $0.count >= 2 }
             .sink { [weak self] _ in
                 self?.presenter.reverseWindow()
             }
