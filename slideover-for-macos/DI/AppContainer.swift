@@ -10,6 +10,7 @@ class AppContainer {
         container.register(AlertService.self, impl: AlertServiceImpl())
         container.register(URLValidationService.self, impl: URLValidationServiceImpl())
         container.register(URLEncodeService.self, impl: URLEncodeServiceImpl())
+        container.register(WebViewService.self, impl: WebViewServiceImpl())
         container.register(UserSettingService.self, impl: UserSettingServiceImpl(userDefaults: UserDefaults.standard)).inObjectScope(.container)
         container.register(SlideOverService.self) { injector in
             SlideOverServiceImpl(injector: injector)

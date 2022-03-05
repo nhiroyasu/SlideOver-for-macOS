@@ -22,6 +22,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     private var userSettingService: UserSettingService
     private var urlValidationService: URLValidationService
     private var urlEncodeService: URLEncodeService
+    private let webViewService: WebViewService
     private let presenter: SlideOverWindowPresenter
     private let notificationManager: NotificationManager
     
@@ -37,6 +38,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         self.userSettingService = injector.build(UserSettingService.self)
         self.urlValidationService = injector.build(URLValidationService.self)
         self.urlEncodeService = injector.build(URLEncodeService.self)
+        self.webViewService = injector.build(WebViewService.self)
         self.presenter = injector.build(SlideOverWindowPresenter.self)
         self.notificationManager = injector.build(NotificationManager.self)
         self.state = .init(userAgent: .desktop)
@@ -44,6 +46,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     
     func setUp() {
         observeReloadNotification()
+        observeClearCacheNotification()
         observeMouseEvent()
         setWillMoveNotification()
         presenter.fixWindow(type: userSettingService.latestPosition ?? .right)
@@ -130,6 +133,13 @@ extension SlideOverWindowInteractor {
     
     private func observeReloadNotification() {
         notificationManager.observe(name: .reload) { [weak self] _ in
+            self?.presenter.reload()
+        }
+    }
+    
+    private func observeClearCacheNotification() {
+        notificationManager.observe(name: .clearCache) { [weak self] _ in
+            self?.webViewService.clearCache()
             self?.presenter.reload()
         }
     }

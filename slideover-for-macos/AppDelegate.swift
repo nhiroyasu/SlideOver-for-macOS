@@ -38,5 +38,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func didTapReloadButton(_ sender: Any) {
         notificationManager?.push(name: .reload, param: nil)
     }
+    
+    @IBAction func didTapCacheClearItem(_ sender: Any) {
+        notificationManager?.push(name: .clearCache, param: nil)
+    }
 }
 
