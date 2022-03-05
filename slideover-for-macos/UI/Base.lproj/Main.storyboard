@@ -277,6 +277,12 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
+                                        <menuItem title="ヘルプ・使い方" id="54S-tQ-0zd">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="didTapHelpItem:" target="Voe-Tx-rLC" id="2dR-pu-75U"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="slideover-for-macos Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>

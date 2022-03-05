@@ -42,5 +42,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func didTapCacheClearItem(_ sender: Any) {
         notificationManager?.push(name: .clearCache, param: nil)
     }
+    
+    @IBAction func didTapHelpItem(_ sender: Any) {
+        notificationManager?.push(name: .openHelp, param: nil)
+    }
 }
 

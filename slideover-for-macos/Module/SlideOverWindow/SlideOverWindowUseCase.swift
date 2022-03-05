@@ -49,6 +49,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     func setUp() {
         observeReloadNotification()
         observeClearCacheNotification()
+        observeHelpNotification()
         observeMouseEvent()
         setWillMoveNotification()
         setRightMouseUpSubject()
@@ -157,6 +158,12 @@ extension SlideOverWindowInteractor {
         notificationManager.observe(name: .clearCache) { [weak self] _ in
             self?.webViewService.clearCache()
             self?.presenter.reload()
+        }
+    }
+    
+    private func observeHelpNotification() {
+        notificationManager.observe(name: .openHelp) { [weak self] _ in
+            self?.presenter.loadWebPage(url: URL(string: "https://www.notion.so/nhiro/SlideOver-for-macOS-c330c5d9b23849afb4f80ad0a05cc568"))
         }
     }
 }

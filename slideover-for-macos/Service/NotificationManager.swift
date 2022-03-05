@@ -3,6 +3,7 @@ import Foundation
 extension Notification.Name {
     static let reload = Notification.Name("reload")
     static let clearCache = Notification.Name("clearCache")
+    static let openHelp = Notification.Name("openHelp")
 }
 
 protocol NotificationManager {
