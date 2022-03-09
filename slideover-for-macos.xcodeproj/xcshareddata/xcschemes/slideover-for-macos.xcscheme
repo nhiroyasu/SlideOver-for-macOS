@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4FBCEAF527C1FA3300BCF88C"
-               BuildableName = "slideover-for-macos.app"
-               BlueprintName = "On the Screen"
+               BuildableName = "On the Screen.app"
+               BlueprintName = "On the Window"
                ReferencedContainer = "container:slideover-for-macos.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4FBCEB1627C27EC800BCF88C"
-               BuildableName = "slideover-for-macosTests.xctest"
-               BlueprintName = "On the Screen Tests"
+               BuildableName = "On the Screen Tests.xctest"
+               BlueprintName = "On the Window Tests"
                ReferencedContainer = "container:slideover-for-macos.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -55,8 +55,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4FBCEAF527C1FA3300BCF88C"
-            BuildableName = "slideover-for-macos.app"
-            BlueprintName = "On the Screen"
+            BuildableName = "On the Screen.app"
+            BlueprintName = "On the Window"
             ReferencedContainer = "container:slideover-for-macos.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -72,8 +72,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4FBCEAF527C1FA3300BCF88C"
-            BuildableName = "slideover-for-macos.app"
-            BlueprintName = "On the Screen"
+            BuildableName = "On the Screen.app"
+            BlueprintName = "On the Window"
             ReferencedContainer = "container:slideover-for-macos.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
