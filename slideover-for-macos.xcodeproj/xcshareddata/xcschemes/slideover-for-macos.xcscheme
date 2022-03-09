@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4FBCEAF527C1FA3300BCF88C"
-               BuildableName = "On the Screen.app"
+               BuildableName = "On the Window.app"
                BlueprintName = "On the Window"
                ReferencedContainer = "container:slideover-for-macos.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4FBCEB1627C27EC800BCF88C"
-               BuildableName = "On the Screen Tests.xctest"
+               BuildableName = "On the Window Tests.xctest"
                BlueprintName = "On the Window Tests"
                ReferencedContainer = "container:slideover-for-macos.xcodeproj">
             </BuildableReference>
@@ -55,7 +55,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4FBCEAF527C1FA3300BCF88C"
-            BuildableName = "On the Screen.app"
+            BuildableName = "On the Window.app"
             BlueprintName = "On the Window"
             ReferencedContainer = "container:slideover-for-macos.xcodeproj">
          </BuildableReference>
@@ -72,7 +72,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4FBCEAF527C1FA3300BCF88C"
-            BuildableName = "On the Screen.app"
+            BuildableName = "On the Window.app"
             BlueprintName = "On the Window"
             ReferencedContainer = "container:slideover-for-macos.xcodeproj">
          </BuildableReference>
