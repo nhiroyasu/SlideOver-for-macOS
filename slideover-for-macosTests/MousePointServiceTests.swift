@@ -1,6 +1,6 @@
 import Foundation
 import XCTest
-@testable import slideover_for_macos
+@testable import On_the_Screen
 
 class MousePointServiceTests: XCTestCase {
     
