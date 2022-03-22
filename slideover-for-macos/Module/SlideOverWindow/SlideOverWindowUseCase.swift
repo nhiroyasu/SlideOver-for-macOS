@@ -29,6 +29,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     private let defaultInitialPage: URL? = URL(string: "https://google.com")
     private let helpUrl: URL? = URL(string: "https://nhiro.notion.site/On-the-Window-c330c5d9b23849afb4f80ad0a05cc568")
     private let defaultUserAgent: UserAgent = .desktop
+    private let defaultSlideOverPosition: SlideOverKind = .right
     
     public init(injector: Injectable) {
         self.userSettingService = injector.build(UserSettingService.self)
@@ -46,7 +47,14 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         observeMouseEvent()
         setWillMoveNotification()
         setRightMouseUpSubject()
-        presenter.fixWindow(type: userSettingService.latestPosition ?? .right)
+        resizeWindow()
+        
+        if let latestPosition = userSettingService.latestPosition {
+            presenter.fixWindow(type: latestPosition)
+        } else {
+            userSettingService.latestPosition = defaultSlideOverPosition
+            presenter.fixWindow(type: defaultSlideOverPosition)
+        }
         
         if let url = userSettingService.latestPage {
             presenter.setInitialPage(url: url)
@@ -99,6 +107,13 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         }
         userSettingService.latestUserAgent = nextUserAgent
         presenter.setUserAgent(nextUserAgent)
+    }
+    
+    private func resizeWindow() {
+        presenter.setResizeHandler { [weak self] current, next in
+            guard let currentPosition = self?.userSettingService.latestPosition else { return (next, .right) }
+            return (currentPosition.state.computeResize(from: current, to: next), currentPosition)
+        }
     }
 }
 

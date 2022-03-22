@@ -11,7 +11,7 @@
 		4FBCEAFC27C1FA3300BCF88C /* SlideOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEAFB27C1FA3300BCF88C /* SlideOverViewController.swift */; };
 		4FBCEAFE27C1FA3400BCF88C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FBCEAFD27C1FA3400BCF88C /* Assets.xcassets */; };
 		4FBCEB0127C1FA3400BCF88C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FBCEAFF27C1FA3400BCF88C /* Main.storyboard */; };
-		4FBCEB0927C1FA5600BCF88C /* SlideOverWindowController.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0827C1FA5600BCF88C /* SlideOverWindowController.swift.swift */; };
+		4FBCEB0927C1FA5600BCF88C /* SlideOverWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0827C1FA5600BCF88C /* SlideOverWindowController.swift */; };
 		4FBCEB0C27C1FB1D00BCF88C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBCEB0B27C1FB1D00BCF88C /* WebKit.framework */; platformFilter = maccatalyst; };
 		4FBCEB0E27C20BBA00BCF88C /* SlideOverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0D27C20BBA00BCF88C /* SlideOverService.swift */; };
 		4FBCEB1027C2709F00BCF88C /* SlideOverComputable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0F27C2709F00BCF88C /* SlideOverComputable.swift */; };
@@ -56,7 +56,7 @@
 		4FBCEAFD27C1FA3400BCF88C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FBCEB0027C1FA3400BCF88C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4FBCEB0227C1FA3400BCF88C /* slideover_for_macos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = slideover_for_macos.entitlements; sourceTree = "<group>"; };
-		4FBCEB0827C1FA5600BCF88C /* SlideOverWindowController.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverWindowController.swift.swift; sourceTree = "<group>"; };
+		4FBCEB0827C1FA5600BCF88C /* SlideOverWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverWindowController.swift; sourceTree = "<group>"; };
 		4FBCEB0B27C1FB1D00BCF88C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		4FBCEB0D27C20BBA00BCF88C /* SlideOverService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverService.swift; sourceTree = "<group>"; };
 		4FBCEB0F27C2709F00BCF88C /* SlideOverComputable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverComputable.swift; sourceTree = "<group>"; };
@@ -180,7 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				4FBCEB4527C668A900BCF88C /* Util */,
-				4FBCEB0827C1FA5600BCF88C /* SlideOverWindowController.swift.swift */,
+				4FBCEB0827C1FA5600BCF88C /* SlideOverWindowController.swift */,
 				4FBCEAFB27C1FA3300BCF88C /* SlideOverViewController.swift */,
 				4FBCEAFF27C1FA3400BCF88C /* Main.storyboard */,
 			);
@@ -349,7 +349,7 @@
 				4FBCEB4727C680A400BCF88C /* AlearService.swift in Sources */,
 				4FBCEB4227C63B8D00BCF88C /* SlideOverWindowUseCase.swift in Sources */,
 				4FBCEB3327C6282200BCF88C /* SwinjectInjector.swift in Sources */,
-				4FBCEB0927C1FA5600BCF88C /* SlideOverWindowController.swift.swift in Sources */,
+				4FBCEB0927C1FA5600BCF88C /* SlideOverWindowController.swift in Sources */,
 				4FBCEB3127C627C600BCF88C /* Injector.swift in Sources */,
 				4FBCEAFA27C1FA3300BCF88C /* AppDelegate.swift in Sources */,
 				4FBCEB5427CBBC2500BCF88C /* UserAgent.swift in Sources */,
