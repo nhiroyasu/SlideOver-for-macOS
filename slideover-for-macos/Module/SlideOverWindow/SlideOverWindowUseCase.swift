@@ -14,11 +14,6 @@ protocol SlideOverWindowUseCase {
 }
 
 class SlideOverWindowInteractor: SlideOverWindowUseCase {
-    
-    struct State {
-        var userAgent: UserAgent
-    }
-    
     private var userSettingService: UserSettingService
     private var urlValidationService: URLValidationService
     private var urlEncodeService: URLEncodeService
@@ -35,8 +30,6 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     private let helpUrl: URL? = URL(string: "https://nhiro.notion.site/On-the-Window-c330c5d9b23849afb4f80ad0a05cc568")
     private let defaultUserAgent: UserAgent = .desktop
     
-    private var state: State
-    
     public init(injector: Injectable) {
         self.userSettingService = injector.build(UserSettingService.self)
         self.urlValidationService = injector.build(URLValidationService.self)
@@ -44,7 +37,6 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         self.webViewService = injector.build(WebViewService.self)
         self.presenter = injector.build(SlideOverWindowPresenter.self)
         self.notificationManager = injector.build(NotificationManager.self)
-        self.state = .init(userAgent: .desktop)
     }
     
     func setUp() {
@@ -63,10 +55,9 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         }
         
         if let userAgent = userSettingService.latestUserAgent {
-            state.userAgent = userAgent
             presenter.setUserAgent(userAgent)
         } else {
-            state.userAgent = defaultUserAgent
+            userSettingService.latestUserAgent = defaultUserAgent
             presenter.setUserAgent(defaultUserAgent)
         }
     }
@@ -99,13 +90,13 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     
     func switchUserAgent() {
         let nextUserAgent: UserAgent
-        switch state.userAgent {
+        guard let currentUserAgent = userSettingService.latestUserAgent else { return }
+        switch currentUserAgent {
         case .desktop:
             nextUserAgent = .phone
         case .phone:
             nextUserAgent = .desktop
         }
-        state.userAgent = nextUserAgent
         userSettingService.latestUserAgent = nextUserAgent
         presenter.setUserAgent(nextUserAgent)
     }

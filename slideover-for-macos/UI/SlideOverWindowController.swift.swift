@@ -57,7 +57,7 @@ class SlideOverWindowController: NSWindowController {
     
     override func windowDidLoad() {
         window?.level = .floating
-        window?.styleMask = [.borderless, .utilityWindow, .titled, .closable, .miniaturizable]
+        window?.styleMask = [.borderless, .utilityWindow, .titled, .closable, .miniaturizable, .resizable]
         window?.collectionBehavior = [.canJoinAllSpaces]
     }
     
@@ -91,6 +91,10 @@ class SlideOverWindowController: NSWindowController {
 extension SlideOverWindowController: NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
         NSApplication.shared.terminate(nil)
+    }
+    
+    func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
+        return NSSize(width: frameSize.width, height: sender.frame.height)
     }
 }
 
