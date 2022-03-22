@@ -1,6 +1,11 @@
 # SlideOver-for-macOS
 iPadのSlideOverをmacOSでも利用できるアプリ
 
+# AppStore
+<a href="https://apps.apple.com/jp/app/on-the-window/id1612993947?mt=12">
+  <img src="./assets/Download_on_the_Mac_App_Store_Badge_JP_RGB_blk_100317.svg" width=180/>
+</a>
+
 # Preview
 ## 操作感↓
 ![ezgif-1-e187226ef3](https://user-images.githubusercontent.com/40600280/154848935-31af2541-f423-4fd8-ad6f-00b4ba0c7247.gif)
