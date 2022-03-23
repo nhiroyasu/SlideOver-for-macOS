@@ -27,7 +27,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     private let leftMouseUpSubject = PassthroughSubject<NSEvent, Never>()
     private let rightMouseUpSubject = PassthroughSubject<NSEvent, Never>()
     private let defaultInitialPage: URL? = URL(string: "https://google.com")
-    private let helpUrl: URL? = URL(string: "https://nhiro.notion.site/On-the-Window-c330c5d9b23849afb4f80ad0a05cc568")
+    private let helpUrl: URL? = URL(string: "https://nhiro.notion.site/Fixture-in-Picture-0eef7a658b4b481a84fbc57d6e43a8f2")
     private let defaultUserAgent: UserAgent = .desktop
     private let defaultSlideOverPosition: SlideOverKind = .right
     
