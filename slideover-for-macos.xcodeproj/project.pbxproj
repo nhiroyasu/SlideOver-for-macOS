@@ -528,7 +528,7 @@
 				CODE_SIGN_ENTITLEMENTS = "slideover-for-macos/slideover_for_macos.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 2CMV7D36JC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -543,7 +543,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.2;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nhiro1109.${BUNDLE_ID_PREFIX}slideover-for-macos";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -563,7 +563,7 @@
 				CODE_SIGN_ENTITLEMENTS = "slideover-for-macos/slideover_for_macos.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 2CMV7D36JC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -578,7 +578,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.2;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nhiro1109.slideover-for-macos";
 				PRODUCT_NAME = "${DISPLAY_NAME_PREFIX}${TARGET_NAME}";
 				SWIFT_EMIT_LOC_STRINGS = YES;
