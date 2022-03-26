@@ -11,7 +11,7 @@
 		4FBCEAFC27C1FA3300BCF88C /* SlideOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEAFB27C1FA3300BCF88C /* SlideOverViewController.swift */; };
 		4FBCEAFE27C1FA3400BCF88C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FBCEAFD27C1FA3400BCF88C /* Assets.xcassets */; };
 		4FBCEB0127C1FA3400BCF88C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FBCEAFF27C1FA3400BCF88C /* Main.storyboard */; };
-		4FBCEB0927C1FA5600BCF88C /* SlideOverWindowController.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0827C1FA5600BCF88C /* SlideOverWindowController.swift.swift */; };
+		4FBCEB0927C1FA5600BCF88C /* SlideOverWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0827C1FA5600BCF88C /* SlideOverWindowController.swift */; };
 		4FBCEB0C27C1FB1D00BCF88C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBCEB0B27C1FB1D00BCF88C /* WebKit.framework */; platformFilter = maccatalyst; };
 		4FBCEB0E27C20BBA00BCF88C /* SlideOverService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0D27C20BBA00BCF88C /* SlideOverService.swift */; };
 		4FBCEB1027C2709F00BCF88C /* SlideOverComputable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB0F27C2709F00BCF88C /* SlideOverComputable.swift */; };
@@ -50,18 +50,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4FBCEAF627C1FA3300BCF88C /* On the Window.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On the Window.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FBCEAF627C1FA3300BCF88C /* Fixture in Picture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fixture in Picture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FBCEAF927C1FA3300BCF88C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FBCEAFB27C1FA3300BCF88C /* SlideOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverViewController.swift; sourceTree = "<group>"; };
 		4FBCEAFD27C1FA3400BCF88C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FBCEB0027C1FA3400BCF88C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4FBCEB0227C1FA3400BCF88C /* slideover_for_macos.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = slideover_for_macos.entitlements; sourceTree = "<group>"; };
-		4FBCEB0827C1FA5600BCF88C /* SlideOverWindowController.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverWindowController.swift.swift; sourceTree = "<group>"; };
+		4FBCEB0827C1FA5600BCF88C /* SlideOverWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverWindowController.swift; sourceTree = "<group>"; };
 		4FBCEB0B27C1FB1D00BCF88C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		4FBCEB0D27C20BBA00BCF88C /* SlideOverService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverService.swift; sourceTree = "<group>"; };
 		4FBCEB0F27C2709F00BCF88C /* SlideOverComputable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverComputable.swift; sourceTree = "<group>"; };
 		4FBCEB1127C27B7700BCF88C /* MousePositionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MousePositionService.swift; sourceTree = "<group>"; };
-		4FBCEB1727C27EC800BCF88C /* On the Window Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "On the Window Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FBCEB1727C27EC800BCF88C /* Fixture in Picture Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fixture in Picture Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FBCEB1927C27EC800BCF88C /* slideover_for_macosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = slideover_for_macosTests.swift; sourceTree = "<group>"; };
 		4FBCEB2027C27EE200BCF88C /* MousePointServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MousePointServiceTests.swift; sourceTree = "<group>"; };
 		4FBCEB2227C6244900BCF88C /* UserSettingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingService.swift; sourceTree = "<group>"; };
@@ -119,8 +119,8 @@
 		4FBCEAF727C1FA3300BCF88C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4FBCEAF627C1FA3300BCF88C /* On the Window.app */,
-				4FBCEB1727C27EC800BCF88C /* On the Window Tests.xctest */,
+				4FBCEAF627C1FA3300BCF88C /* Fixture in Picture.app */,
+				4FBCEB1727C27EC800BCF88C /* Fixture in Picture Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -180,7 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				4FBCEB4527C668A900BCF88C /* Util */,
-				4FBCEB0827C1FA5600BCF88C /* SlideOverWindowController.swift.swift */,
+				4FBCEB0827C1FA5600BCF88C /* SlideOverWindowController.swift */,
 				4FBCEAFB27C1FA3300BCF88C /* SlideOverViewController.swift */,
 				4FBCEAFF27C1FA3400BCF88C /* Main.storyboard */,
 			);
@@ -237,9 +237,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4FBCEAF527C1FA3300BCF88C /* On the Window */ = {
+		4FBCEAF527C1FA3300BCF88C /* Fixture in Picture */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FBCEB0527C1FA3400BCF88C /* Build configuration list for PBXNativeTarget "On the Window" */;
+			buildConfigurationList = 4FBCEB0527C1FA3400BCF88C /* Build configuration list for PBXNativeTarget "Fixture in Picture" */;
 			buildPhases = (
 				4FBCEAF227C1FA3300BCF88C /* Sources */,
 				4FBCEAF327C1FA3300BCF88C /* Frameworks */,
@@ -249,17 +249,17 @@
 			);
 			dependencies = (
 			);
-			name = "On the Window";
+			name = "Fixture in Picture";
 			packageProductDependencies = (
 				4FBCEB3927C62B6000BCF88C /* Swinject */,
 			);
 			productName = "slideover-for-macos";
-			productReference = 4FBCEAF627C1FA3300BCF88C /* On the Window.app */;
+			productReference = 4FBCEAF627C1FA3300BCF88C /* Fixture in Picture.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4FBCEB1627C27EC800BCF88C /* On the Window Tests */ = {
+		4FBCEB1627C27EC800BCF88C /* Fixture in Picture Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FBCEB1D27C27EC800BCF88C /* Build configuration list for PBXNativeTarget "On the Window Tests" */;
+			buildConfigurationList = 4FBCEB1D27C27EC800BCF88C /* Build configuration list for PBXNativeTarget "Fixture in Picture Tests" */;
 			buildPhases = (
 				4FBCEB1327C27EC800BCF88C /* Sources */,
 				4FBCEB1427C27EC800BCF88C /* Frameworks */,
@@ -270,9 +270,9 @@
 			dependencies = (
 				4FBCEB1C27C27EC800BCF88C /* PBXTargetDependency */,
 			);
-			name = "On the Window Tests";
+			name = "Fixture in Picture Tests";
 			productName = "slideover-for-macosTests";
-			productReference = 4FBCEB1727C27EC800BCF88C /* On the Window Tests.xctest */;
+			productReference = 4FBCEB1727C27EC800BCF88C /* Fixture in Picture Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -311,8 +311,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4FBCEAF527C1FA3300BCF88C /* On the Window */,
-				4FBCEB1627C27EC800BCF88C /* On the Window Tests */,
+				4FBCEAF527C1FA3300BCF88C /* Fixture in Picture */,
+				4FBCEB1627C27EC800BCF88C /* Fixture in Picture Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -349,7 +349,7 @@
 				4FBCEB4727C680A400BCF88C /* AlearService.swift in Sources */,
 				4FBCEB4227C63B8D00BCF88C /* SlideOverWindowUseCase.swift in Sources */,
 				4FBCEB3327C6282200BCF88C /* SwinjectInjector.swift in Sources */,
-				4FBCEB0927C1FA5600BCF88C /* SlideOverWindowController.swift.swift in Sources */,
+				4FBCEB0927C1FA5600BCF88C /* SlideOverWindowController.swift in Sources */,
 				4FBCEB3127C627C600BCF88C /* Injector.swift in Sources */,
 				4FBCEAFA27C1FA3300BCF88C /* AppDelegate.swift in Sources */,
 				4FBCEB5427CBBC2500BCF88C /* UserAgent.swift in Sources */,
@@ -382,7 +382,7 @@
 /* Begin PBXTargetDependency section */
 		4FBCEB1C27C27EC800BCF88C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4FBCEAF527C1FA3300BCF88C /* On the Window */;
+			target = 4FBCEAF527C1FA3300BCF88C /* Fixture in Picture */;
 			targetProxy = 4FBCEB1B27C27EC800BCF88C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -403,6 +403,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDILE_ID_PREFIX = "DEBUG-";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -465,6 +466,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDILE_ID_PREFIX = "";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -521,11 +523,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUNDLE_ID_PREFIX = "debug-";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "slideover-for-macos/slideover_for_macos.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 2CMV7D36JC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -540,8 +543,8 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.nhiro1109.slideover-for-macos";
+				MARKETING_VERSION = 1.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nhiro1109.${BUNDLE_ID_PREFIX}slideover-for-macos";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "slideover-for-macos/slideover-for-macos-Bridging-Header.h";
@@ -555,11 +558,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				BUNDLE_ID_PREFIX = "";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "slideover-for-macos/slideover_for_macos.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 2CMV7D36JC;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -574,9 +578,9 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.2;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nhiro1109.slideover-for-macos";
-				PRODUCT_NAME = "${TARGET_NAME}";
+				PRODUCT_NAME = "${DISPLAY_NAME_PREFIX}${TARGET_NAME}";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "slideover-for-macos/slideover-for-macos-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -596,7 +600,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/On the Window.app/Contents/MacOS/On the Window";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fixture in Picture.app/Contents/MacOS/Fixture in Picture";
 			};
 			name = Debug;
 		};
@@ -613,7 +617,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/On the Window.app/Contents/MacOS/On the Window";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fixture in Picture.app/Contents/MacOS/Fixture in Picture";
 			};
 			name = Release;
 		};
@@ -629,7 +633,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FBCEB0527C1FA3400BCF88C /* Build configuration list for PBXNativeTarget "On the Window" */ = {
+		4FBCEB0527C1FA3400BCF88C /* Build configuration list for PBXNativeTarget "Fixture in Picture" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FBCEB0627C1FA3400BCF88C /* Debug */,
@@ -638,7 +642,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FBCEB1D27C27EC800BCF88C /* Build configuration list for PBXNativeTarget "On the Window Tests" */ = {
+		4FBCEB1D27C27EC800BCF88C /* Build configuration list for PBXNativeTarget "Fixture in Picture Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FBCEB1E27C27EC800BCF88C /* Debug */,

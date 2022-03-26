@@ -1,6 +1,6 @@
 import Foundation
 import XCTest
-@testable import On_the_Window
+@testable import Fixture_in_Picture
 
 class MousePointServiceTests: XCTestCase {
     

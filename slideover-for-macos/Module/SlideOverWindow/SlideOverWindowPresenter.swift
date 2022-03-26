@@ -12,6 +12,7 @@ protocol SlideOverWindowPresenter {
     func setProgress(value: Double)
     func reload()
     func setUserAgent(_ userAgent: UserAgent)
+    func setResizeHandler(handler: @escaping (NSSize, NSSize) -> (NSSize, SlideOverKind))
 }
 
 class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
@@ -102,6 +103,15 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         case .phone:
             self.output?.webDisplayTypeItem.image = NSImage(systemSymbolName: "laptopcomputer", accessibilityDescription: nil)
             self.output?.webDisplayTypeItem.label = "デスクトップ表示"
+        }
+    }
+    
+    func setResizeHandler(handler: @escaping (NSSize, NSSize) -> (NSSize, SlideOverKind)) {
+        var window = output
+        window?.windowWillResizeHandler = { [weak self] currentWindow, next in
+            let (nextSize, type) = handler(currentWindow.frame.size, next)
+            self?.slideOverService.arrangeWindowPosition(for: currentWindow, size: nextSize, type: type)
+            return nextSize
         }
     }
 }

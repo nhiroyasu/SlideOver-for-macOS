@@ -10,6 +10,7 @@ protocol SlideOverWindowControllable {
     var action: SlideOverWindowAction { get }
     var contentView: SlideOverViewable? { get }
     var webDisplayTypeItem: NSToolbarItem! { get }
+    var windowWillResizeHandler: ((NSWindow, NSSize) -> NSSize)? { get set }
 }
 
 class SlideOverWindowController: NSWindowController {
@@ -55,9 +56,11 @@ class SlideOverWindowController: NSWindowController {
         window?.contentViewController as? SlideOverViewable
     }
     
+    var windowWillResizeHandler: ((NSWindow, NSSize) -> NSSize)?
+    
     override func windowDidLoad() {
         window?.level = .floating
-        window?.styleMask = [.borderless, .utilityWindow, .titled, .closable, .miniaturizable]
+        window?.styleMask = [.borderless, .utilityWindow, .titled, .closable, .miniaturizable, .resizable]
         window?.collectionBehavior = [.canJoinAllSpaces]
     }
     
@@ -91,6 +94,10 @@ class SlideOverWindowController: NSWindowController {
 extension SlideOverWindowController: NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
         NSApplication.shared.terminate(nil)
+    }
+    
+    func windowWillResize(_ sender: NSWindow, to frameSize: NSSize) -> NSSize {
+        return windowWillResizeHandler?(sender, frameSize) ?? frameSize
     }
 }
 
