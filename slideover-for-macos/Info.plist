@@ -19,5 +19,7 @@
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>ja_JP</string>
 </dict>
 </plist>
