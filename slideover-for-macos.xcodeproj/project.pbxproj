@@ -84,6 +84,7 @@
 		4FBCEB5027CBAE5600BCF88C /* WKPreferences.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKPreferences.m; sourceTree = "<group>"; };
 		4FBCEB5327CBBC2500BCF88C /* UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgent.swift; sourceTree = "<group>"; };
 		4FBCEB5527D3259A00BCF88C /* WebViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewService.swift; sourceTree = "<group>"; };
+		4FD65B9527EEDCA00021D3E5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +302,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ja,
 				Base,
 			);
 			mainGroup = 4FBCEAED27C1FA3300BCF88C;
@@ -392,6 +394,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				4FBCEB0027C1FA3400BCF88C /* Base */,
+				4FD65B9527EEDCA00021D3E5 /* ja */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDILE_ID_PREFIX = "DEBUG-";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -467,6 +471,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDILE_ID_PREFIX = "";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
