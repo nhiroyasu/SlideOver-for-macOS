@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4FBCEAF527C1FA3300BCF88C"
-               BuildableName = "On the Window.app"
+               BuildableName = "Fixture in Picture.app"
                BlueprintName = "Fixture in Picture"
                ReferencedContainer = "container:slideover-for-macos.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4FBCEB1627C27EC800BCF88C"
-               BuildableName = "On the Window Tests.xctest"
+               BuildableName = "Fixture in Picture Tests.xctest"
                BlueprintName = "Fixture in Picture Tests"
                ReferencedContainer = "container:slideover-for-macos.xcodeproj">
             </BuildableReference>
@@ -55,7 +55,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4FBCEAF527C1FA3300BCF88C"
-            BuildableName = "On the Window.app"
+            BuildableName = "Fixture in Picture.app"
             BlueprintName = "Fixture in Picture"
             ReferencedContainer = "container:slideover-for-macos.xcodeproj">
          </BuildableReference>
@@ -72,7 +72,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4FBCEAF527C1FA3300BCF88C"
-            BuildableName = "On the Window.app"
+            BuildableName = "Fixture in Picture.app"
             BlueprintName = "Fixture in Picture"
             ReferencedContainer = "container:slideover-for-macos.xcodeproj">
          </BuildableReference>
