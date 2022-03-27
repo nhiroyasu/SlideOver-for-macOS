@@ -37,6 +37,7 @@
 		4FBCEB5127CBAE5600BCF88C /* WKPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB5027CBAE5600BCF88C /* WKPreferences.m */; };
 		4FBCEB5427CBBC2500BCF88C /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB5327CBBC2500BCF88C /* UserAgent.swift */; };
 		4FBCEB5627D3259A00BCF88C /* WebViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB5527D3259A00BCF88C /* WebViewService.swift */; };
+		4FD65B9727F02BAF0021D3E5 /* MenuTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD65B9627F02BAF0021D3E5 /* MenuTree.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		4FBCEB5327CBBC2500BCF88C /* UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgent.swift; sourceTree = "<group>"; };
 		4FBCEB5527D3259A00BCF88C /* WebViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewService.swift; sourceTree = "<group>"; };
 		4FD65B9527EEDCA00021D3E5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
+		4FD65B9627F02BAF0021D3E5 /* MenuTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTree.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				4FBCEB4327C667EF00BCF88C /* SlideOverWebView.swift */,
+				4FD65B9627F02BAF0021D3E5 /* MenuTree.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				4FBCEB2F27C6273800BCF88C /* Dependencies.swift in Sources */,
 				4FBCEB4727C680A400BCF88C /* AlearService.swift in Sources */,
 				4FBCEB4227C63B8D00BCF88C /* SlideOverWindowUseCase.swift in Sources */,
+				4FD65B9727F02BAF0021D3E5 /* MenuTree.swift in Sources */,
 				4FBCEB3327C6282200BCF88C /* SwinjectInjector.swift in Sources */,
 				4FBCEB0927C1FA5600BCF88C /* SlideOverWindowController.swift in Sources */,
 				4FBCEB3127C627C600BCF88C /* Injector.swift in Sources */,

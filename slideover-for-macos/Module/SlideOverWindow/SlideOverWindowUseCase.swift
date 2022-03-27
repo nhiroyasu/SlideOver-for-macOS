@@ -11,6 +11,8 @@ protocol SlideOverWindowUseCase {
     func registerLatestPositon(kind: SlideOverKind)
     func updateProgress(value progress: Double)
     func switchUserAgent()
+    func updateUserAgent(_ userAgent: UserAgent)
+    func requestChangingPosition(type: SlideOverKind)
 }
 
 class SlideOverWindowInteractor: SlideOverWindowUseCase {
@@ -109,11 +111,20 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         presenter.setUserAgent(nextUserAgent)
     }
     
+    func updateUserAgent(_ userAgent: UserAgent) {
+        userSettingService.latestUserAgent = userAgent
+        presenter.setUserAgent(userAgent)
+    }
+    
     private func resizeWindow() {
         presenter.setResizeHandler { [weak self] current, next in
             guard let currentPosition = self?.userSettingService.latestPosition else { return (next, .right) }
             return (currentPosition.state.computeResize(from: current, to: next), currentPosition)
         }
+    }
+    
+    func requestChangingPosition(type: SlideOverKind) {
+        presenter.fixWindow(type: type)
     }
 }
 

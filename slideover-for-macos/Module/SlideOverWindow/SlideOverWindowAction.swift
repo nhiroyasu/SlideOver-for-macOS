@@ -7,6 +7,8 @@ protocol SlideOverWindowAction {
     func didChangePosition(kind: SlideOverKind)
     func didUpdateProgress(value: Double)
     func didTapDisplayType()
+    func didTapChangingPositionButton(type: SlideOverKind)
+    func didTapUpdateUserAgent(_ userAgent: UserAgent)
 }
 
 class SlideOverWindowActionImpl: SlideOverWindowAction {
@@ -49,5 +51,13 @@ class SlideOverWindowActionImpl: SlideOverWindowAction {
     
     func didTapDisplayType() {
         useCase.switchUserAgent()
+    }
+    
+    func didTapChangingPositionButton(type: SlideOverKind) {
+        useCase.requestChangingPosition(type: type)
+    }
+    
+    func didTapUpdateUserAgent(_ userAgent: UserAgent) {
+        useCase.updateUserAgent(userAgent)
     }
 }
