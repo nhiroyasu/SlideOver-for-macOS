@@ -114,4 +114,12 @@ extension SlideOverViewController: SlideOverWebViewMenuDelegate {
     func didTapRegisterInitialPage() {
         contentWindow?.action.didTapInitialPageItem(currentUrl: webView.url)
     }
+
+    func didTapWindowLayout(type: SlideOverKind) {
+        contentWindow?.action.didTapChangingPositionButton(type: type)
+    }
+    
+    func didTapUserAgent(_ userAgent: UserAgent) {
+        contentWindow?.action.didTapUpdateUserAgent(userAgent)
+    }
 }
