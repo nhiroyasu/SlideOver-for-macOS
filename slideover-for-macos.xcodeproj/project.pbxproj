@@ -38,6 +38,7 @@
 		4FBCEB5427CBBC2500BCF88C /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB5327CBBC2500BCF88C /* UserAgent.swift */; };
 		4FBCEB5627D3259A00BCF88C /* WebViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB5527D3259A00BCF88C /* WebViewService.swift */; };
 		4FD65B9727F02BAF0021D3E5 /* MenuTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD65B9627F02BAF0021D3E5 /* MenuTree.swift */; };
+		4FD65B9A27F5E5890021D3E5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FD65B9C27F5E5890021D3E5 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		4FBCEB5527D3259A00BCF88C /* WebViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewService.swift; sourceTree = "<group>"; };
 		4FD65B9527EEDCA00021D3E5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		4FD65B9627F02BAF0021D3E5 /* MenuTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTree.swift; sourceTree = "<group>"; };
+		4FD65B9B27F5E5890021D3E5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 		4FBCEAF827C1FA3300BCF88C /* slideover-for-macos */ = {
 			isa = PBXGroup;
 			children = (
+				4FD65B9C27F5E5890021D3E5 /* Localizable.strings */,
 				4FBCEB4C27CA1AC400BCF88C /* Info.plist */,
 				4FBCEB5227CBBC0200BCF88C /* Entity */,
 				4FBCEB2B27C6262400BCF88C /* DI */,
@@ -328,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FBCEAFE27C1FA3400BCF88C /* Assets.xcassets in Resources */,
+				4FD65B9A27F5E5890021D3E5 /* Localizable.strings in Resources */,
 				4FBCEB0127C1FA3400BCF88C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,6 +405,14 @@
 				4FD65B9527EEDCA00021D3E5 /* ja */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4FD65B9C27F5E5890021D3E5 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4FD65B9B27F5E5890021D3E5 /* ja */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -1,0 +1,14 @@
+"Copy Link" = "リンクをコピー";
+"Open Browser" = "ブラウザで開く";
+"Window Layout" = "画面配置";
+"Left" = "右端";
+"Right" = "左端";
+"Top Right" = "右上";
+"Bottom Right" = "右下";
+"Top Left" = "左上";
+"Bottom Left" = "左下";
+"Switch Display" = "表示切り替え";
+"Mobile" = "モバイル";
+"Desktop" = "デスクトップ";
+"URLs beginning with http:// cannot be opened.\nPlease enter a URL beginning with https://" = "http:// から始まるURLは開くことができません\nhttps:// から始まるURLを入力してください";
+"The entered value is not valid." = "入力した値が有効ではありません";

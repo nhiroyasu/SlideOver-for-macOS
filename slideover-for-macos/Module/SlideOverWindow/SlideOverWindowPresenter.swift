@@ -60,13 +60,13 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     
     func showHttpAlert() {
         DispatchQueue.main.async {
-            self.alertService.alert(msg: "http://から始まるURLは開くことができません。\nhttps://から始まるURLを入力してください") {}
+            self.alertService.alert(msg: NSLocalizedString("URLs beginning with http:// cannot be opened.\nPlease enter a URL beginning with https://", comment: "")) {}
         }
     }
     
     func showErrorAlert() {
         DispatchQueue.main.async {
-            self.alertService.alert(msg: "入力した値が有効ではありません") {}
+            self.alertService.alert(msg: NSLocalizedString("The entered value is not valid.", comment: "")) {}
         }
     }
     
