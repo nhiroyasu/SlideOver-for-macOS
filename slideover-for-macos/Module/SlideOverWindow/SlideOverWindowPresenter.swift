@@ -99,10 +99,10 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         switch userAgent {
         case .desktop:
             self.output?.webDisplayTypeItem.image = NSImage(systemSymbolName: "iphone", accessibilityDescription: nil)
-            self.output?.webDisplayTypeItem.label = "スマホ表示"
+            self.output?.webDisplayTypeItem.label = NSLocalizedString("Mobile", comment: "")
         case .phone:
             self.output?.webDisplayTypeItem.image = NSImage(systemSymbolName: "laptopcomputer", accessibilityDescription: nil)
-            self.output?.webDisplayTypeItem.label = "デスクトップ表示"
+            self.output?.webDisplayTypeItem.label = NSLocalizedString("Desktop", comment: "")
         }
     }
     
