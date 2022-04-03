@@ -45,6 +45,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     func setUp() {
         observeReloadNotification()
         observeClearCacheNotification()
+        observeUrlOpenUrlNotification()
         observeHelpNotification()
         observeMouseEvent()
         setWillMoveNotification()
@@ -182,6 +183,14 @@ extension SlideOverWindowInteractor {
     private func observeHelpNotification() {
         notificationManager.observe(name: .openHelp) { [weak self] _ in
             self?.presenter.loadWebPage(url: self?.helpUrl)
+        }
+    }
+    
+    private func observeUrlOpenUrlNotification() {
+        notificationManager.observe(name: .openUrl) { [weak self] urlValue in
+            guard let urlStr = urlValue as? String,
+                  let url = URL(string: urlStr) else { return }
+            self?.presenter.loadWebPage(url: url)
         }
     }
 }
