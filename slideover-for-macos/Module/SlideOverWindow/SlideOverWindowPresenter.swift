@@ -60,13 +60,13 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     
     func showHttpAlert() {
         DispatchQueue.main.async {
-            self.alertService.alert(msg: "http://から始まるURLは開くことができません。\nhttps://から始まるURLを入力してください") {}
+            self.alertService.alert(msg: NSLocalizedString("URLs beginning with http:// cannot be opened.\nPlease enter a URL beginning with https://", comment: "")) {}
         }
     }
     
     func showErrorAlert() {
         DispatchQueue.main.async {
-            self.alertService.alert(msg: "入力した値が有効ではありません") {}
+            self.alertService.alert(msg: NSLocalizedString("The entered value is not valid.", comment: "")) {}
         }
     }
     
@@ -99,10 +99,10 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         switch userAgent {
         case .desktop:
             self.output?.webDisplayTypeItem.image = NSImage(systemSymbolName: "iphone", accessibilityDescription: nil)
-            self.output?.webDisplayTypeItem.label = "スマホ表示"
+            self.output?.webDisplayTypeItem.label = NSLocalizedString("Mobile", comment: "")
         case .phone:
             self.output?.webDisplayTypeItem.image = NSImage(systemSymbolName: "laptopcomputer", accessibilityDescription: nil)
-            self.output?.webDisplayTypeItem.label = "デスクトップ表示"
+            self.output?.webDisplayTypeItem.label = NSLocalizedString("Desktop", comment: "")
         }
     }
     
