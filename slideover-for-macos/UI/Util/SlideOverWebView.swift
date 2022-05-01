@@ -19,7 +19,7 @@ class SlideOverWebView: WKWebView {
     override func willOpenMenu(_ menu: NSMenu, with event: NSEvent) {
         let menuTree: [MenuItemType] = [
             .separator,
-            .item(data: .init(title: NSLocalizedString("Copy Link", comment: ""), action: #selector(didTapCopyLink), keyEquivalent: "", image: nil, value: nil)),
+            .item(data: .init(title: NSLocalizedString("Copy Link This Page", comment: ""), action: #selector(didTapCopyLink), keyEquivalent: "", image: nil, value: nil)),
             .item(data: .init(title: NSLocalizedString("Open Browser", comment: ""), action: #selector(didTapOpenBrowser), keyEquivalent: "", image: nil, value: nil)),
             .separator,
             .subMenu(data: .init(title: NSLocalizedString("Window Layout", comment: ""), image: NSImage(systemSymbolName: "uiwindow.split.2x1", accessibilityDescription: nil), items: [

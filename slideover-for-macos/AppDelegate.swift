@@ -14,6 +14,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var notificationManager: NotificationManager? {
         Injector.shared.buildSafe(NotificationManager.self)
     }
+    private var userSetting: UserSettingService? {
+        Injector.shared.buildSafe(UserSettingService.self)
+    }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
@@ -33,6 +36,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
+    }
+    
+    func application(_ application: NSApplication, open urls: [URL]) {
+        guard let url = urls.first else { return }
+        let components = NSURLComponents(url: url, resolvingAgainstBaseURL: false)
+        guard let urlItem = components?.queryItems?.first(where: { item in
+            item.name == "url"
+        }) else { return }
+        guard let targetUrl = urlItem.value else { return }
+        notificationManager?.push(name: .openUrl, param: targetUrl)
+        if var userSetting = userSetting {
+            userSetting.latestPage = URL(string: targetUrl)
+        }
     }
 
     @IBAction func didTapReloadButton(_ sender: Any) {

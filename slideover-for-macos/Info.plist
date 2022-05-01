@@ -15,9 +15,14 @@
 			<string>com.nhiroyasu.slideoverformacos</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>slideoverformacos</string>
+				<string>debug-slideoverformacos</string>
 			</array>
 		</dict>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
