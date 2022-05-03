@@ -13,6 +13,9 @@ protocol SlideOverWindowPresenter {
     func reload()
     func setUserAgent(_ userAgent: UserAgent)
     func setResizeHandler(handler: @escaping (NSSize, NSSize) -> (NSSize, SlideOverKind))
+    func focusSearchBar()
+    func applyTranslucentWindow()
+    func resetTranslucentWindow()
 }
 
 class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
@@ -113,5 +116,17 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
             self?.slideOverService.arrangeWindowPosition(for: currentWindow, size: nextSize, type: type)
             return nextSize
         }
+    }
+    
+    func focusSearchBar() {
+        output?.focusSearchBar()
+    }
+    
+    func applyTranslucentWindow() {
+        output?.setWindowAlpha(0.0)
+    }
+    
+    func resetTranslucentWindow() {
+        output?.setWindowAlpha(1.0)
     }
 }

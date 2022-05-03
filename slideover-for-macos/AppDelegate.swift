@@ -29,12 +29,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             Injector.shared.container.register(SlideOverWindowControllable.self, impl: mainWindowController).inObjectScope(.container)
             mainWindowController.showWindow(self)
         }
-        if let keyCombo = KeyCombo(key: .f, cocoaModifiers: .command) {
-            let hotKey = HotKey(identifier: "SearchShortCut", keyCombo: keyCombo) { hotKey in
-                print("OK")
-            }
-            hotKey.register()
-        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -68,6 +62,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func didTapHelpItem(_ sender: Any) {
         notificationManager?.push(name: .openHelp, param: nil)
+    }
+    
+    @IBAction func didTapSearchItem(_ sender: Any) {
+        notificationManager?.push(name: .searchFocus, param: nil)
     }
 }
 

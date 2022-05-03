@@ -26,7 +26,9 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     private var didMoveNotificationToken: AnyCancellable?
     private var didDoubleRightClickNotificationToken: AnyCancellable?
     private var willMoveNotificationToken: AnyCancellable?
+    private var didLongRightClickNotificationToken: AnyCancellable?
     private let leftMouseUpSubject = PassthroughSubject<NSEvent, Never>()
+    private let rightMouseDownSubject = PassthroughSubject<NSEvent, Never>()
     private let rightMouseUpSubject = PassthroughSubject<NSEvent, Never>()
     private let defaultInitialPage: URL? = URL(string: "https://google.com")
     private let helpUrl: URL? = URL(string: "https://nhiro.notion.site/Fixture-in-Picture-0eef7a658b4b481a84fbc57d6e43a8f2")
@@ -47,6 +49,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         observeClearCacheNotification()
         observeUrlOpenUrlNotification()
         observeHelpNotification()
+        observeSearchFocusNotification()
         observeMouseEvent()
         setWillMoveNotification()
         setRightMouseUpSubject()
@@ -139,6 +142,24 @@ extension SlideOverWindowInteractor {
             self?.rightMouseUpSubject.send(event)
             return event
         }
+        NSEvent.addLocalMonitorForEvents(matching: [.rightMouseDown]) { [weak self] event in
+            self?.rightMouseDownSubject.send(event)
+            return event
+        }
+        didLongRightClickNotificationToken = rightMouseDownSubject
+            .flatMap { (event: NSEvent) in
+                [event].publisher
+                    .delay(for: 0.5, scheduler: RunLoop.main)
+                    .prefix(untilOutputFrom: self.rightMouseUpSubject)
+            }
+            .flatMap { (event: NSEvent) -> Publishers.Output<PassthroughSubject<NSEvent, Never>> in
+                self.presenter.applyTranslucentWindow()
+                return self.rightMouseUpSubject
+                    .prefix(1)
+            }
+            .sink { event in
+                self.presenter.resetTranslucentWindow()
+            }
     }
    
     private func setWillMoveNotification() {
@@ -183,6 +204,12 @@ extension SlideOverWindowInteractor {
     private func observeHelpNotification() {
         notificationManager.observe(name: .openHelp) { [weak self] _ in
             self?.presenter.loadWebPage(url: self?.helpUrl)
+        }
+    }
+    
+    private func observeSearchFocusNotification() {
+        notificationManager.observe(name: .searchFocus) { [weak self] _ in
+            self?.presenter.focusSearchBar()
         }
     }
     

@@ -5,6 +5,7 @@ extension Notification.Name {
     static let clearCache = Notification.Name("clearCache")
     static let openUrl = Notification.Name("openUrl")
     static let openHelp = Notification.Name("openHelp")
+    static let searchFocus = Notification.Name("searchFocus")
 }
 
 protocol NotificationManager {

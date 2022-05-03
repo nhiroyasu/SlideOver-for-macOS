@@ -6,6 +6,8 @@ protocol SlideOverWindowControllable {
     func setBrowserForward(enable: Bool)
     func fixWindow(handle: @escaping (NSWindow?) -> Void)
     func loadWebPage(url: URL?)
+    func focusSearchBar()
+    func setWindowAlpha(_ value: CGFloat)
     var progressBar: NSProgressIndicator? { get }
     var action: SlideOverWindowAction { get }
     var contentView: SlideOverViewable? { get }
@@ -64,20 +66,13 @@ class SlideOverWindowController: NSWindowController {
         window?.level = .floating
         window?.styleMask = [.borderless, .utilityWindow, .titled, .closable, .miniaturizable, .resizable]
         window?.collectionBehavior = [.canJoinAllSpaces]
-        registerSearchShortcut()
     }
     
     override func showWindow(_ sender: Any?) {
         action.showWindow()
         super.showWindow(sender)
     }
-    
-    private func registerSearchShortcut() {
-        shortcutService.setAction(shortcut: .command_f) { [weak self] in
-            self?.window?.makeFirstResponder(self?.searchBar)
-        }
-    }
-    
+
     @objc func didTapBrowserBackItem(_ sender: Any) {
         contentView?.browserBack()
     }
@@ -149,6 +144,14 @@ extension SlideOverWindowController: SlideOverWindowControllable {
     
     func loadWebPage(url: URL?) {
         contentView?.loadWebPage(url: url)
+    }
+    
+    func focusSearchBar() {
+        window?.makeFirstResponder(searchBar)
+    }
+    
+    func setWindowAlpha(_ value: CGFloat) {
+        window?.alphaValue = value
     }
     
     var progressBar: NSProgressIndicator? {

@@ -83,6 +83,11 @@
                                                 <action selector="redo:" target="Ady-hI-5gd" id="oIA-Rs-6OD"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Search" keyEquivalent="f" id="UJm-r4-Egs">
+                                            <connections>
+                                                <action selector="didTapSearchItem:" target="Voe-Tx-rLC" id="jpu-fs-zip"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="WRV-NI-Exz"/>
                                         <menuItem title="Cut" keyEquivalent="x" id="uRl-iY-unG">
                                             <connections>
