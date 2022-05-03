@@ -41,10 +41,12 @@ class SlideOverWindowController: NSWindowController {
     
     let action: SlideOverWindowAction
     private let urlValidationService: URLValidationService
+    private let shortcutService: ShortcutService
     
     init?(coder: NSCoder, injector: Injectable) {
         self.action = injector.build(SlideOverWindowAction.self)
         self.urlValidationService = injector.build(URLValidationService.self)
+        self.shortcutService = injector.build(ShortcutService.self)
         super.init(coder: coder)
     }
     
@@ -62,11 +64,18 @@ class SlideOverWindowController: NSWindowController {
         window?.level = .floating
         window?.styleMask = [.borderless, .utilityWindow, .titled, .closable, .miniaturizable, .resizable]
         window?.collectionBehavior = [.canJoinAllSpaces]
+        registerSearchShortcut()
     }
     
     override func showWindow(_ sender: Any?) {
         action.showWindow()
         super.showWindow(sender)
+    }
+    
+    private func registerSearchShortcut() {
+        shortcutService.setAction(shortcut: .command_f) { [weak self] in
+            self?.window?.makeFirstResponder(self?.searchBar)
+        }
     }
     
     @objc func didTapBrowserBackItem(_ sender: Any) {
@@ -106,6 +115,9 @@ extension SlideOverWindowController: NSSearchFieldDelegate {
         if (commandSelector == #selector(NSResponder.insertNewline(_:))) {
             let urlString = searchBar.stringValue
             action.inputSearchBar(input: urlString)
+            return false
+        } else if (commandSelector == #selector(NSResponder.cancelOperation(_:))) {
+            window?.makeFirstResponder(nil)
             return false
         }
         return false

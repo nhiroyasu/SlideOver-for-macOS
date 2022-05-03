@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import Magnet
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -27,6 +28,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if let mainWindowController = mainWindowController {
             Injector.shared.container.register(SlideOverWindowControllable.self, impl: mainWindowController).inObjectScope(.container)
             mainWindowController.showWindow(self)
+        }
+        if let keyCombo = KeyCombo(key: .f, cocoaModifiers: .command) {
+            let hotKey = HotKey(identifier: "SearchShortCut", keyCombo: keyCombo) { hotKey in
+                print("OK")
+            }
+            hotKey.register()
         }
     }
 
