@@ -6,6 +6,7 @@ extension Notification.Name {
     static let openUrl = Notification.Name("openUrl")
     static let openHelp = Notification.Name("openHelp")
     static let searchFocus = Notification.Name("searchFocus")
+    static let hideWindow = Notification.Name("hideWindow")
 }
 
 protocol NotificationManager {

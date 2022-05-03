@@ -16,6 +16,7 @@ protocol SlideOverWindowPresenter {
     func focusSearchBar()
     func applyTranslucentWindow()
     func resetTranslucentWindow()
+    func hideWindow()
 }
 
 class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
@@ -24,12 +25,14 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     }
     private let alertService: AlertService
     private let slideOverService: SlideOverService
+    private let userSetting :UserSettingService
     private let injector: Injectable
     
     init(injector: Injectable) {
         self.injector = injector
         self.alertService = injector.build(AlertService.self)
         self.slideOverService = injector.build(SlideOverService.self)
+        self.userSetting = injector.build(UserSettingService.self)
     }
     
     func fixWindow(type: SlideOverKind) {
@@ -120,6 +123,13 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     
     func focusSearchBar() {
         output?.focusSearchBar()
+    }
+    
+    func hideWindow() {
+        output?.fixWindow { [weak self] window in
+            guard let window = window, let position = self?.userSetting.latestPosition else { return }
+            self?.slideOverService.hideWindow(for: window, type: position)
+        }
     }
     
     func applyTranslucentWindow() {

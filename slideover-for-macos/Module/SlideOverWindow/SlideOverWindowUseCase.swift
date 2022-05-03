@@ -51,6 +51,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         observeHelpNotification()
         observeSearchFocusNotification()
         observeMouseEvent()
+        observeHideWindowNotification()
         setWillMoveNotification()
         setRightMouseUpSubject()
         resizeWindow()
@@ -214,6 +215,12 @@ extension SlideOverWindowInteractor {
     private func observeSearchFocusNotification() {
         notificationManager.observe(name: .searchFocus) { [weak self] _ in
             self?.presenter.focusSearchBar()
+        }
+    }
+    
+    private func observeHideWindowNotification() {
+        notificationManager.observe(name: .hideWindow) { [weak self] _ in
+            self?.presenter.hideWindow()
         }
     }
     

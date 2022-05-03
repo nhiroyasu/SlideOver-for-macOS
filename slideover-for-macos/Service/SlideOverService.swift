@@ -32,6 +32,7 @@ protocol SlideOverService {
     func fixMovedWindow(for window: NSWindow)
     func reverseMoveWindow(for window: NSWindow)
     func arrangeWindowPosition(for window: NSWindow, size: NSSize, type: SlideOverKind)
+    func hideWindow(for window: NSWindow, type: SlideOverKind)
 }
 
 class SlideOverServiceImpl: SlideOverService {
@@ -106,6 +107,25 @@ class SlideOverServiceImpl: SlideOverService {
         let windowPoint = type.state.computeWindowPoint(windowSize: size, screenSize: screen.frame.size, screenOffset: screen.frame.origin)
         DispatchQueue.main.async {
             window.setFrameOrigin(windowPoint)
+        }
+    }
+    
+    func hideWindow(for window: NSWindow, type: SlideOverKind) {
+        switch type {
+        case .left, .topLeft, .bottomLeft:
+            let size = window.frame.size
+            let prevPoint = window.frame.origin
+            let windowPoint = NSPoint(x: prevPoint.x - size.width - marginRight * 2, y: prevPoint.y)
+            DispatchQueue.main.async {
+                window.setFrame(.init(origin: windowPoint, size: size), display: true, animate: true)
+            }
+        case .right, .topRight, .bottomRight:
+            let size = window.frame.size
+            let prevPoint = window.frame.origin
+            let windowPoint = NSPoint(x: prevPoint.x + size.width + marginRight * 2 + 100, y: prevPoint.y)
+            DispatchQueue.main.async {
+                window.setFrame(.init(origin: windowPoint, size: size), display: true, animate: true)
+            }
         }
     }
 }

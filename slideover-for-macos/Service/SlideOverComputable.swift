@@ -1,8 +1,8 @@
 import Foundation
 
-fileprivate let marginTop: CGFloat = 64.0
-fileprivate let marginBottom: CGFloat = 64.0
-fileprivate let marginRight: CGFloat = 64.0
+let marginTop: CGFloat = 64.0
+let marginBottom: CGFloat = 64.0
+let marginRight: CGFloat = 64.0
 
 protocol SlideOverComputable {
     func computeWindowRect(screenSize: CGSize, screenOffset: CGPoint) -> CGRect

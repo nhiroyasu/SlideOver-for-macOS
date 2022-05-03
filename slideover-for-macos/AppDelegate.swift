@@ -67,5 +67,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func didTapSearchItem(_ sender: Any) {
         notificationManager?.push(name: .searchFocus, param: nil)
     }
+    
+    @IBAction func didTapHideWindowItem(_ sender: Any) {
+        notificationManager?.push(name: .hideWindow, param: nil)
+    }
 }
 
