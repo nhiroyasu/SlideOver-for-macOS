@@ -31,6 +31,11 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
+                                        <menuItem title="Hide Fixture in Picture" keyEquivalent="h" id="Olw-nP-bQN">
+                                            <connections>
+                                                <action selector="didTapHideWindowItem:" target="Voe-Tx-rLC" id="YkU-qd-mP6"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Hide Others" keyEquivalent="h" id="Vdr-fp-XzO">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
@@ -239,10 +244,8 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
                                     <items>
-                                        <menuItem title="Hide Fixture in Picture" keyEquivalent="h" id="rKe-Ey-sy7">
-                                            <connections>
-                                                <action selector="didTapHideWindowItem:" target="Voe-Tx-rLC" id="Prd-Sv-lkx"/>
-                                            </connections>
+                                        <menuItem title="Hide" id="rKe-Ey-sy7">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem title="Minimize" keyEquivalent="m" id="OY7-WF-poV">
                                             <connections>

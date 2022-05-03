@@ -22,6 +22,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     private let webViewService: WebViewService
     private let presenter: SlideOverWindowPresenter
     private let notificationManager: NotificationManager
+    private let globalShortcutService: GlobalShortcutService
     
     private var didMoveNotificationToken: AnyCancellable?
     private var didDoubleRightClickNotificationToken: AnyCancellable?
@@ -34,6 +35,11 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     private let helpUrl: URL? = URL(string: "https://nhiro.notion.site/Fixture-in-Picture-0eef7a658b4b481a84fbc57d6e43a8f2")
     private let defaultUserAgent: UserAgent = .desktop
     private let defaultSlideOverPosition: SlideOverKind = .right
+    private var state: State = .init(isWindowHidden: false)
+
+    struct State {
+        var isWindowHidden: Bool
+    }
     
     public init(injector: Injectable) {
         self.userSettingService = injector.build(UserSettingService.self)
@@ -42,6 +48,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         self.webViewService = injector.build(WebViewService.self)
         self.presenter = injector.build(SlideOverWindowPresenter.self)
         self.notificationManager = injector.build(NotificationManager.self)
+        self.globalShortcutService = injector.build(GlobalShortcutService.self)
     }
     
     func setUp() {
@@ -55,6 +62,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         setWillMoveNotification()
         setRightMouseUpSubject()
         resizeWindow()
+        registerSwitchWindowVisibilityShortcutKey()
         
         if let latestPosition = userSettingService.latestPosition {
             presenter.fixWindow(type: latestPosition)
@@ -220,7 +228,21 @@ extension SlideOverWindowInteractor {
     
     private func observeHideWindowNotification() {
         notificationManager.observe(name: .hideWindow) { [weak self] _ in
+            self?.state.isWindowHidden = true
             self?.presenter.hideWindow()
+        }
+    }
+    
+    private func registerSwitchWindowVisibilityShortcutKey() {
+        globalShortcutService.register(keyType: .command_control_s) { [weak self] in
+            guard let self = self else { return }
+            if self.state.isWindowHidden {
+                self.state.isWindowHidden = false
+                self.presenter.showWindow()
+            } else {
+                self.state.isWindowHidden = true
+                self.presenter.hideWindow()
+            }
         }
     }
     

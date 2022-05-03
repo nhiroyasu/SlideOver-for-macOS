@@ -17,6 +17,7 @@ protocol SlideOverWindowPresenter {
     func applyTranslucentWindow()
     func resetTranslucentWindow()
     func hideWindow()
+    func showWindow()
 }
 
 class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
@@ -130,6 +131,11 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
             guard let window = window, let position = self?.userSetting.latestPosition else { return }
             self?.slideOverService.hideWindow(for: window, type: position)
         }
+    }
+    
+    func showWindow() {
+        guard let position = userSetting.latestPosition else { return }
+        fixWindow(type: position)
     }
     
     func applyTranslucentWindow() {

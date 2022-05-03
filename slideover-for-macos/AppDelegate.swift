@@ -72,4 +72,3 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         notificationManager?.push(name: .hideWindow, param: nil)
     }
 }
-

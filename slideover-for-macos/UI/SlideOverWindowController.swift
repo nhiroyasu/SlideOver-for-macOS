@@ -43,12 +43,10 @@ class SlideOverWindowController: NSWindowController {
     
     let action: SlideOverWindowAction
     private let urlValidationService: URLValidationService
-    private let shortcutService: ShortcutService
     
     init?(coder: NSCoder, injector: Injectable) {
         self.action = injector.build(SlideOverWindowAction.self)
         self.urlValidationService = injector.build(URLValidationService.self)
-        self.shortcutService = injector.build(ShortcutService.self)
         super.init(coder: coder)
     }
     
