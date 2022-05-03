@@ -122,7 +122,7 @@ class SlideOverServiceImpl: SlideOverService {
         case .right, .topRight, .bottomRight:
             let size = window.frame.size
             let prevPoint = window.frame.origin
-            let windowPoint = NSPoint(x: prevPoint.x + size.width + marginRight * 2 + 100, y: prevPoint.y)
+            let windowPoint = NSPoint(x: prevPoint.x + size.width + marginRight * 2, y: prevPoint.y)
             DispatchQueue.main.async {
                 window.setFrame(.init(origin: windowPoint, size: size), display: true, animate: true)
             }
