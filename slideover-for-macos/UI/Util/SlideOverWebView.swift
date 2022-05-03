@@ -13,11 +13,11 @@ class SlideOverWebView: WKWebView {
     var delegate: SlideOverWebViewMenuDelegate?
     
     override init(frame: CGRect, configuration: WKWebViewConfiguration) {
+        configuration.preferences._setFullScreenEnabled(true)
         super.init(frame: frame, configuration: configuration)
         translatesAutoresizingMaskIntoConstraints = false
         allowsBackForwardNavigationGestures = true
         allowsLinkPreview = true
-        configuration.preferences._setFullScreenEnabled(true)
     }
     
     required init?(coder: NSCoder) {
@@ -56,6 +56,7 @@ class SlideOverWebView: WKWebView {
             }))
         ]
         buildMenu(from: menuTree, for: menu)
+        super.willOpenMenu(menu, with: event)
     }
     
     @objc func didTapCopyLink() {

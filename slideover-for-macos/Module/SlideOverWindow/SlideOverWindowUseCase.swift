@@ -146,20 +146,6 @@ extension SlideOverWindowInteractor {
             self?.rightMouseDownSubject.send(event)
             return event
         }
-        didLongRightClickNotificationToken = rightMouseDownSubject
-            .flatMap { (event: NSEvent) in
-                [event].publisher
-                    .delay(for: 0.5, scheduler: RunLoop.main)
-                    .prefix(untilOutputFrom: self.rightMouseUpSubject)
-            }
-            .flatMap { (event: NSEvent) -> Publishers.Output<PassthroughSubject<NSEvent, Never>> in
-                self.presenter.applyTranslucentWindow()
-                return self.rightMouseUpSubject
-                    .prefix(1)
-            }
-            .sink { event in
-                self.presenter.resetTranslucentWindow()
-            }
     }
    
     private func setWillMoveNotification() {
@@ -185,6 +171,24 @@ extension SlideOverWindowInteractor {
             .filter { $0.count >= 2 }
             .sink { [weak self] _ in
                 self?.presenter.reverseWindow()
+            }
+    }
+    
+    // NOTE: 諸事情で使ってない。ロジックは使えそうなので残してる
+    private func setLongRightClickSubject() {
+        didLongRightClickNotificationToken = rightMouseDownSubject
+            .flatMap { (event: NSEvent) in
+                [event].publisher
+                    .delay(for: 0.5, scheduler: RunLoop.main)
+                    .prefix(untilOutputFrom: self.rightMouseUpSubject)
+            }
+            .flatMap { (event: NSEvent) -> Publishers.Output<PassthroughSubject<NSEvent, Never>> in
+                self.presenter.applyTranslucentWindow()
+                return self.rightMouseUpSubject
+                    .prefix(1)
+            }
+            .sink { event in
+                self.presenter.resetTranslucentWindow()
             }
     }
     

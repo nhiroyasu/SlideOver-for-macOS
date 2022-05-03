@@ -39,6 +39,9 @@
 		4FBCEB5627D3259A00BCF88C /* WebViewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEB5527D3259A00BCF88C /* WebViewService.swift */; };
 		4FBE657C282122C60001FB4E /* Magnet in Frameworks */ = {isa = PBXBuildFile; productRef = 4FBE657B282122C60001FB4E /* Magnet */; };
 		4FBE657E282124410001FB4E /* ShortcutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE657D282124410001FB4E /* ShortcutService.swift */; };
+		4FBE6582282157E50001FB4E /* SlideOverWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE6581282157E50001FB4E /* SlideOverWindow.swift */; };
+		4FBE658428215A540001FB4E /* SlideOverToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE658328215A540001FB4E /* SlideOverToolbar.swift */; };
+		4FBE65862821601D0001FB4E /* SlideOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE65852821601D0001FB4E /* SlideOverView.swift */; };
 		4FD65B9727F02BAF0021D3E5 /* MenuTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD65B9627F02BAF0021D3E5 /* MenuTree.swift */; };
 		4FD65B9A27F5E5890021D3E5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FD65B9C27F5E5890021D3E5 /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -89,6 +92,9 @@
 		4FBCEB5327CBBC2500BCF88C /* UserAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgent.swift; sourceTree = "<group>"; };
 		4FBCEB5527D3259A00BCF88C /* WebViewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewService.swift; sourceTree = "<group>"; };
 		4FBE657D282124410001FB4E /* ShortcutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutService.swift; sourceTree = "<group>"; };
+		4FBE6581282157E50001FB4E /* SlideOverWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverWindow.swift; sourceTree = "<group>"; };
+		4FBE658328215A540001FB4E /* SlideOverToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverToolbar.swift; sourceTree = "<group>"; };
+		4FBE65852821601D0001FB4E /* SlideOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverView.swift; sourceTree = "<group>"; };
 		4FD65B9527EEDCA00021D3E5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		4FD65B9627F02BAF0021D3E5 /* MenuTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTree.swift; sourceTree = "<group>"; };
 		4FD65B9B27F5E5890021D3E5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -193,7 +199,10 @@
 				4FBCEB4527C668A900BCF88C /* Util */,
 				4FBCEB0827C1FA5600BCF88C /* SlideOverWindowController.swift */,
 				4FBCEAFB27C1FA3300BCF88C /* SlideOverViewController.swift */,
+				4FBE65852821601D0001FB4E /* SlideOverView.swift */,
 				4FBCEAFF27C1FA3400BCF88C /* Main.storyboard */,
+				4FBE6581282157E50001FB4E /* SlideOverWindow.swift */,
+				4FBE658328215A540001FB4E /* SlideOverToolbar.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -357,6 +366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FBE65862821601D0001FB4E /* SlideOverView.swift in Sources */,
 				4FBCEB3527C6285000BCF88C /* AppContainer.swift in Sources */,
 				4FBCEB2D27C626FD00BCF88C /* Injectable.swift in Sources */,
 				4FBCEAFC27C1FA3300BCF88C /* SlideOverViewController.swift in Sources */,
@@ -374,12 +384,14 @@
 				4FBCEB1227C27B7700BCF88C /* MousePositionService.swift in Sources */,
 				4FBCEB4927C6810300BCF88C /* URLValidationService.swift in Sources */,
 				4FBCEB3727C62A4000BCF88C /* Container+.swift in Sources */,
+				4FBE658428215A540001FB4E /* SlideOverToolbar.swift in Sources */,
 				4FBCEB5127CBAE5600BCF88C /* WKPreferences.m in Sources */,
 				4FBCEB4427C667EF00BCF88C /* SlideOverWebView.swift in Sources */,
 				4FBCEB5627D3259A00BCF88C /* WebViewService.swift in Sources */,
 				4FBCEB2327C6244900BCF88C /* UserSettingService.swift in Sources */,
 				4FBCEB0E27C20BBA00BCF88C /* SlideOverService.swift in Sources */,
 				4FBCEB4027C63B6C00BCF88C /* SlideOverWindowAction.swift in Sources */,
+				4FBE6582282157E50001FB4E /* SlideOverWindow.swift in Sources */,
 				4FBCEB4E27CA1E5500BCF88C /* NotificationManager.swift in Sources */,
 				4FBCEB3D27C63A3000BCF88C /* SlideOverWindowPresenter.swift in Sources */,
 				4FBCEB4B27C7C8C100BCF88C /* URLEncodeService.swift in Sources */,
