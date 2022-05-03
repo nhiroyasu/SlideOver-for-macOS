@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
-        <plugIn identifier="com.apple.WebKit2IBPlugin" version="20037"/>
         <capability name="Search Toolbar Item" minToolsVersion="12.0" minSystemVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -365,30 +364,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="625" height="688"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <wkWebView wantsLayer="YES" allowsBackForwardNavigationGestures="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Gp-7X-0Rs" customClass="SlideOverWebView" customModule="Fixture_in_Picture" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="625" height="688"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
                             <progressIndicator maxValue="100" doubleValue="50" controlSize="small" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="VXG-uK-loI">
                                 <rect key="frame" x="-4" y="680" width="633" height="12"/>
                             </progressIndicator>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="6Gp-7X-0Rs" secondAttribute="trailing" id="3ir-6M-xvA"/>
-                            <constraint firstItem="6Gp-7X-0Rs" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="48N-0G-IRb"/>
-                            <constraint firstAttribute="bottom" secondItem="6Gp-7X-0Rs" secondAttribute="bottom" id="6zJ-Bo-Oc9"/>
                             <constraint firstAttribute="trailing" secondItem="VXG-uK-loI" secondAttribute="trailing" constant="-4" id="RkQ-gx-3To"/>
                             <constraint firstItem="VXG-uK-loI" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="-4" id="V0L-Iu-TSo"/>
-                            <constraint firstItem="6Gp-7X-0Rs" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="WNN-L5-8f3"/>
                             <constraint firstItem="VXG-uK-loI" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="-4" id="yee-1Z-5JP"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="progressBar" destination="VXG-uK-loI" id="SdP-6y-mU6"/>
-                        <outlet property="webView" destination="6Gp-7X-0Rs" id="KKF-dB-uFJ"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

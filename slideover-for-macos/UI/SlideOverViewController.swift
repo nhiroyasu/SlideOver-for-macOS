@@ -12,20 +12,12 @@ protocol SlideOverViewable {
 }
 
 class SlideOverViewController: NSViewController {
-    
-    @IBOutlet var webView: SlideOverWebView! {
-        didSet {
-            webView.uiDelegate = self
-            webView.navigationDelegate = self
-            webView.delegate = self
-            webView.configuration.preferences._setFullScreenEnabled(true)
-        }
-    }
     @IBOutlet weak var progressBar: NSProgressIndicator! {
         didSet {
             progressBar.doubleValue = 0
         }
     }
+    var webView: SlideOverWebView!
     private var observers = [NSKeyValueObservation]()
     
     private var contentWindow: SlideOverWindowControllable? {
@@ -34,13 +26,21 @@ class SlideOverViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let configuration = WKWebViewConfiguration()
+        webView = SlideOverWebView(frame: .zero, configuration: configuration)
+        view.addSubview(webView)
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
+        webView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        webView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        webView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
 
         setupWebView()
     }
 
     private func setupWebView() {
-        webView.allowsBackForwardNavigationGestures = true
-        webView.allowsLinkPreview = true
         observers.append(webView.observe(\.title, options: [.new], changeHandler: { [weak self] webView, _ in
             self?.view.window?.title = webView.title ?? ""
         }))

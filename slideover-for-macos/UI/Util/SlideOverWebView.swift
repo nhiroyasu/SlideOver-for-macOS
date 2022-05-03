@@ -12,6 +12,18 @@ protocol SlideOverWebViewMenuDelegate {
 class SlideOverWebView: WKWebView {
     var delegate: SlideOverWebViewMenuDelegate?
     
+    override init(frame: CGRect, configuration: WKWebViewConfiguration) {
+        super.init(frame: frame, configuration: configuration)
+        translatesAutoresizingMaskIntoConstraints = false
+        allowsBackForwardNavigationGestures = true
+        allowsLinkPreview = true
+        configuration.preferences._setFullScreenEnabled(true)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private var userSettingService: UserSettingService? {
         Injector.shared.buildSafe(UserSettingService.self)
     }
