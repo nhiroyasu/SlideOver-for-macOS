@@ -3,7 +3,7 @@ import QuartzCore
 
 protocol SlideOverWindowPresenter {
     func fixWindow(type: SlideOverKind)
-    func adjustWindow(isAppearAction: Bool)
+    func adjustWindow()
     func reverseWindow()
     func setInitialPage(url: URL?)
     func loadWebPage(url: URL?)
@@ -43,7 +43,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         }
     }
     
-    func adjustWindow(isAppearAction: Bool = false) {
+    func adjustWindow() {
         output?.contentView?.hideReappearLeftButton()
         output?.contentView?.hideReappearRightButton()
         output?.fixWindow { [weak self] window in

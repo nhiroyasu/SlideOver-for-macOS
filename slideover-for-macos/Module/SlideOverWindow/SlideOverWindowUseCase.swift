@@ -188,7 +188,7 @@ extension SlideOverWindowInteractor {
             .prefix(1)
             .sink { [weak self] event in
                 guard let self = self else { return }
-                self.presenter.adjustWindow(isAppearAction: self.state.isWindowHidden)
+                self.presenter.adjustWindow()
                 self.state.isWindowHidden = false
             }
     }
