@@ -127,4 +127,8 @@ extension SlideOverViewController: SlideOverWebViewMenuDelegate {
     func didTapHideWindow() {
         contentWindow?.action.didTapHideWindow()
     }
+    
+    func didTapHelp() {
+        contentWindow?.action.didTapHelp()
+    }
 }

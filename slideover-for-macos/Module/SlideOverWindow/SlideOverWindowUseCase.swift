@@ -15,6 +15,7 @@ protocol SlideOverWindowUseCase {
     func requestChangingPosition(type: SlideOverKind)
     func hideWindow()
     func showWindow()
+    func showHelpPage()
 }
 
 class SlideOverWindowInteractor: SlideOverWindowUseCase {
@@ -151,6 +152,10 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         state.isWindowHidden = false
         presenter.showWindow()
     }
+    
+    func showHelpPage() {
+        presenter.loadWebPage(url: helpUrl)
+    }
 }
 
 extension SlideOverWindowInteractor {
@@ -228,7 +233,7 @@ extension SlideOverWindowInteractor {
     
     private func observeHelpNotification() {
         notificationManager.observe(name: .openHelp) { [weak self] _ in
-            self?.presenter.loadWebPage(url: self?.helpUrl)
+            self?.showHelpPage()
         }
     }
     
