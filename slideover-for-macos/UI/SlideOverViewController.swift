@@ -30,6 +30,7 @@ class SlideOverViewController: NSViewController {
         let configuration = WKWebViewConfiguration()
         webView = SlideOverWebView(frame: .zero, configuration: configuration)
         view.addSubview(webView)
+        webView.delegate = self
         webView.uiDelegate = self
         webView.navigationDelegate = self
         webView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -121,5 +122,9 @@ extension SlideOverViewController: SlideOverWebViewMenuDelegate {
     
     func didTapUserAgent(_ userAgent: UserAgent) {
         contentWindow?.action.didTapUpdateUserAgent(userAgent)
+    }
+    
+    func didTapHideWindow() {
+        contentWindow?.action.didTapHideWindow()
     }
 }

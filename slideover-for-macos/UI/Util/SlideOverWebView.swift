@@ -7,6 +7,7 @@ protocol SlideOverWebViewMenuDelegate {
     func didTapRegisterInitialPage()
     func didTapWindowLayout(type: SlideOverKind)
     func didTapUserAgent(_ userAgent: UserAgent)
+    func didTapHideWindow()
 }
 
 class SlideOverWebView: WKWebView {
@@ -53,7 +54,8 @@ class SlideOverWebView: WKWebView {
                 if self?.userSettingService?.latestUserAgent == data.value as? UserAgent {
                     menuItem.state = .on
                 }
-            }))
+            })),
+            .item(data: .init(title: NSLocalizedString("Hide Window", comment: ""), action: #selector(didTapHideWindow), keyEquivalent: "s", keyEquivalentModify: [.command, .control], image: NSImage(systemSymbolName: "eye.slash", accessibilityDescription: nil)))
         ]
         buildMenu(from: menuTree, for: menu)
         super.willOpenMenu(menu, with: event)
@@ -101,5 +103,9 @@ class SlideOverWebView: WKWebView {
     
     @objc func didTapUserAgentForDesktop() {
         delegate?.didTapUserAgent(.desktop)
+    }
+    
+    @objc func didTapHideWindow() {
+        delegate?.didTapHideWindow()
     }
 }

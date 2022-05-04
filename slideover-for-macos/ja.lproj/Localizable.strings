@@ -12,3 +12,4 @@
 "Desktop" = "デスクトップ";
 "URLs beginning with http:// cannot be opened.\nPlease enter a URL beginning with https://" = "http:// から始まるURLは開くことができません\nhttps:// から始まるURLを入力してください";
 "The entered value is not valid." = "入力した値が有効ではありません";
+"Hide Window" = "ウィンドウを隠す";

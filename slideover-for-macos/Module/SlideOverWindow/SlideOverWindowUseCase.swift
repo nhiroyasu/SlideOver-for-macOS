@@ -13,6 +13,8 @@ protocol SlideOverWindowUseCase {
     func switchUserAgent()
     func updateUserAgent(_ userAgent: UserAgent)
     func requestChangingPosition(type: SlideOverKind)
+    func hideWindow()
+    func showWindow()
 }
 
 class SlideOverWindowInteractor: SlideOverWindowUseCase {
@@ -139,6 +141,16 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     func requestChangingPosition(type: SlideOverKind) {
         presenter.fixWindow(type: type)
     }
+    
+    func hideWindow() {
+        state.isWindowHidden = true
+        presenter.hideWindow()
+    }
+    
+    func showWindow() {
+        state.isWindowHidden = false
+        presenter.showWindow()
+    }
 }
 
 extension SlideOverWindowInteractor {
@@ -228,8 +240,7 @@ extension SlideOverWindowInteractor {
     
     private func observeHideWindowNotification() {
         notificationManager.observe(name: .hideWindow) { [weak self] _ in
-            self?.state.isWindowHidden = true
-            self?.presenter.hideWindow()
+            self?.hideWindow()
         }
     }
     
@@ -237,11 +248,9 @@ extension SlideOverWindowInteractor {
         globalShortcutService.register(keyType: .command_control_s) { [weak self] in
             guard let self = self else { return }
             if self.state.isWindowHidden {
-                self.state.isWindowHidden = false
-                self.presenter.showWindow()
+                self.showWindow()
             } else {
-                self.state.isWindowHidden = true
-                self.presenter.hideWindow()
+                self.hideWindow()
             }
         }
     }
