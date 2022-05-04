@@ -47,7 +47,7 @@ class SlideOverWindowActionImpl: SlideOverWindowAction {
     }
     
     func didChangePosition(kind: SlideOverKind) {
-        useCase.registerLatestPositon(kind: kind)
+        useCase.registerLatestPosition(kind: kind)
     }
     
     func didUpdateProgress(value: Double) {

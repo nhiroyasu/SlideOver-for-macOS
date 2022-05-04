@@ -53,6 +53,7 @@
 		4FEBB82C28223563007B5DA3 /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEBB82B28223563007B5DA3 /* URL+.swift */; };
 		4FEBB82E28223906007B5DA3 /* SlideOverWindowPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEBB82D28223906007B5DA3 /* SlideOverWindowPresenterTests.swift */; };
 		4FEBB83028224183007B5DA3 /* UIQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEBB82F28224183007B5DA3 /* UIQueue.swift */; };
+		4FEBB8332822442F007B5DA3 /* SlideOverWindowUsecaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEBB83128224424007B5DA3 /* SlideOverWindowUsecaseTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		4FEBB82B28223563007B5DA3 /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
 		4FEBB82D28223906007B5DA3 /* SlideOverWindowPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverWindowPresenterTests.swift; sourceTree = "<group>"; };
 		4FEBB82F28224183007B5DA3 /* UIQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIQueue.swift; sourceTree = "<group>"; };
+		4FEBB83128224424007B5DA3 /* SlideOverWindowUsecaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverWindowUsecaseTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +311,7 @@
 			children = (
 				4FEBB82828223153007B5DA3 /* SlideOverWindowActionTests.swift */,
 				4FEBB82D28223906007B5DA3 /* SlideOverWindowPresenterTests.swift */,
+				4FEBB83128224424007B5DA3 /* SlideOverWindowUsecaseTests.swift */,
 			);
 			path = SlideOverWindow;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				4FEBB82728223116007B5DA3 /* TestInjector.swift in Sources */,
 				4FBCEB2127C27EE200BCF88C /* MousePointServiceTests.swift in Sources */,
 				4FEBB82C28223563007B5DA3 /* URL+.swift in Sources */,
+				4FEBB8332822442F007B5DA3 /* SlideOverWindowUsecaseTests.swift in Sources */,
 				4FEBB8252822305A007B5DA3 /* TestContainer.swift in Sources */,
 				4FEBB82928223153007B5DA3 /* SlideOverWindowActionTests.swift in Sources */,
 				4FBCEB1A27C27EC800BCF88C /* slideover_for_macosTests.swift in Sources */,

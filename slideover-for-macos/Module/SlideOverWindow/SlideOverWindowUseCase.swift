@@ -9,7 +9,7 @@ protocol SlideOverWindowUseCase {
     func searchGoogle(keyword: String)
     func registerInitialPage(url: URL?)
     func registerLatestPage(url: URL?)
-    func registerLatestPositon(kind: SlideOverKind)
+    func registerLatestPosition(kind: SlideOverKind)
     func updateProgress(value progress: Double)
     func switchUserAgent()
     func updateUserAgent(_ userAgent: UserAgent)
@@ -28,9 +28,9 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     private let notificationManager: NotificationManager
     private let globalShortcutService: GlobalShortcutService
     
-    private var didMoveNotificationToken: AnyCancellable?
-    private var didDoubleRightClickNotificationToken: AnyCancellable?
-    private var willMoveNotificationToken: AnyCancellable?
+    var didMoveNotificationToken: AnyCancellable?
+    var didDoubleRightClickNotificationToken: AnyCancellable?
+    var willMoveNotificationToken: AnyCancellable?
     private var didLongRightClickNotificationToken: AnyCancellable?
     private let leftMouseUpSubject = PassthroughSubject<NSEvent, Never>()
     private let rightMouseDownSubject = PassthroughSubject<NSEvent, Never>()
@@ -39,7 +39,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     private let helpUrl: URL? = URL(string: "https://nhiro.notion.site/Fixture-in-Picture-0eef7a658b4b481a84fbc57d6e43a8f2")
     private let defaultUserAgent: UserAgent = .desktop
     private let defaultSlideOverPosition: SlideOverKind = .right
-    private var state: State = .init(isWindowHidden: false)
+    var state: State = .init(isWindowHidden: false)
 
     struct State {
         var isWindowHidden: Bool
@@ -61,8 +61,8 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         observeUrlOpenUrlNotification()
         observeHelpNotification()
         observeSearchFocusNotification()
-        observeMouseEvent()
         observeHideWindowNotification()
+        observeMouseEvent()
         setWillMoveNotification()
         setRightMouseUpSubject()
         resizeWindow()
@@ -107,7 +107,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         userSettingService.latestPage = url
     }
     
-    func registerLatestPositon(kind: SlideOverKind) {
+    func registerLatestPosition(kind: SlideOverKind) {
         userSettingService.latestPosition = kind
     }
     

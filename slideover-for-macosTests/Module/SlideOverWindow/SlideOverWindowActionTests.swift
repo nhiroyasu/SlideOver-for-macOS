@@ -68,8 +68,8 @@ class SlideOverWindowActionTests: XCTestCase {
     func test_didChangePosition() {
         subject.didChangePosition(kind: .left)
         
-        XCTAssertEqual(useCase.registerLatestPositonCallCount, 1)
-        XCTAssertEqual(useCase.registerLatestPositonArgValues.first, .left)
+        XCTAssertEqual(useCase.registerLatestPositionCallCount, 1)
+        XCTAssertEqual(useCase.registerLatestPositionArgValues.first, .left)
     }
     
     func test_didUpdateProgress() {

@@ -851,14 +851,14 @@ class SlideOverWindowUseCaseMock: SlideOverWindowUseCase {
         
     }
 
-    private(set) var registerLatestPositonCallCount = 0
-    var registerLatestPositonArgValues = [SlideOverKind]()
-    var registerLatestPositonHandler: ((SlideOverKind) -> ())?
-    func registerLatestPositon(kind: SlideOverKind)  {
-        registerLatestPositonCallCount += 1
-        registerLatestPositonArgValues.append(kind)
-        if let registerLatestPositonHandler = registerLatestPositonHandler {
-            registerLatestPositonHandler(kind)
+    private(set) var registerLatestPositionCallCount = 0
+    var registerLatestPositionArgValues = [SlideOverKind]()
+    var registerLatestPositionHandler: ((SlideOverKind) -> ())?
+    func registerLatestPosition(kind: SlideOverKind)  {
+        registerLatestPositionCallCount += 1
+        registerLatestPositionArgValues.append(kind)
+        if let registerLatestPositionHandler = registerLatestPositionHandler {
+            registerLatestPositionHandler(kind)
         }
         
     }
