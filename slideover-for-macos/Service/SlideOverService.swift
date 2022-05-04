@@ -33,7 +33,7 @@ protocol SlideOverService {
     func fixMovedWindow(for window: NSWindow)
     func reverseMoveWindow(for window: NSWindow)
     func arrangeWindowPosition(for window: NSWindow, size: NSSize, type: SlideOverKind)
-    func hideWindow(for window: NSWindow, type: SlideOverKind)
+    func hideWindow(for window: NSWindow, type: SlideOverKind) -> Bool
 }
 
 class SlideOverServiceImpl: SlideOverService {
@@ -111,23 +111,44 @@ class SlideOverServiceImpl: SlideOverService {
         }
     }
     
-    func hideWindow(for window: NSWindow, type: SlideOverKind) {
+    func hideWindow(for window: NSWindow, type: SlideOverKind) -> Bool {
         switch type {
         case .left, .topLeft, .bottomLeft:
             let size = window.frame.size
             let prevPoint = window.frame.origin
             let windowPoint = NSPoint(x: prevPoint.x - size.width - marginRight + hideOffsetSpace, y: prevPoint.y)
-            DispatchQueue.main.async {
-                window.setFrame(.init(origin: windowPoint, size: size), display: true, animate: true)
+            let nextWindowFrame = NSRect(origin: windowPoint, size: size)
+            if canSetFrame(nextFrame: nextWindowFrame) {
+                DispatchQueue.main.async {
+                    window.setFrame(nextWindowFrame, display: true, animate: true)
+                }
+                return true
+            } else {
+                NSSound.beep()
+                return false
             }
         case .right, .topRight, .bottomRight:
             let size = window.frame.size
             let prevPoint = window.frame.origin
             let windowPoint = NSPoint(x: prevPoint.x + size.width + marginRight - hideOffsetSpace, y: prevPoint.y)
-            DispatchQueue.main.async {
-                window.setFrame(.init(origin: windowPoint, size: size), display: true, animate: true)
+            let nextWindowFrame = NSRect(origin: windowPoint, size: size)
+            if canSetFrame(nextFrame: nextWindowFrame) {
+                DispatchQueue.main.async {
+                    window.setFrame(nextWindowFrame, display: true, animate: true)
+                }
+                return true
+            } else {
+                NSSound.beep()
+                return false
             }
         }
+    }
+    
+    private func canSetFrame(nextFrame: NSRect) -> Bool {
+        // NOTE: 移動先のFrameが二つ以上のスクリーンに重なっており、Originがどのスクリーンにも含まれない場合、setFrameができない可能性あり
+        let isIntersectsTwoScreen = NSScreen.screens.filter { screen in screen.frame.intersects(nextFrame) }.count >= 2
+        let isNotContainAllScreen = NSScreen.screens.allSatisfy { screen in screen.frame.contains(nextFrame.origin) == false }
+        return !(isIntersectsTwoScreen && isNotContainAllScreen)
     }
 }
 

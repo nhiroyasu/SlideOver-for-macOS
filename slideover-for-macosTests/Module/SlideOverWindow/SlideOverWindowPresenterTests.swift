@@ -136,8 +136,9 @@ class SlideOverWindowPresenterTests: XCTestCase {
             XCTContext.runActivity(named: "right") { _ in
                 setUp()
                 userSetting.latestPosition = .right
+                slideOverService.hideWindowHandler = { _, _ in true }
                 
-                subject.disappearWindow()
+                subject.disappearWindow { _ in }
                 
                 XCTAssertEqual(output.fixWindowCallCount, 1)
                 XCTAssertEqual(slideOverService.hideWindowCallCount, 1)
@@ -149,8 +150,9 @@ class SlideOverWindowPresenterTests: XCTestCase {
             XCTContext.runActivity(named: "topRight") { _ in
                 setUp()
                 userSetting.latestPosition = .topRight
+                slideOverService.hideWindowHandler = { _, _ in true }
                 
-                subject.disappearWindow()
+                subject.disappearWindow { _ in }
                 
                 XCTAssertEqual(output.fixWindowCallCount, 1)
                 XCTAssertEqual(slideOverService.hideWindowCallCount, 1)
@@ -162,8 +164,9 @@ class SlideOverWindowPresenterTests: XCTestCase {
             XCTContext.runActivity(named: "bottomRight") { _ in
                 setUp()
                 userSetting.latestPosition = .bottomRight
+                slideOverService.hideWindowHandler = { _, _ in true }
                 
-                subject.disappearWindow()
+                subject.disappearWindow { _ in }
                 
                 XCTAssertEqual(output.fixWindowCallCount, 1)
                 XCTAssertEqual(slideOverService.hideWindowCallCount, 1)
@@ -178,8 +181,10 @@ class SlideOverWindowPresenterTests: XCTestCase {
             XCTContext.runActivity(named: "left") { _ in
                 setUp()
                 userSetting.latestPosition = .left
+                slideOverService.hideWindowHandler = { _, _ in true }
+
                 
-                subject.disappearWindow()
+                subject.disappearWindow { _ in }
                 
                 XCTAssertEqual(output.fixWindowCallCount, 1)
                 XCTAssertEqual(slideOverService.hideWindowCallCount, 1)
@@ -191,8 +196,10 @@ class SlideOverWindowPresenterTests: XCTestCase {
             XCTContext.runActivity(named: "topLeft") { _ in
                 setUp()
                 userSetting.latestPosition = .topLeft
+                slideOverService.hideWindowHandler = { _, _ in true }
+
                 
-                subject.disappearWindow()
+                subject.disappearWindow { _ in }
                 
                 XCTAssertEqual(output.fixWindowCallCount, 1)
                 XCTAssertEqual(slideOverService.hideWindowCallCount, 1)
@@ -204,8 +211,9 @@ class SlideOverWindowPresenterTests: XCTestCase {
             XCTContext.runActivity(named: "bottomLeft") { _ in
                 setUp()
                 userSetting.latestPosition = .bottomLeft
+                slideOverService.hideWindowHandler = { _, _ in true }
                 
-                subject.disappearWindow()
+                subject.disappearWindow { _ in }
                 
                 XCTAssertEqual(output.fixWindowCallCount, 1)
                 XCTAssertEqual(slideOverService.hideWindowCallCount, 1)
@@ -214,6 +222,21 @@ class SlideOverWindowPresenterTests: XCTestCase {
                 XCTAssertEqual(contentView.showReappearRightButtonCallCount, 1)
                 XCTAssertEqual(contentView.hideReappearLeftButtonCallCount, 1)
             }
+        }
+        
+        XCTContext.runActivity(named: "hideWindowに失敗したら何もしないこと") { _ in
+            setUp()
+            userSetting.latestPosition = .bottomLeft
+            slideOverService.hideWindowHandler = { _, _ in false }
+            
+            subject.disappearWindow { _ in }
+            
+            XCTAssertEqual(output.fixWindowCallCount, 1)
+            XCTAssertEqual(slideOverService.hideWindowCallCount, 1)
+            XCTAssertEqual(contentView.hideReappearRightButtonCallCount, 0)
+            XCTAssertEqual(contentView.showReappearLeftButtonCallCount, 0)
+            XCTAssertEqual(contentView.showReappearRightButtonCallCount, 0)
+            XCTAssertEqual(contentView.hideReappearLeftButtonCallCount, 0)
         }
     }
     

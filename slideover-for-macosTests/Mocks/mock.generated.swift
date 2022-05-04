@@ -769,11 +769,11 @@ class SlideOverWindowPresenterMock: SlideOverWindowPresenter {
     }
 
     private(set) var disappearWindowCallCount = 0
-    var disappearWindowHandler: (() -> ())?
-    func disappearWindow()  {
+    var disappearWindowHandler: ((@escaping (Bool) -> Void) -> ())?
+    func disappearWindow(completion: @escaping (Bool) -> Void)  {
         disappearWindowCallCount += 1
         if let disappearWindowHandler = disappearWindowHandler {
-            disappearWindowHandler()
+            disappearWindowHandler(completion)
         }
         
     }
@@ -1081,14 +1081,14 @@ class SlideOverServiceMock: SlideOverService {
 
     private(set) var hideWindowCallCount = 0
     var hideWindowArgValues = [(NSWindow, SlideOverKind)]()
-    var hideWindowHandler: ((NSWindow, SlideOverKind) -> ())?
-    func hideWindow(for window: NSWindow, type: SlideOverKind)  {
+    var hideWindowHandler: ((NSWindow, SlideOverKind) -> (Bool))?
+    func hideWindow(for window: NSWindow, type: SlideOverKind) -> Bool {
         hideWindowCallCount += 1
         hideWindowArgValues.append((window, type))
         if let hideWindowHandler = hideWindowHandler {
-            hideWindowHandler(window, type)
+            return hideWindowHandler(window, type)
         }
-        
+        return false
     }
 }
 

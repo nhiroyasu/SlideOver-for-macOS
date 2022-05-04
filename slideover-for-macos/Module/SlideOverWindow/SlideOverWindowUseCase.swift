@@ -145,8 +145,9 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     }
     
     func requestDisappearWindow() {
-        state.isWindowHidden = true
-        presenter.disappearWindow()
+        presenter.disappearWindow { [weak self] isSuccess in
+            self?.state.isWindowHidden = isSuccess
+        }
     }
     
     func requestAppearWindow() {

@@ -17,7 +17,7 @@ protocol SlideOverWindowPresenter {
     func focusSearchBar()
     func applyTranslucentWindow()
     func resetTranslucentWindow()
-    func disappearWindow()
+    func disappearWindow(completion: @escaping (Bool) -> Void)
     func appearWindow()
 }
 
@@ -133,18 +133,21 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         output?.focusSearchBar()
     }
     
-    func disappearWindow() {
+    func disappearWindow(completion: @escaping (Bool) -> Void) {
         output?.fixWindow { [weak self] window in
-            guard let window = window, let position = self?.userSetting.latestPosition else { return }
-            self?.slideOverService.hideWindow(for: window, type: position)
-            switch position {
-            case .left, .topLeft, .bottomLeft:
-                self?.output?.contentView?.hideReappearLeftButton()
-                self?.output?.contentView?.showReappearRightButton()
-            case .right, .topRight, .bottomRight:
-                self?.output?.contentView?.hideReappearRightButton()
-                self?.output?.contentView?.showReappearLeftButton()
+            guard let self = self, let window = window, let position = self.userSetting.latestPosition else { return }
+            let isSuccess = self.slideOverService.hideWindow(for: window, type: position)
+            if isSuccess {
+                switch position {
+                case .left, .topLeft, .bottomLeft:
+                    self.output?.contentView?.hideReappearLeftButton()
+                    self.output?.contentView?.showReappearRightButton()
+                case .right, .topRight, .bottomRight:
+                    self.output?.contentView?.hideReappearRightButton()
+                    self.output?.contentView?.showReappearLeftButton()
+                }
             }
+            completion(isSuccess)
         }
     }
     
