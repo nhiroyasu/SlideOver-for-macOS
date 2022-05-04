@@ -12,7 +12,7 @@ iPadのSlideOverをmacOSでも利用できるアプリ
 
 # Preview
 ## 操作感↓
-![ezgif-1-e187226ef3](https://user-images.githubusercontent.com/40600280/154848935-31af2541-f423-4fd8-ad6f-00b4ba0c7247.gif)
+![ezgif-2-9ec38be786](https://user-images.githubusercontent.com/40600280/166645150-3f188fd5-3c14-4028-9821-8f41e7cdc2d6.gif)
 
 ## Yahoo検索
 ![スクリーンショット 2022-05-04 17 11 30](https://user-images.githubusercontent.com/40600280/166644578-aff7dd67-4e60-4a49-9ff8-5ae2ab23af8b.png)
