@@ -71,4 +71,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func didTapHideWindowItem(_ sender: Any) {
         notificationManager?.push(name: .hideWindow, param: nil)
     }
+    
+    @IBAction func didTapLicenseItem(_ sender: Any) {
+        notificationManager?.push(name: .openUrl, param: "https://nhiro.notion.site/Fixture-in-Picture-License-10d29166c48d44bcba28e828afaaa667")
+    }
 }
