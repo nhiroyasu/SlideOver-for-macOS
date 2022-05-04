@@ -54,6 +54,8 @@
 		4FEBB82E28223906007B5DA3 /* SlideOverWindowPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEBB82D28223906007B5DA3 /* SlideOverWindowPresenterTests.swift */; };
 		4FEBB83028224183007B5DA3 /* UIQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEBB82F28224183007B5DA3 /* UIQueue.swift */; };
 		4FEBB8332822442F007B5DA3 /* SlideOverWindowUsecaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEBB83128224424007B5DA3 /* SlideOverWindowUsecaseTests.swift */; };
+		4FEBB8512822813F007B5DA3 /* SettingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEBB8502822813F007B5DA3 /* SettingWindowController.swift */; };
+		4FEBB853282282F7007B5DA3 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEBB852282282F7007B5DA3 /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +120,8 @@
 		4FEBB82D28223906007B5DA3 /* SlideOverWindowPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverWindowPresenterTests.swift; sourceTree = "<group>"; };
 		4FEBB82F28224183007B5DA3 /* UIQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIQueue.swift; sourceTree = "<group>"; };
 		4FEBB83128224424007B5DA3 /* SlideOverWindowUsecaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverWindowUsecaseTests.swift; sourceTree = "<group>"; };
+		4FEBB8502822813F007B5DA3 /* SettingWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWindowController.swift; sourceTree = "<group>"; };
+		4FEBB852282282F7007B5DA3 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +224,7 @@
 		4FBCEB2A27C625DB00BCF88C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				4FEBB84F2822812E007B5DA3 /* Setting */,
 				4FBE658D282218D20001FB4E /* Components */,
 				4FBCEB4527C668A900BCF88C /* Util */,
 				4FBCEB0827C1FA5600BCF88C /* SlideOverWindowController.swift */,
@@ -331,6 +336,15 @@
 				4FEBB82B28223563007B5DA3 /* URL+.swift */,
 			);
 			path = TestUtil;
+			sourceTree = "<group>";
+		};
+		4FEBB84F2822812E007B5DA3 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				4FEBB8502822813F007B5DA3 /* SettingWindowController.swift */,
+				4FEBB852282282F7007B5DA3 /* SettingViewController.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -449,6 +463,7 @@
 				4FBCEB2D27C626FD00BCF88C /* Injectable.swift in Sources */,
 				4FBCEAFC27C1FA3300BCF88C /* SlideOverViewController.swift in Sources */,
 				4FBE658F282218E90001FB4E /* AntialiasedImageView.swift in Sources */,
+				4FEBB853282282F7007B5DA3 /* SettingViewController.swift in Sources */,
 				4FBCEB1027C2709F00BCF88C /* SlideOverComputable.swift in Sources */,
 				4FBCEB2F27C6273800BCF88C /* Dependencies.swift in Sources */,
 				4FBCEB4727C680A400BCF88C /* AlearService.swift in Sources */,
@@ -467,6 +482,7 @@
 				4FBE658428215A540001FB4E /* SlideOverToolbar.swift in Sources */,
 				4FBCEB5127CBAE5600BCF88C /* WKPreferences.m in Sources */,
 				4FBCEB4427C667EF00BCF88C /* SlideOverWebView.swift in Sources */,
+				4FEBB8512822813F007B5DA3 /* SettingWindowController.swift in Sources */,
 				4FBCEB5627D3259A00BCF88C /* WebViewService.swift in Sources */,
 				4FBCEB2327C6244900BCF88C /* UserSettingService.swift in Sources */,
 				4FBCEB0E27C20BBA00BCF88C /* SlideOverService.swift in Sources */,

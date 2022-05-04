@@ -197,7 +197,7 @@ extension SlideOverWindowInteractor {
     
     private func setRightMouseUpSubject() {
         didDoubleRightClickNotificationToken = rightMouseUpSubject
-            .collect(.byTime(RunLoop.current, .milliseconds(600)))
+            .collect(.byTime(RunLoop.main, .milliseconds(600)))
             .filter { $0.count >= 2 }
             .sink { [weak self] _ in
                 self?.presenter.reverseWindow()
@@ -254,6 +254,7 @@ extension SlideOverWindowInteractor {
     }
     
     private func registerSwitchWindowVisibilityShortcutKey() {
+        guard !userSettingService.isNotAllowedGlobalShortcut else { return }
         globalShortcutService.register(keyType: .command_control_s) { [weak self] in
             guard let self = self else { return }
             if self.state.isWindowHidden {

@@ -24,7 +24,11 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                            <connections>
+                                                <segue destination="QPD-Yn-mck" kind="show" id="lh4-pI-oRf"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -304,6 +308,79 @@
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="83" y="-204"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="3z4-Jt-DIH">
+            <objects>
+                <windowController id="QPD-Yn-mck" customClass="SettingWindowController" customModule="Fixture_in_Picture" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Setting" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="pqz-Q6-YN9">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <rect key="contentRect" x="604" y="462" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="3440" height="1415"/>
+                        <view key="contentView" id="4rM-yX-o82">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                        <connections>
+                            <outlet property="delegate" destination="QPD-Yn-mck" id="Xrz-X1-4r4"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="R0b-pJ-cfP" kind="relationship" relationship="window.shadowedContentViewController" id="Njf-wD-gxb"/>
+                    </connections>
+                </windowController>
+                <customObject id="WYg-XC-2mR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="868" y="41"/>
+        </scene>
+        <!--Setting View Controller-->
+        <scene sceneID="7wb-c6-CRZ">
+            <objects>
+                <viewController id="R0b-pJ-cfP" customClass="SettingViewController" customModule="Fixture_in_Picture" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="io1-O5-rkE">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fillProportionally" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GJq-dP-pIy">
+                                <rect key="frame" x="146" y="124" width="188" height="22"/>
+                                <subviews>
+                                    <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="0pk-Ts-pbd">
+                                        <rect key="frame" x="-2" y="-2" width="42" height="25"/>
+                                        <connections>
+                                            <action selector="didTapHideWindowShortcutSwitch:" target="R0b-pJ-cfP" id="igg-Hg-lN4"/>
+                                        </connections>
+                                    </switch>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F5Z-Of-sPK">
+                                        <rect key="frame" x="44" y="3" width="146" height="17"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="⌘+⌃+s : hide window" id="ceQ-jV-8r8">
+                                            <font key="font" metaFont="system" size="14"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="GJq-dP-pIy" firstAttribute="centerX" secondItem="io1-O5-rkE" secondAttribute="centerX" id="3LL-yL-ww8"/>
+                            <constraint firstItem="GJq-dP-pIy" firstAttribute="centerY" secondItem="io1-O5-rkE" secondAttribute="centerY" id="oYL-aw-6Ux"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="hideWindowShortcutSwitchButton" destination="0pk-Ts-pbd" id="YqF-9u-AFh"/>
+                    </connections>
+                </viewController>
+                <customObject id="MZ2-TU-oBJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1459" y="32"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">

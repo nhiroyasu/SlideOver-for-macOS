@@ -217,11 +217,12 @@ class URLValidationServiceMock: URLValidationService {
 
 class UserSettingServiceMock: UserSettingService {
     init() { }
-    init(initialPage: URL? = nil, latestPage: URL? = nil, latestPosition: SlideOverKind? = nil, latestUserAgent: UserAgent? = nil) {
+    init(initialPage: URL? = nil, latestPage: URL? = nil, latestPosition: SlideOverKind? = nil, latestUserAgent: UserAgent? = nil, isNotAllowedGlobalShortcut: Bool = false) {
         self.initialPage = initialPage
         self.latestPage = latestPage
         self.latestPosition = latestPosition
         self.latestUserAgent = latestUserAgent
+        self.isNotAllowedGlobalShortcut = isNotAllowedGlobalShortcut
     }
 
 
@@ -236,6 +237,9 @@ class UserSettingServiceMock: UserSettingService {
 
     private(set) var latestUserAgentSetCallCount = 0
     var latestUserAgent: UserAgent? = nil { didSet { latestUserAgentSetCallCount += 1 } }
+
+    private(set) var isNotAllowedGlobalShortcutSetCallCount = 0
+    var isNotAllowedGlobalShortcut: Bool = false { didSet { isNotAllowedGlobalShortcutSetCallCount += 1 } }
 }
 
 class WebViewServiceMock: WebViewService {
@@ -993,6 +997,18 @@ class GlobalShortcutServiceMock: GlobalShortcutService {
         registerArgValues.append(keyType)
         if let registerHandler = registerHandler {
             registerHandler(keyType, action)
+        }
+        
+    }
+
+    private(set) var unregisterCallCount = 0
+    var unregisterArgValues = [GlobalShortcutKey]()
+    var unregisterHandler: ((GlobalShortcutKey) -> ())?
+    func unregister(keyType: GlobalShortcutKey)  {
+        unregisterCallCount += 1
+        unregisterArgValues.append(keyType)
+        if let unregisterHandler = unregisterHandler {
+            unregisterHandler(keyType)
         }
         
     }

@@ -15,3 +15,6 @@
 "Hide Window" = "ウィンドウを隠す";
 "Help" = "ヘルプ";
 "License" = "ライセンス";
+"Setting" = "設定";
+"⌘+⌃+s : hide window" = "⌘+⌃+s でウィンドウを隠す";
+"Please restart the application" = "アプリを再起動してください";

@@ -14,6 +14,7 @@ enum GlobalShortcutKey: String {
 /// @mockable
 protocol GlobalShortcutService {
     func register(keyType: GlobalShortcutKey, action: @escaping () -> Void)
+    func unregister(keyType: GlobalShortcutKey)
 }
 
 class GlobalShortcutServiceImpl: GlobalShortcutService {
@@ -24,5 +25,9 @@ class GlobalShortcutServiceImpl: GlobalShortcutService {
             }
             hotKey.register()
         }
+    }
+    
+    func unregister(keyType: GlobalShortcutKey) {
+        HotKeyCenter.shared.unregisterHotKey(with: keyType.rawValue)
     }
 }

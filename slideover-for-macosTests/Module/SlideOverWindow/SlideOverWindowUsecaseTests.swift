@@ -68,11 +68,24 @@ class SlideOverWindowUseCaseTests: XCTestCase {
         }
         
         XCTContext.runActivity(named: "グローバルショートカットの設定") { _ in
-            setUp()
-            subject.setUp()
+            XCTContext.runActivity(named: "ショートカットの設定が許可されているとき") { _ in
+                setUp()
+                userSettingService.isNotAllowedGlobalShortcut = false
+                
+                subject.setUp()
+                
+                XCTAssertEqual(globalShortcutService.registerCallCount, 1)
+                XCTAssertEqual(globalShortcutService.registerArgValues.first, .command_control_s)
+            }
             
-            XCTAssertEqual(globalShortcutService.registerCallCount, 1)
-            XCTAssertEqual(globalShortcutService.registerArgValues.first, .command_control_s)
+            XCTContext.runActivity(named: "ショートカットの設定が許可されていないとき") { _ in
+                setUp()
+                userSettingService.isNotAllowedGlobalShortcut = true
+                
+                subject.setUp()
+                
+                XCTAssertEqual(globalShortcutService.registerCallCount, 0)
+            }
         }
         
         XCTContext.runActivity(named: "latestPostionの反映") { _ in
