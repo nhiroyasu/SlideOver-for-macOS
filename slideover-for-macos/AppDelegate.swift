@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  slideover-for-macos
-//
-//  Created by NH on 2022/02/20.
-//
-
 import Cocoa
 import Magnet
 
