@@ -1,5 +1,6 @@
 import Foundation
 
+/// @mockable
 protocol UserSettingService {
     var initialPage: URL? { get set }
     var latestPage: URL? { get set }

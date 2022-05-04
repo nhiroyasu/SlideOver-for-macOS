@@ -1,6 +1,7 @@
 import Foundation
 import Cocoa
 
+/// @mockable
 protocol AlertService {
     func alert(msg: String, completionHandler: @escaping () -> Void)
 }

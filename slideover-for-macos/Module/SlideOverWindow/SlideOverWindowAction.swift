@@ -1,4 +1,6 @@
 import Foundation
+
+/// @mockable
 protocol SlideOverWindowAction {
     func showWindow()
     func inputSearchBar(input: String)

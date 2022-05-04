@@ -27,6 +27,7 @@ enum SlideOverKind: Int {
     }
 }
 
+/// @mockable
 protocol SlideOverService {
     func fixWindow(for window: NSWindow, type: SlideOverKind)
     func fixMovedWindow(for window: NSWindow)

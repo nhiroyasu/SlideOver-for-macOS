@@ -2,6 +2,7 @@ import Foundation
 import AppKit
 import Combine
 
+/// @mockable
 protocol SlideOverWindowUseCase {
     func setUp()
     func loadWebPage(url: URL?)

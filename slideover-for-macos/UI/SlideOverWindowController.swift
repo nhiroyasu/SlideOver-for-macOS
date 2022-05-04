@@ -1,6 +1,7 @@
 import AppKit
 import Combine
 
+/// @mockable
 protocol SlideOverWindowControllable {
     func setBrowserBack(enable: Bool)
     func setBrowserForward(enable: Bool)

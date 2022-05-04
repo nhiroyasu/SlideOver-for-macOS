@@ -1,6 +1,7 @@
 import Foundation
 import WebKit
 
+/// @mockable
 protocol SlideOverWebViewMenuDelegate {
     func didTapCopyLink()
     func didTapOpenBrowser()

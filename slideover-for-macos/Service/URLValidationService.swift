@@ -1,5 +1,6 @@
 import Foundation
 
+/// @mockable
 protocol URLValidationService {
     func isUrl(text: String) -> Bool
 }

@@ -9,6 +9,7 @@ extension Notification.Name {
     static let hideWindow = Notification.Name("hideWindow")
 }
 
+/// @mockable
 protocol NotificationManager {
     func push(name: Notification.Name, param: Any?)
     func observe(name: Notification.Name, handler: @escaping (Any?) -> Void)

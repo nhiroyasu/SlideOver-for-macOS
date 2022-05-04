@@ -11,6 +11,7 @@ enum GlobalShortcutKey: String {
     }
 }
 
+/// @mockable
 protocol GlobalShortcutService {
     func register(keyType: GlobalShortcutKey, action: @escaping () -> Void)
 }

@@ -1,6 +1,7 @@
 import Cocoa
 import WebKit
 
+/// @mockable
 protocol SlideOverViewable {
     func loadWebPage(url: URL?)
     func browserBack()

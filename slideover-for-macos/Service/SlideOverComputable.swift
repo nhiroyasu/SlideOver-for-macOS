@@ -6,6 +6,7 @@ let marginRight: CGFloat = 64.0
 let marginLeft: CGFloat = 64.0
 let hideOffsetSpace: CGFloat = 40.0
 
+/// @mockable
 protocol SlideOverComputable {
     func computeWindowRect(screenSize: CGSize, screenOffset: CGPoint) -> CGRect
     func computeWindowPoint(windowSize: CGSize, screenSize: CGSize, screenOffset: CGPoint) -> CGPoint

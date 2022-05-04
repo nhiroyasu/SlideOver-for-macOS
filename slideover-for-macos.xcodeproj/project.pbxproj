@@ -44,8 +44,15 @@
 		4FBE65862821601D0001FB4E /* SlideOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE65852821601D0001FB4E /* SlideOverView.swift */; };
 		4FBE658C2822187C0001FB4E /* AntialiasedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE658B2822187C0001FB4E /* AntialiasedButton.swift */; };
 		4FBE658F282218E90001FB4E /* AntialiasedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE658E282218E90001FB4E /* AntialiasedImageView.swift */; };
+		4FBE659528222F520001FB4E /* mock.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE659128222ECC0001FB4E /* mock.generated.swift */; };
 		4FD65B9727F02BAF0021D3E5 /* MenuTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD65B9627F02BAF0021D3E5 /* MenuTree.swift */; };
 		4FD65B9A27F5E5890021D3E5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FD65B9C27F5E5890021D3E5 /* Localizable.strings */; };
+		4FEBB8252822305A007B5DA3 /* TestContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEBB82328223035007B5DA3 /* TestContainer.swift */; };
+		4FEBB82728223116007B5DA3 /* TestInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEBB82628223116007B5DA3 /* TestInjector.swift */; };
+		4FEBB82928223153007B5DA3 /* SlideOverWindowActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEBB82828223153007B5DA3 /* SlideOverWindowActionTests.swift */; };
+		4FEBB82C28223563007B5DA3 /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEBB82B28223563007B5DA3 /* URL+.swift */; };
+		4FEBB82E28223906007B5DA3 /* SlideOverWindowPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEBB82D28223906007B5DA3 /* SlideOverWindowPresenterTests.swift */; };
+		4FEBB83028224183007B5DA3 /* UIQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEBB82F28224183007B5DA3 /* UIQueue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,9 +106,16 @@
 		4FBE65852821601D0001FB4E /* SlideOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverView.swift; sourceTree = "<group>"; };
 		4FBE658B2822187C0001FB4E /* AntialiasedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntialiasedButton.swift; sourceTree = "<group>"; };
 		4FBE658E282218E90001FB4E /* AntialiasedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntialiasedImageView.swift; sourceTree = "<group>"; };
+		4FBE659128222ECC0001FB4E /* mock.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mock.generated.swift; sourceTree = "<group>"; };
 		4FD65B9527EEDCA00021D3E5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		4FD65B9627F02BAF0021D3E5 /* MenuTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTree.swift; sourceTree = "<group>"; };
 		4FD65B9B27F5E5890021D3E5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4FEBB82328223035007B5DA3 /* TestContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestContainer.swift; sourceTree = "<group>"; };
+		4FEBB82628223116007B5DA3 /* TestInjector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestInjector.swift; sourceTree = "<group>"; };
+		4FEBB82828223153007B5DA3 /* SlideOverWindowActionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverWindowActionTests.swift; sourceTree = "<group>"; };
+		4FEBB82B28223563007B5DA3 /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
+		4FEBB82D28223906007B5DA3 /* SlideOverWindowPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverWindowPresenterTests.swift; sourceTree = "<group>"; };
+		4FEBB82F28224183007B5DA3 /* UIQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIQueue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +188,10 @@
 		4FBCEB1827C27EC800BCF88C /* slideover-for-macosTests */ = {
 			isa = PBXGroup;
 			children = (
+				4FEBB82A28223557007B5DA3 /* TestUtil */,
+				4FEBB82228223027007B5DA3 /* DI */,
+				4FBE659328222F350001FB4E /* Module */,
+				4FBE659028222CB90001FB4E /* Mocks */,
 				4FBCEB1927C27EC800BCF88C /* slideover_for_macosTests.swift */,
 				4FBCEB2027C27EE200BCF88C /* MousePointServiceTests.swift */,
 			);
@@ -256,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				4FBCEB5327CBBC2500BCF88C /* UserAgent.swift */,
+				4FEBB82F28224183007B5DA3 /* UIQueue.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -267,6 +286,48 @@
 				4FBE658E282218E90001FB4E /* AntialiasedImageView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		4FBE659028222CB90001FB4E /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				4FBE659128222ECC0001FB4E /* mock.generated.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		4FBE659328222F350001FB4E /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				4FBE659428222F3D0001FB4E /* SlideOverWindow */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		4FBE659428222F3D0001FB4E /* SlideOverWindow */ = {
+			isa = PBXGroup;
+			children = (
+				4FEBB82828223153007B5DA3 /* SlideOverWindowActionTests.swift */,
+				4FEBB82D28223906007B5DA3 /* SlideOverWindowPresenterTests.swift */,
+			);
+			path = SlideOverWindow;
+			sourceTree = "<group>";
+		};
+		4FEBB82228223027007B5DA3 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				4FEBB82328223035007B5DA3 /* TestContainer.swift */,
+				4FEBB82628223116007B5DA3 /* TestInjector.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		4FEBB82A28223557007B5DA3 /* TestUtil */ = {
+			isa = PBXGroup;
+			children = (
+				4FEBB82B28223563007B5DA3 /* URL+.swift */,
+			);
+			path = TestUtil;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,6 +452,7 @@
 				4FBCEB4227C63B8D00BCF88C /* SlideOverWindowUseCase.swift in Sources */,
 				4FBE657E282124410001FB4E /* ShortcutService.swift in Sources */,
 				4FD65B9727F02BAF0021D3E5 /* MenuTree.swift in Sources */,
+				4FEBB83028224183007B5DA3 /* UIQueue.swift in Sources */,
 				4FBCEB3327C6282200BCF88C /* SwinjectInjector.swift in Sources */,
 				4FBCEB0927C1FA5600BCF88C /* SlideOverWindowController.swift in Sources */,
 				4FBCEB3127C627C600BCF88C /* Injector.swift in Sources */,
@@ -418,8 +480,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FEBB82728223116007B5DA3 /* TestInjector.swift in Sources */,
 				4FBCEB2127C27EE200BCF88C /* MousePointServiceTests.swift in Sources */,
+				4FEBB82C28223563007B5DA3 /* URL+.swift in Sources */,
+				4FEBB8252822305A007B5DA3 /* TestContainer.swift in Sources */,
+				4FEBB82928223153007B5DA3 /* SlideOverWindowActionTests.swift in Sources */,
 				4FBCEB1A27C27EC800BCF88C /* slideover_for_macosTests.swift in Sources */,
+				4FEBB82E28223906007B5DA3 /* SlideOverWindowPresenterTests.swift in Sources */,
+				4FBE659528222F520001FB4E /* mock.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

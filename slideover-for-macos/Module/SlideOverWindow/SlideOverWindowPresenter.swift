@@ -1,6 +1,7 @@
 import Foundation
 import QuartzCore
 
+/// @mockable
 protocol SlideOverWindowPresenter {
     func fixWindow(type: SlideOverKind)
     func adjustWindow()
@@ -27,6 +28,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     private let alertService: AlertService
     private let slideOverService: SlideOverService
     private let userSetting :UserSettingService
+    private let uiQueue: UIQueue
     private let injector: Injectable
     
     init(injector: Injectable) {
@@ -34,6 +36,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         self.alertService = injector.build(AlertService.self)
         self.slideOverService = injector.build(SlideOverService.self)
         self.userSetting = injector.build(UserSettingService.self)
+        self.uiQueue = injector.build(UIQueue.self)
     }
     
     func fixWindow(type: SlideOverKind) {
@@ -68,13 +71,13 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     }
     
     func showHttpAlert() {
-        DispatchQueue.main.async {
+        uiQueue.mainAsync {
             self.alertService.alert(msg: NSLocalizedString("URLs beginning with http:// cannot be opened.\nPlease enter a URL beginning with https://", comment: "")) {}
         }
     }
     
     func showErrorAlert() {
-        DispatchQueue.main.async {
+        uiQueue.mainAsync {
             self.alertService.alert(msg: NSLocalizedString("The entered value is not valid.", comment: "")) {}
         }
     }
@@ -84,7 +87,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         output?.progressBar?.doubleValue = value
         if value == 100 {
             guard let layer = output?.progressBar?.layer else { return }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            uiQueue.mainAsyncAfter(deadline: .now() + 0.8) {
                 let animation = CABasicAnimation(keyPath: "opacity")
                 animation.duration = 0.8
                 animation.fromValue = 1.0
