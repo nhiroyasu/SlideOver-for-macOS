@@ -13,8 +13,8 @@ protocol SlideOverWindowUseCase {
     func switchUserAgent()
     func updateUserAgent(_ userAgent: UserAgent)
     func requestChangingPosition(type: SlideOverKind)
-    func disappearWindow()
-    func appearWindow()
+    func requestDisappearWindow()
+    func requestAppearWindow()
     func showHelpPage()
 }
 
@@ -143,14 +143,14 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         presenter.fixWindow(type: type)
     }
     
-    func disappearWindow() {
+    func requestDisappearWindow() {
         state.isWindowHidden = true
-        presenter.hideWindow()
+        presenter.disappearWindow()
     }
     
-    func appearWindow() {
+    func requestAppearWindow() {
         state.isWindowHidden = false
-        presenter.showWindow()
+        presenter.appearWindow()
     }
     
     func showHelpPage() {
@@ -247,7 +247,7 @@ extension SlideOverWindowInteractor {
     
     private func observeHideWindowNotification() {
         notificationManager.observe(name: .hideWindow) { [weak self] _ in
-            self?.disappearWindow()
+            self?.requestDisappearWindow()
         }
     }
     
@@ -255,9 +255,9 @@ extension SlideOverWindowInteractor {
         globalShortcutService.register(keyType: .command_control_s) { [weak self] in
             guard let self = self else { return }
             if self.state.isWindowHidden {
-                self.appearWindow()
+                self.requestAppearWindow()
             } else {
-                self.disappearWindow()
+                self.requestDisappearWindow()
             }
         }
     }

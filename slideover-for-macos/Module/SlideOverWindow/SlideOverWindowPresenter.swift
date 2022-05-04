@@ -16,8 +16,8 @@ protocol SlideOverWindowPresenter {
     func focusSearchBar()
     func applyTranslucentWindow()
     func resetTranslucentWindow()
-    func hideWindow()
-    func showWindow()
+    func disappearWindow()
+    func appearWindow()
 }
 
 class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
@@ -44,10 +44,8 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     }
     
     func adjustWindow(isAppearAction: Bool = false) {
-        if isAppearAction {
-            output?.contentView?.hideReappearLeftButton()
-            output?.contentView?.hideReappearRightButton()
-        }
+        output?.contentView?.hideReappearLeftButton()
+        output?.contentView?.hideReappearRightButton()
         output?.fixWindow { [weak self] window in
             guard let self = self, let window = window else { return }
             self.slideOverService.fixMovedWindow(for: window)
@@ -130,7 +128,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         output?.focusSearchBar()
     }
     
-    func hideWindow() {
+    func disappearWindow() {
         output?.fixWindow { [weak self] window in
             guard let window = window, let position = self?.userSetting.latestPosition else { return }
             self?.slideOverService.hideWindow(for: window, type: position)
@@ -145,7 +143,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         }
     }
     
-    func showWindow() {
+    func appearWindow() {
         guard let position = userSetting.latestPosition else { return }
         fixWindow(type: position)
         self.output?.contentView?.hideReappearLeftButton()

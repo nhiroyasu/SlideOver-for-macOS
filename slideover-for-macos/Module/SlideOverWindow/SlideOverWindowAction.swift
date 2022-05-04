@@ -65,7 +65,7 @@ class SlideOverWindowActionImpl: SlideOverWindowAction {
     }
     
     func didTapHideWindow() {
-        useCase.disappearWindow()
+        useCase.requestDisappearWindow()
     }
     
     func didTapHelp() {
@@ -73,6 +73,6 @@ class SlideOverWindowActionImpl: SlideOverWindowAction {
     }
     
     func didTapReappearButton() {
-        useCase.appearWindow()
+        useCase.requestAppearWindow()
     }
 }
