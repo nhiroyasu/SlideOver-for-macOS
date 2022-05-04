@@ -6,6 +6,8 @@ class AppContainer {
     static func build() -> Container {
         let container = Container()
         
+        container.register(UIQueue.self, impl: DispatchQueue.main)
+        container.register(GlobalShortcutService.self, impl: GlobalShortcutServiceImpl())
         container.register(NotificationManager.self, impl: NotificationManagerImpl())
         container.register(AlertService.self, impl: AlertServiceImpl())
         container.register(URLValidationService.self, impl: URLValidationServiceImpl())

@@ -1,11 +1,14 @@
 import AppKit
 import Combine
 
+/// @mockable
 protocol SlideOverWindowControllable {
     func setBrowserBack(enable: Bool)
     func setBrowserForward(enable: Bool)
     func fixWindow(handle: @escaping (NSWindow?) -> Void)
     func loadWebPage(url: URL?)
+    func focusSearchBar()
+    func setWindowAlpha(_ value: CGFloat)
     var progressBar: NSProgressIndicator? { get }
     var action: SlideOverWindowAction { get }
     var contentView: SlideOverViewable? { get }
@@ -68,7 +71,7 @@ class SlideOverWindowController: NSWindowController {
         action.showWindow()
         super.showWindow(sender)
     }
-    
+
     @objc func didTapBrowserBackItem(_ sender: Any) {
         contentView?.browserBack()
     }
@@ -107,6 +110,9 @@ extension SlideOverWindowController: NSSearchFieldDelegate {
             let urlString = searchBar.stringValue
             action.inputSearchBar(input: urlString)
             return false
+        } else if (commandSelector == #selector(NSResponder.cancelOperation(_:))) {
+            window?.makeFirstResponder(nil)
+            return false
         }
         return false
     }
@@ -137,6 +143,14 @@ extension SlideOverWindowController: SlideOverWindowControllable {
     
     func loadWebPage(url: URL?) {
         contentView?.loadWebPage(url: url)
+    }
+    
+    func focusSearchBar() {
+        window?.makeFirstResponder(searchBar)
+    }
+    
+    func setWindowAlpha(_ value: CGFloat) {
+        window?.alphaValue = value
     }
     
     var progressBar: NSProgressIndicator? {

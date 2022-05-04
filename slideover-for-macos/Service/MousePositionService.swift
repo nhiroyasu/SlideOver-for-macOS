@@ -39,6 +39,7 @@ enum MousePoint {
     }
 }
 
+/// @mockable
 protocol MousePointService {
     func getHorizontalSplit() -> MousePoint.HalfHorizontal
     func getVerticalSplit() -> MousePoint.HalfVertical

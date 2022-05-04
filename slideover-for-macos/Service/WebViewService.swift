@@ -1,5 +1,6 @@
 import Foundation
 
+/// @mockable
 protocol WebViewService {
     func clearCache()
 }

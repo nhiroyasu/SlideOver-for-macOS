@@ -1,5 +1,6 @@
 import Foundation
 
+/// @mockable
 protocol URLEncodeService {
     func encode(text: String) -> String
 }

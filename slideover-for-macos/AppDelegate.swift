@@ -1,11 +1,5 @@
-//
-//  AppDelegate.swift
-//  slideover-for-macos
-//
-//  Created by NH on 2022/02/20.
-//
-
 import Cocoa
+import Magnet
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -62,5 +56,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func didTapHelpItem(_ sender: Any) {
         notificationManager?.push(name: .openHelp, param: nil)
     }
+    
+    @IBAction func didTapSearchItem(_ sender: Any) {
+        notificationManager?.push(name: .searchFocus, param: nil)
+    }
+    
+    @IBAction func didTapHideWindowItem(_ sender: Any) {
+        notificationManager?.push(name: .hideWindow, param: nil)
+    }
+    
+    @IBAction func didTapLicenseItem(_ sender: Any) {
+        notificationManager?.push(name: .openUrl, param: "https://nhiro.notion.site/Fixture-in-Picture-License-10d29166c48d44bcba28e828afaaa667")
+    }
 }
-

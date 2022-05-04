@@ -5,8 +5,11 @@ extension Notification.Name {
     static let clearCache = Notification.Name("clearCache")
     static let openUrl = Notification.Name("openUrl")
     static let openHelp = Notification.Name("openHelp")
+    static let searchFocus = Notification.Name("searchFocus")
+    static let hideWindow = Notification.Name("hideWindow")
 }
 
+/// @mockable
 protocol NotificationManager {
     func push(name: Notification.Name, param: Any?)
     func observe(name: Notification.Name, handler: @escaping (Any?) -> Void)

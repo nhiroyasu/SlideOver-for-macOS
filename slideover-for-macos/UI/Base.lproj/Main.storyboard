@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
-        <plugIn identifier="com.apple.WebKit2IBPlugin" version="20037"/>
         <capability name="Search Toolbar Item" minToolsVersion="12.0" minSystemVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,7 +24,11 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                            <connections>
+                                                <segue destination="QPD-Yn-mck" kind="show" id="lh4-pI-oRf"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -34,7 +37,7 @@
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
                                         <menuItem title="Hide Fixture in Picture" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
-                                                <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
+                                                <action selector="didTapHideWindowItem:" target="Voe-Tx-rLC" id="YkU-qd-mP6"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Hide Others" keyEquivalent="h" id="Vdr-fp-XzO">
@@ -58,18 +61,6 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="File" id="dMs-cI-mzQ">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="File" id="bib-Uj-vzu">
-                                    <items>
-                                        <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
-                                            <connections>
-                                                <action selector="performClose:" target="Ady-hI-5gd" id="HmO-Ls-i7Q"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
                             <menuItem title="Edit" id="5QF-Oa-p0T">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Edit" id="W48-6f-4Dl">
@@ -82,6 +73,11 @@
                                         <menuItem title="Redo" keyEquivalent="Z" id="6dh-zS-Vam">
                                             <connections>
                                                 <action selector="redo:" target="Ady-hI-5gd" id="oIA-Rs-6OD"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Search" keyEquivalent="f" id="UJm-r4-Egs">
+                                            <connections>
+                                                <action selector="didTapSearchItem:" target="Voe-Tx-rLC" id="jpu-fs-zip"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="WRV-NI-Exz"/>
@@ -240,6 +236,14 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
                                     <items>
+                                        <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
+                                            <connections>
+                                                <action selector="performClose:" target="Ady-hI-5gd" id="HmO-Ls-i7Q"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Hide" id="rKe-Ey-sy7">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
                                         <menuItem title="Minimize" keyEquivalent="m" id="OY7-WF-poV">
                                             <connections>
                                                 <action selector="performMiniaturize:" target="Ady-hI-5gd" id="VwT-WD-YPe"/>
@@ -284,6 +288,12 @@
                                                 <action selector="didTapHelpItem:" target="Voe-Tx-rLC" id="2dR-pu-75U"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="License" id="lPT-UT-UAm">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="didTapLicenseItem:" target="Voe-Tx-rLC" id="fXo-jk-ANV"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -300,10 +310,83 @@
             <point key="canvasLocation" x="83" y="-204"/>
         </scene>
         <!--Window Controller-->
+        <scene sceneID="3z4-Jt-DIH">
+            <objects>
+                <windowController id="QPD-Yn-mck" customClass="SettingWindowController" customModule="Fixture_in_Picture" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Setting" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="pqz-Q6-YN9">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <rect key="contentRect" x="604" y="462" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="3440" height="1415"/>
+                        <view key="contentView" id="4rM-yX-o82">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                        <connections>
+                            <outlet property="delegate" destination="QPD-Yn-mck" id="Xrz-X1-4r4"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="R0b-pJ-cfP" kind="relationship" relationship="window.shadowedContentViewController" id="Njf-wD-gxb"/>
+                    </connections>
+                </windowController>
+                <customObject id="WYg-XC-2mR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="868" y="41"/>
+        </scene>
+        <!--Setting View Controller-->
+        <scene sceneID="7wb-c6-CRZ">
+            <objects>
+                <viewController id="R0b-pJ-cfP" customClass="SettingViewController" customModule="Fixture_in_Picture" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="io1-O5-rkE">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fillProportionally" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GJq-dP-pIy">
+                                <rect key="frame" x="146" y="124" width="188" height="22"/>
+                                <subviews>
+                                    <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="0pk-Ts-pbd">
+                                        <rect key="frame" x="-2" y="-2" width="42" height="25"/>
+                                        <connections>
+                                            <action selector="didTapHideWindowShortcutSwitch:" target="R0b-pJ-cfP" id="igg-Hg-lN4"/>
+                                        </connections>
+                                    </switch>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F5Z-Of-sPK">
+                                        <rect key="frame" x="44" y="3" width="146" height="17"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="⌘+⌃+s : hide window" id="ceQ-jV-8r8">
+                                            <font key="font" metaFont="system" size="14"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="GJq-dP-pIy" firstAttribute="centerX" secondItem="io1-O5-rkE" secondAttribute="centerX" id="3LL-yL-ww8"/>
+                            <constraint firstItem="GJq-dP-pIy" firstAttribute="centerY" secondItem="io1-O5-rkE" secondAttribute="centerY" id="oYL-aw-6Ux"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="hideWindowShortcutSwitchButton" destination="0pk-Ts-pbd" id="YqF-9u-AFh"/>
+                    </connections>
+                </viewController>
+                <customObject id="MZ2-TU-oBJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1459" y="32"/>
+        </scene>
+        <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController storyboardIdentifier="slideOverWindowController" id="B8D-0N-5wS" customClass="SlideOverWindowController" customModule="Fixture_in_Picture" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="SlideOverWindow" customModule="Fixture_in_Picture" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -361,34 +444,56 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="SlideOverViewController" customModule="Fixture_in_Picture" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
+                    <view key="view" id="m2S-Jp-Qdl" customClass="SlideOverView" customModule="Fixture_in_Picture" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="625" height="688"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <wkWebView wantsLayer="YES" allowsBackForwardNavigationGestures="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Gp-7X-0Rs" customClass="SlideOverWebView" customModule="Fixture_in_Picture" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="625" height="688"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
                             <progressIndicator maxValue="100" doubleValue="50" controlSize="small" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="VXG-uK-loI">
                                 <rect key="frame" x="-4" y="680" width="633" height="12"/>
                             </progressIndicator>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Y71-61-HRk" customClass="AntialiasedButton" customModule="Fixture_in_Picture" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="284" width="40" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Y71-61-HRk" secondAttribute="height" multiplier="115:346" id="5nf-jb-wYh"/>
+                                    <constraint firstAttribute="width" constant="40" id="BHB-Ks-6CM"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="reappear" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Ue6-qi-wU7">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="didTapReappearLeftButton:" target="XfG-lQ-9wD" id="BYp-bV-rxo"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="dAT-Gv-PpJ" customClass="AntialiasedButton" customModule="Fixture_in_Picture" customModuleProvider="target">
+                                <rect key="frame" x="585" y="284" width="40" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="2vh-OR-jjA"/>
+                                    <constraint firstAttribute="width" secondItem="dAT-Gv-PpJ" secondAttribute="height" multiplier="115:346" id="OTg-g6-MZX"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="reappear reverse" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="XbT-6b-EfS">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="didTapReappearRightButton:" target="XfG-lQ-9wD" id="khZ-rX-ey0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="6Gp-7X-0Rs" secondAttribute="trailing" id="3ir-6M-xvA"/>
-                            <constraint firstItem="6Gp-7X-0Rs" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="48N-0G-IRb"/>
-                            <constraint firstAttribute="bottom" secondItem="6Gp-7X-0Rs" secondAttribute="bottom" id="6zJ-Bo-Oc9"/>
+                            <constraint firstItem="dAT-Gv-PpJ" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="Jot-qg-iUS"/>
                             <constraint firstAttribute="trailing" secondItem="VXG-uK-loI" secondAttribute="trailing" constant="-4" id="RkQ-gx-3To"/>
                             <constraint firstItem="VXG-uK-loI" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="-4" id="V0L-Iu-TSo"/>
-                            <constraint firstItem="6Gp-7X-0Rs" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="WNN-L5-8f3"/>
+                            <constraint firstItem="Y71-61-HRk" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="VwB-X2-HE3"/>
+                            <constraint firstItem="Y71-61-HRk" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="ZLz-LG-c3b"/>
+                            <constraint firstAttribute="trailing" secondItem="dAT-Gv-PpJ" secondAttribute="trailing" id="hBc-5Y-bHa"/>
                             <constraint firstItem="VXG-uK-loI" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="-4" id="yee-1Z-5JP"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="progressBar" destination="VXG-uK-loI" id="SdP-6y-mU6"/>
-                        <outlet property="webView" destination="6Gp-7X-0Rs" id="KKF-dB-uFJ"/>
+                        <outlet property="reappearLeftButton" destination="Y71-61-HRk" id="Meu-pP-USC"/>
+                        <outlet property="reappearRightButton" destination="dAT-Gv-PpJ" id="I5f-84-7dB"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -403,5 +508,7 @@
         <image name="bookmark" catalog="system" width="13" height="16"/>
         <image name="checkmark.circle" catalog="system" width="15" height="15"/>
         <image name="iphone" catalog="system" width="13" height="16"/>
+        <image name="reappear" width="248" height="710"/>
+        <image name="reappear reverse" width="248" height="710"/>
     </resources>
 </document>

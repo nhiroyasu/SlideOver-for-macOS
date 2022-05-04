@@ -1,6 +1,7 @@
 import Foundation
 import QuartzCore
 
+/// @mockable
 protocol SlideOverWindowPresenter {
     func fixWindow(type: SlideOverKind)
     func adjustWindow()
@@ -13,6 +14,11 @@ protocol SlideOverWindowPresenter {
     func reload()
     func setUserAgent(_ userAgent: UserAgent)
     func setResizeHandler(handler: @escaping (NSSize, NSSize) -> (NSSize, SlideOverKind))
+    func focusSearchBar()
+    func applyTranslucentWindow()
+    func resetTranslucentWindow()
+    func disappearWindow(completion: @escaping (Bool) -> Void)
+    func appearWindow()
 }
 
 class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
@@ -21,12 +27,16 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     }
     private let alertService: AlertService
     private let slideOverService: SlideOverService
+    private let userSetting :UserSettingService
+    private let uiQueue: UIQueue
     private let injector: Injectable
     
     init(injector: Injectable) {
         self.injector = injector
         self.alertService = injector.build(AlertService.self)
         self.slideOverService = injector.build(SlideOverService.self)
+        self.userSetting = injector.build(UserSettingService.self)
+        self.uiQueue = injector.build(UIQueue.self)
     }
     
     func fixWindow(type: SlideOverKind) {
@@ -37,6 +47,8 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     }
     
     func adjustWindow() {
+        output?.contentView?.hideReappearLeftButton()
+        output?.contentView?.hideReappearRightButton()
         output?.fixWindow { [weak self] window in
             guard let self = self, let window = window else { return }
             self.slideOverService.fixMovedWindow(for: window)
@@ -44,6 +56,8 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     }
     
     func reverseWindow() {
+        output?.contentView?.hideReappearLeftButton()
+        output?.contentView?.hideReappearRightButton()
         output?.fixWindow { [weak self] window in
             guard let self = self, let window = window else { return }
             self.slideOverService.reverseMoveWindow(for: window)
@@ -59,13 +73,13 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     }
     
     func showHttpAlert() {
-        DispatchQueue.main.async {
+        uiQueue.mainAsync {
             self.alertService.alert(msg: NSLocalizedString("URLs beginning with http:// cannot be opened.\nPlease enter a URL beginning with https://", comment: "")) {}
         }
     }
     
     func showErrorAlert() {
-        DispatchQueue.main.async {
+        uiQueue.mainAsync {
             self.alertService.alert(msg: NSLocalizedString("The entered value is not valid.", comment: "")) {}
         }
     }
@@ -75,7 +89,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         output?.progressBar?.doubleValue = value
         if value == 100 {
             guard let layer = output?.progressBar?.layer else { return }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            uiQueue.mainAsyncAfter(deadline: .now() + 0.8) {
                 let animation = CABasicAnimation(keyPath: "opacity")
                 animation.duration = 0.8
                 animation.fromValue = 1.0
@@ -113,5 +127,42 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
             self?.slideOverService.arrangeWindowPosition(for: currentWindow, size: nextSize, type: type)
             return nextSize
         }
+    }
+    
+    func focusSearchBar() {
+        output?.focusSearchBar()
+    }
+    
+    func disappearWindow(completion: @escaping (Bool) -> Void) {
+        output?.fixWindow { [weak self] window in
+            guard let self = self, let window = window, let position = self.userSetting.latestPosition else { return }
+            let isSuccess = self.slideOverService.hideWindow(for: window, type: position)
+            if isSuccess {
+                switch position {
+                case .left, .topLeft, .bottomLeft:
+                    self.output?.contentView?.hideReappearLeftButton()
+                    self.output?.contentView?.showReappearRightButton()
+                case .right, .topRight, .bottomRight:
+                    self.output?.contentView?.hideReappearRightButton()
+                    self.output?.contentView?.showReappearLeftButton()
+                }
+            }
+            completion(isSuccess)
+        }
+    }
+    
+    func appearWindow() {
+        guard let position = userSetting.latestPosition else { return }
+        fixWindow(type: position)
+        self.output?.contentView?.hideReappearLeftButton()
+        self.output?.contentView?.hideReappearRightButton()
+    }
+    
+    func applyTranslucentWindow() {
+        output?.setWindowAlpha(0.0)
+    }
+    
+    func resetTranslucentWindow() {
+        output?.setWindowAlpha(1.0)
     }
 }

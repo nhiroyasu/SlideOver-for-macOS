@@ -1,16 +1,31 @@
 import Foundation
 import WebKit
 
+/// @mockable
 protocol SlideOverWebViewMenuDelegate {
     func didTapCopyLink()
     func didTapOpenBrowser()
     func didTapRegisterInitialPage()
     func didTapWindowLayout(type: SlideOverKind)
     func didTapUserAgent(_ userAgent: UserAgent)
+    func didTapHideWindow()
+    func didTapHelp()
 }
 
 class SlideOverWebView: WKWebView {
     var delegate: SlideOverWebViewMenuDelegate?
+    
+    override init(frame: CGRect, configuration: WKWebViewConfiguration) {
+        configuration.preferences._setFullScreenEnabled(true)
+        super.init(frame: frame, configuration: configuration)
+        translatesAutoresizingMaskIntoConstraints = false
+        allowsBackForwardNavigationGestures = true
+        allowsLinkPreview = true
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private var userSettingService: UserSettingService? {
         Injector.shared.buildSafe(UserSettingService.self)
@@ -41,9 +56,13 @@ class SlideOverWebView: WKWebView {
                 if self?.userSettingService?.latestUserAgent == data.value as? UserAgent {
                     menuItem.state = .on
                 }
-            }))
+            })),
+            .item(data: .init(title: NSLocalizedString("Hide Window", comment: ""), action: #selector(didTapHideWindow), keyEquivalent: "s", keyEquivalentModify: [.command, .control], image: NSImage(systemSymbolName: "eye.slash", accessibilityDescription: nil))),
+            .separator,
+            .item(data: .init(title: NSLocalizedString("Help", comment: ""), action: #selector(didTapHelp), keyEquivalent: "", image: NSImage(systemSymbolName: "questionmark.circle", accessibilityDescription: nil)))
         ]
         buildMenu(from: menuTree, for: menu)
+        super.willOpenMenu(menu, with: event)
     }
     
     @objc func didTapCopyLink() {
@@ -88,5 +107,13 @@ class SlideOverWebView: WKWebView {
     
     @objc func didTapUserAgentForDesktop() {
         delegate?.didTapUserAgent(.desktop)
+    }
+    
+    @objc func didTapHideWindow() {
+        delegate?.didTapHideWindow()
+    }
+
+    @objc func didTapHelp() {
+        delegate?.didTapHelp()
     }
 }

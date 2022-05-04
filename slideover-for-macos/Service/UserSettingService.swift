@@ -1,10 +1,12 @@
 import Foundation
 
+/// @mockable
 protocol UserSettingService {
     var initialPage: URL? { get set }
     var latestPage: URL? { get set }
     var latestPosition: SlideOverKind? { get set }
     var latestUserAgent: UserAgent? { get set }
+    var isNotAllowedGlobalShortcut: Bool { get set }
 }
 
 class UserSettingServiceImpl: UserSettingService {
@@ -49,6 +51,15 @@ class UserSettingServiceImpl: UserSettingService {
         }
         set {
             userDefaults.set(newValue?.rawValue, forKey: "latestUserAgent")
+        }
+    }
+    
+    var isNotAllowedGlobalShortcut: Bool {
+        get {
+            userDefaults.bool(forKey: "isNotAllowedGlobalShortcut")
+        }
+        set {
+            userDefaults.set(newValue, forKey: "isNotAllowedGlobalShortcut")
         }
     }
 }

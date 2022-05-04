@@ -1,4 +1,6 @@
 import Foundation
+
+/// @mockable
 protocol SlideOverWindowAction {
     func showWindow()
     func inputSearchBar(input: String)
@@ -9,6 +11,9 @@ protocol SlideOverWindowAction {
     func didTapDisplayType()
     func didTapChangingPositionButton(type: SlideOverKind)
     func didTapUpdateUserAgent(_ userAgent: UserAgent)
+    func didTapHideWindow()
+    func didTapHelp()
+    func didTapReappearButton()
 }
 
 class SlideOverWindowActionImpl: SlideOverWindowAction {
@@ -42,7 +47,7 @@ class SlideOverWindowActionImpl: SlideOverWindowAction {
     }
     
     func didChangePosition(kind: SlideOverKind) {
-        useCase.registerLatestPositon(kind: kind)
+        useCase.registerLatestPosition(kind: kind)
     }
     
     func didUpdateProgress(value: Double) {
@@ -59,5 +64,17 @@ class SlideOverWindowActionImpl: SlideOverWindowAction {
     
     func didTapUpdateUserAgent(_ userAgent: UserAgent) {
         useCase.updateUserAgent(userAgent)
+    }
+    
+    func didTapHideWindow() {
+        useCase.requestDisappearWindow()
+    }
+    
+    func didTapHelp() {
+        useCase.showHelpPage()
+    }
+    
+    func didTapReappearButton() {
+        useCase.requestAppearWindow()
     }
 }

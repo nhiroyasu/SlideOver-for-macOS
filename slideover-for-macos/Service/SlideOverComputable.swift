@@ -1,9 +1,12 @@
 import Foundation
 
-fileprivate let marginTop: CGFloat = 64.0
-fileprivate let marginBottom: CGFloat = 64.0
-fileprivate let marginRight: CGFloat = 64.0
+let marginTop: CGFloat = 32.0
+let marginBottom: CGFloat = 32.0
+let marginRight: CGFloat = 32.0
+let marginLeft: CGFloat = 32.0
+let hideOffsetSpace: CGFloat = 40.0
 
+/// @mockable
 protocol SlideOverComputable {
     func computeWindowRect(screenSize: CGSize, screenOffset: CGPoint) -> CGRect
     func computeWindowPoint(windowSize: CGSize, screenSize: CGSize, screenOffset: CGPoint) -> CGPoint
@@ -59,7 +62,6 @@ class SlideOver {
         }
         
         private func computeOriginX(offsetX: CGFloat) -> CGFloat {
-            let marginLeft: CGFloat = 64.0
             return marginLeft + offsetX
         }
         
@@ -86,7 +88,6 @@ class SlideOver {
         }
         
         private func computeOriginX(windowWidth: CGFloat, screenWidth: CGFloat, offsetX: CGFloat) -> CGFloat {
-            let marginRight: CGFloat = 64.0
             let bestOriginX: CGFloat = screenWidth - (windowWidth + marginRight) + offsetX
             return bestOriginX
         }
@@ -146,7 +147,6 @@ class SlideOver {
         }
         
         private func computeOriginX(offsetX: CGFloat) -> CGFloat {
-            let marginLeft: CGFloat = 64.0
             return marginLeft + offsetX
         }
         
@@ -172,7 +172,6 @@ class SlideOver {
         }
         
         private func computeOriginX(windowWidth: CGFloat, screenWidth: CGFloat, offsetX: CGFloat) -> CGFloat {
-            let marginRight: CGFloat = 64.0
             let bestOriginX: CGFloat = screenWidth - (windowWidth + marginRight) + offsetX
             return bestOriginX
         }
@@ -199,7 +198,6 @@ class SlideOver {
         }
         
         private func computeOriginX(offsetX: CGFloat) -> CGFloat {
-            let marginLeft: CGFloat = 64.0
             return marginLeft + offsetX
         }
         
@@ -225,7 +223,6 @@ class SlideOver {
         }
         
         private func computeOriginX(windowWidth: CGFloat, screenWidth: CGFloat, offsetX: CGFloat) -> CGFloat {
-            let marginRight: CGFloat = 64.0
             let bestOriginX: CGFloat = screenWidth - (windowWidth + marginRight) + offsetX
             return bestOriginX
         }
