@@ -42,6 +42,8 @@
 		4FBE6582282157E50001FB4E /* SlideOverWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE6581282157E50001FB4E /* SlideOverWindow.swift */; };
 		4FBE658428215A540001FB4E /* SlideOverToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE658328215A540001FB4E /* SlideOverToolbar.swift */; };
 		4FBE65862821601D0001FB4E /* SlideOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE65852821601D0001FB4E /* SlideOverView.swift */; };
+		4FBE658C2822187C0001FB4E /* AntialiasedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE658B2822187C0001FB4E /* AntialiasedButton.swift */; };
+		4FBE658F282218E90001FB4E /* AntialiasedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE658E282218E90001FB4E /* AntialiasedImageView.swift */; };
 		4FD65B9727F02BAF0021D3E5 /* MenuTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD65B9627F02BAF0021D3E5 /* MenuTree.swift */; };
 		4FD65B9A27F5E5890021D3E5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FD65B9C27F5E5890021D3E5 /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -95,6 +97,8 @@
 		4FBE6581282157E50001FB4E /* SlideOverWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverWindow.swift; sourceTree = "<group>"; };
 		4FBE658328215A540001FB4E /* SlideOverToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverToolbar.swift; sourceTree = "<group>"; };
 		4FBE65852821601D0001FB4E /* SlideOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverView.swift; sourceTree = "<group>"; };
+		4FBE658B2822187C0001FB4E /* AntialiasedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntialiasedButton.swift; sourceTree = "<group>"; };
+		4FBE658E282218E90001FB4E /* AntialiasedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntialiasedImageView.swift; sourceTree = "<group>"; };
 		4FD65B9527EEDCA00021D3E5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		4FD65B9627F02BAF0021D3E5 /* MenuTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTree.swift; sourceTree = "<group>"; };
 		4FD65B9B27F5E5890021D3E5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 		4FBCEB2A27C625DB00BCF88C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				4FBE658D282218D20001FB4E /* Components */,
 				4FBCEB4527C668A900BCF88C /* Util */,
 				4FBCEB0827C1FA5600BCF88C /* SlideOverWindowController.swift */,
 				4FBCEAFB27C1FA3300BCF88C /* SlideOverViewController.swift */,
@@ -253,6 +258,15 @@
 				4FBCEB5327CBBC2500BCF88C /* UserAgent.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		4FBE658D282218D20001FB4E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				4FBE658B2822187C0001FB4E /* AntialiasedButton.swift */,
+				4FBE658E282218E90001FB4E /* AntialiasedImageView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,6 +384,7 @@
 				4FBCEB3527C6285000BCF88C /* AppContainer.swift in Sources */,
 				4FBCEB2D27C626FD00BCF88C /* Injectable.swift in Sources */,
 				4FBCEAFC27C1FA3300BCF88C /* SlideOverViewController.swift in Sources */,
+				4FBE658F282218E90001FB4E /* AntialiasedImageView.swift in Sources */,
 				4FBCEB1027C2709F00BCF88C /* SlideOverComputable.swift in Sources */,
 				4FBCEB2F27C6273800BCF88C /* Dependencies.swift in Sources */,
 				4FBCEB4727C680A400BCF88C /* AlearService.swift in Sources */,
@@ -393,6 +408,7 @@
 				4FBCEB4027C63B6C00BCF88C /* SlideOverWindowAction.swift in Sources */,
 				4FBE6582282157E50001FB4E /* SlideOverWindow.swift in Sources */,
 				4FBCEB4E27CA1E5500BCF88C /* NotificationManager.swift in Sources */,
+				4FBE658C2822187C0001FB4E /* AntialiasedButton.swift in Sources */,
 				4FBCEB3D27C63A3000BCF88C /* SlideOverWindowPresenter.swift in Sources */,
 				4FBCEB4B27C7C8C100BCF88C /* URLEncodeService.swift in Sources */,
 			);

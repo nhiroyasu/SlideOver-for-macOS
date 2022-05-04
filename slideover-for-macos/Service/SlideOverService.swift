@@ -115,14 +115,14 @@ class SlideOverServiceImpl: SlideOverService {
         case .left, .topLeft, .bottomLeft:
             let size = window.frame.size
             let prevPoint = window.frame.origin
-            let windowPoint = NSPoint(x: prevPoint.x - size.width - marginRight * 2, y: prevPoint.y)
+            let windowPoint = NSPoint(x: prevPoint.x - size.width - marginRight + hideOffsetSpace, y: prevPoint.y)
             DispatchQueue.main.async {
                 window.setFrame(.init(origin: windowPoint, size: size), display: true, animate: true)
             }
         case .right, .topRight, .bottomRight:
             let size = window.frame.size
             let prevPoint = window.frame.origin
-            let windowPoint = NSPoint(x: prevPoint.x + size.width + marginRight * 2, y: prevPoint.y)
+            let windowPoint = NSPoint(x: prevPoint.x + size.width + marginRight - hideOffsetSpace, y: prevPoint.y)
             DispatchQueue.main.async {
                 window.setFrame(.init(origin: windowPoint, size: size), display: true, animate: true)
             }

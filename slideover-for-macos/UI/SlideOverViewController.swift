@@ -9,12 +9,28 @@ protocol SlideOverViewable {
     var currentUrl: URL? { get }
     var progressBar: NSProgressIndicator! { get }
     var webView: SlideOverWebView! { get }
+    func showReappearLeftButton()
+    func showReappearRightButton()
+    func hideReappearLeftButton()
+    func hideReappearRightButton()
 }
 
 class SlideOverViewController: NSViewController {
     @IBOutlet weak var progressBar: NSProgressIndicator! {
         didSet {
             progressBar.doubleValue = 0
+        }
+    }
+    @IBOutlet weak var reappearLeftButton: NSButton! {
+        didSet {
+            reappearLeftButton.isHidden = true
+            reappearLeftButton.alphaValue = 0.0
+        }
+    }
+    @IBOutlet weak var reappearRightButton: NSButton! {
+        didSet {
+            reappearRightButton.isHidden = true
+            reappearRightButton.alphaValue = 0.0
         }
     }
     var webView: SlideOverWebView!
@@ -29,7 +45,7 @@ class SlideOverViewController: NSViewController {
         
         let configuration = WKWebViewConfiguration()
         webView = SlideOverWebView(frame: .zero, configuration: configuration)
-        view.addSubview(webView)
+        view.subviews.insert(webView, at: 0)
         webView.delegate = self
         webView.uiDelegate = self
         webView.navigationDelegate = self
@@ -37,7 +53,6 @@ class SlideOverViewController: NSViewController {
         webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         webView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         webView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-
         setupWebView()
     }
 
@@ -57,6 +72,14 @@ class SlideOverViewController: NSViewController {
         observers.append(webView.observe(\.estimatedProgress, options: [.new], changeHandler: { [weak self] webView, _ in
             self?.contentWindow?.action.didUpdateProgress(value: webView.estimatedProgress)
         }))
+    }
+    
+    @IBAction func didTapReappearLeftButton(_ sender: Any) {
+        contentWindow?.action.didTapReappearButton()
+    }
+    
+    @IBAction func didTapReappearRightButton(_ sender: Any) {
+        contentWindow?.action.didTapReappearButton()
     }
 }
 
@@ -85,6 +108,46 @@ extension SlideOverViewController: SlideOverViewable {
     
     var currentUrl: URL? {
         webView.url
+    }
+    
+    func showReappearLeftButton() {
+        fadeInViewIfNeeded(reappearLeftButton)
+    }
+    
+    func showReappearRightButton() {
+        fadeInViewIfNeeded(reappearRightButton)
+    }
+    
+    func hideReappearLeftButton() {
+        fadeOutViewIfNeeded(reappearLeftButton)
+    }
+    
+    func hideReappearRightButton() {
+        fadeOutViewIfNeeded(reappearRightButton)
+    }
+    
+    private func fadeInViewIfNeeded(_ view: NSView) {
+        guard view.isHidden == true else { return }
+        view.isHidden = false
+        view.alphaValue = 0.0
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 0.4
+            view.animator().alphaValue = 1.0
+        } completionHandler: {
+            view.alphaValue = 1.0
+        }
+    }
+    
+    private func fadeOutViewIfNeeded(_ view: NSView) {
+        guard view.isHidden == false else { return }
+        view.alphaValue = 1.0
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 0.4
+            view.animator().alphaValue = 0.0
+        } completionHandler: {
+            view.isHidden = true
+            view.alphaValue = 0.0
+        }
     }
 }
 

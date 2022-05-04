@@ -11,6 +11,7 @@ protocol SlideOverWindowAction {
     func didTapUpdateUserAgent(_ userAgent: UserAgent)
     func didTapHideWindow()
     func didTapHelp()
+    func didTapReappearButton()
 }
 
 class SlideOverWindowActionImpl: SlideOverWindowAction {
@@ -64,10 +65,14 @@ class SlideOverWindowActionImpl: SlideOverWindowAction {
     }
     
     func didTapHideWindow() {
-        useCase.hideWindow()
+        useCase.disappearWindow()
     }
     
     func didTapHelp() {
         useCase.showHelpPage()
+    }
+    
+    func didTapReappearButton() {
+        useCase.appearWindow()
     }
 }

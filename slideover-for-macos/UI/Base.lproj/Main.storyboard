@@ -375,15 +375,49 @@
                             <progressIndicator maxValue="100" doubleValue="50" controlSize="small" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="VXG-uK-loI">
                                 <rect key="frame" x="-4" y="680" width="633" height="12"/>
                             </progressIndicator>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Y71-61-HRk" customClass="AntialiasedButton" customModule="Fixture_in_Picture" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="284" width="40" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Y71-61-HRk" secondAttribute="height" multiplier="115:346" id="5nf-jb-wYh"/>
+                                    <constraint firstAttribute="width" constant="40" id="BHB-Ks-6CM"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="reappear" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Ue6-qi-wU7">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="didTapReappearLeftButton:" target="XfG-lQ-9wD" id="BYp-bV-rxo"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="dAT-Gv-PpJ" customClass="AntialiasedButton" customModule="Fixture_in_Picture" customModuleProvider="target">
+                                <rect key="frame" x="585" y="284" width="40" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="2vh-OR-jjA"/>
+                                    <constraint firstAttribute="width" secondItem="dAT-Gv-PpJ" secondAttribute="height" multiplier="115:346" id="OTg-g6-MZX"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="reappear reverse" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="XbT-6b-EfS">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="didTapReappearRightButton:" target="XfG-lQ-9wD" id="khZ-rX-ey0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="dAT-Gv-PpJ" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="Jot-qg-iUS"/>
                             <constraint firstAttribute="trailing" secondItem="VXG-uK-loI" secondAttribute="trailing" constant="-4" id="RkQ-gx-3To"/>
                             <constraint firstItem="VXG-uK-loI" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="-4" id="V0L-Iu-TSo"/>
+                            <constraint firstItem="Y71-61-HRk" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="VwB-X2-HE3"/>
+                            <constraint firstItem="Y71-61-HRk" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="ZLz-LG-c3b"/>
+                            <constraint firstAttribute="trailing" secondItem="dAT-Gv-PpJ" secondAttribute="trailing" id="hBc-5Y-bHa"/>
                             <constraint firstItem="VXG-uK-loI" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="-4" id="yee-1Z-5JP"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="progressBar" destination="VXG-uK-loI" id="SdP-6y-mU6"/>
+                        <outlet property="reappearLeftButton" destination="Y71-61-HRk" id="Meu-pP-USC"/>
+                        <outlet property="reappearRightButton" destination="dAT-Gv-PpJ" id="I5f-84-7dB"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -398,5 +432,7 @@
         <image name="bookmark" catalog="system" width="13" height="16"/>
         <image name="checkmark.circle" catalog="system" width="15" height="15"/>
         <image name="iphone" catalog="system" width="13" height="16"/>
+        <image name="reappear" width="248" height="710"/>
+        <image name="reappear reverse" width="248" height="710"/>
     </resources>
 </document>

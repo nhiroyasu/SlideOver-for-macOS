@@ -3,7 +3,7 @@ import QuartzCore
 
 protocol SlideOverWindowPresenter {
     func fixWindow(type: SlideOverKind)
-    func adjustWindow()
+    func adjustWindow(isAppearAction: Bool)
     func reverseWindow()
     func setInitialPage(url: URL?)
     func loadWebPage(url: URL?)
@@ -43,7 +43,11 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         }
     }
     
-    func adjustWindow() {
+    func adjustWindow(isAppearAction: Bool = false) {
+        if isAppearAction {
+            output?.contentView?.hideReappearLeftButton()
+            output?.contentView?.hideReappearRightButton()
+        }
         output?.fixWindow { [weak self] window in
             guard let self = self, let window = window else { return }
             self.slideOverService.fixMovedWindow(for: window)
@@ -130,12 +134,22 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         output?.fixWindow { [weak self] window in
             guard let window = window, let position = self?.userSetting.latestPosition else { return }
             self?.slideOverService.hideWindow(for: window, type: position)
+            switch position {
+            case .left, .topLeft, .bottomLeft:
+                self?.output?.contentView?.hideReappearLeftButton()
+                self?.output?.contentView?.showReappearRightButton()
+            case .right, .topRight, .bottomRight:
+                self?.output?.contentView?.hideReappearRightButton()
+                self?.output?.contentView?.showReappearLeftButton()
+            }
         }
     }
     
     func showWindow() {
         guard let position = userSetting.latestPosition else { return }
         fixWindow(type: position)
+        self.output?.contentView?.hideReappearLeftButton()
+        self.output?.contentView?.hideReappearRightButton()
     }
     
     func applyTranslucentWindow() {
