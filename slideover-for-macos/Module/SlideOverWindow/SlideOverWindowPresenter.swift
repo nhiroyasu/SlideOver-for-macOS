@@ -56,6 +56,8 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     }
     
     func reverseWindow() {
+        output?.contentView?.hideReappearLeftButton()
+        output?.contentView?.hideReappearRightButton()
         output?.fixWindow { [weak self] window in
             guard let self = self, let window = window else { return }
             self.slideOverService.reverseMoveWindow(for: window)
