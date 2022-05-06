@@ -15,7 +15,7 @@
 			<string>com.nhiroyasu.slideoverformacos</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>debug-slideoverformacos</string>
+				<string>slideoverformacos</string>
 			</array>
 		</dict>
 	</array>
