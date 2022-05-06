@@ -355,41 +355,41 @@ class SlideOverViewableMock: SlideOverViewable {
     }
 
     private(set) var showReappearLeftButtonCallCount = 0
-    var showReappearLeftButtonHandler: (() -> ())?
-    func showReappearLeftButton()  {
+    var showReappearLeftButtonHandler: ((@escaping () -> Void) -> ())?
+    func showReappearLeftButton(completion: @escaping () -> Void)  {
         showReappearLeftButtonCallCount += 1
         if let showReappearLeftButtonHandler = showReappearLeftButtonHandler {
-            showReappearLeftButtonHandler()
+            showReappearLeftButtonHandler(completion)
         }
         
     }
 
     private(set) var showReappearRightButtonCallCount = 0
-    var showReappearRightButtonHandler: (() -> ())?
-    func showReappearRightButton()  {
+    var showReappearRightButtonHandler: ((@escaping () -> Void) -> ())?
+    func showReappearRightButton(completion: @escaping () -> Void)  {
         showReappearRightButtonCallCount += 1
         if let showReappearRightButtonHandler = showReappearRightButtonHandler {
-            showReappearRightButtonHandler()
+            showReappearRightButtonHandler(completion)
         }
         
     }
 
     private(set) var hideReappearLeftButtonCallCount = 0
-    var hideReappearLeftButtonHandler: (() -> ())?
-    func hideReappearLeftButton()  {
+    var hideReappearLeftButtonHandler: ((@escaping () -> Void) -> ())?
+    func hideReappearLeftButton(completion: @escaping () -> Void)  {
         hideReappearLeftButtonCallCount += 1
         if let hideReappearLeftButtonHandler = hideReappearLeftButtonHandler {
-            hideReappearLeftButtonHandler()
+            hideReappearLeftButtonHandler(completion)
         }
         
     }
 
     private(set) var hideReappearRightButtonCallCount = 0
-    var hideReappearRightButtonHandler: (() -> ())?
-    func hideReappearRightButton()  {
+    var hideReappearRightButtonHandler: ((@escaping () -> Void) -> ())?
+    func hideReappearRightButton(completion: @escaping () -> Void)  {
         hideReappearRightButtonCallCount += 1
         if let hideReappearRightButtonHandler = hideReappearRightButtonHandler {
-            hideReappearRightButtonHandler()
+            hideReappearRightButtonHandler(completion)
         }
         
     }
