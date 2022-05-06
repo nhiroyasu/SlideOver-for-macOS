@@ -397,7 +397,8 @@ class SlideOverViewableMock: SlideOverViewable {
 
 class SlideOverWindowControllableMock: SlideOverWindowControllable {
     init() { }
-    init(progressBar: NSProgressIndicator? = nil, action: SlideOverWindowAction = SlideOverWindowActionMock(), contentView: SlideOverViewable? = nil, webDisplayTypeItem: NSToolbarItem!) {
+    init(isMiniaturized: Bool = false, progressBar: NSProgressIndicator? = nil, action: SlideOverWindowAction = SlideOverWindowActionMock(), contentView: SlideOverViewable? = nil, webDisplayTypeItem: NSToolbarItem!) {
+        self.isMiniaturized = isMiniaturized
         self.progressBar = progressBar
         self.action = action
         self.contentView = contentView
@@ -472,6 +473,9 @@ class SlideOverWindowControllableMock: SlideOverWindowControllable {
         }
         
     }
+
+    private(set) var isMiniaturizedSetCallCount = 0
+    var isMiniaturized: Bool = false { didSet { isMiniaturizedSetCallCount += 1 } }
 
     private(set) var progressBarSetCallCount = 0
     var progressBar: NSProgressIndicator? = nil { didSet { progressBarSetCallCount += 1 } }
@@ -783,11 +787,11 @@ class SlideOverWindowPresenterMock: SlideOverWindowPresenter {
     }
 
     private(set) var appearWindowCallCount = 0
-    var appearWindowHandler: (() -> ())?
-    func appearWindow()  {
+    var appearWindowHandler: ((@escaping (Bool) -> Void) -> ())?
+    func appearWindow(completion: @escaping (Bool) -> Void)  {
         appearWindowCallCount += 1
         if let appearWindowHandler = appearWindowHandler {
-            appearWindowHandler()
+            appearWindowHandler(completion)
         }
         
     }

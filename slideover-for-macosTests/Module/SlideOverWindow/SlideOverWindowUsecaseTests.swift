@@ -259,10 +259,23 @@ class SlideOverWindowUseCaseTests: XCTestCase {
     }
     
     func test_requestAppearWindow() {
-        subject.requestAppearWindow()
+        XCTContext.runActivity(named: "windowの表示に成功したとき") { _ in
+            setUp()
+            presenter.appearWindowHandler = {$0(true)}
+            subject.requestAppearWindow()
+            
+            XCTAssertEqual(subject.state.isWindowHidden, false)
+            XCTAssertEqual(presenter.appearWindowCallCount, 1)
+        }
         
-        XCTAssertEqual(subject.state.isWindowHidden, false)
-        XCTAssertEqual(presenter.appearWindowCallCount, 1)
+        XCTContext.runActivity(named: "windowの表示に失敗したとき") { _ in
+            setUp()
+            presenter.appearWindowHandler = {$0(false)}
+            subject.requestAppearWindow()
+            
+            XCTAssertEqual(subject.state.isWindowHidden, true)
+            XCTAssertEqual(presenter.appearWindowCallCount, 1)
+        }
     }
     
     func test_showHelpPage() {
