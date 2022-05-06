@@ -445,16 +445,15 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="SlideOverViewController" customModule="Fixture_in_Picture" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl" customClass="SlideOverView" customModule="Fixture_in_Picture" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="625" height="688"/>
+                        <rect key="frame" x="0.0" y="0.0" width="625" height="510"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <progressIndicator maxValue="100" doubleValue="50" controlSize="small" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="VXG-uK-loI">
-                                <rect key="frame" x="-4" y="680" width="633" height="12"/>
+                                <rect key="frame" x="-4" y="502" width="633" height="12"/>
                             </progressIndicator>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Y71-61-HRk" customClass="AntialiasedButton" customModule="Fixture_in_Picture" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="284" width="40" height="120"/>
+                                <rect key="frame" x="0.0" y="-100" width="40" height="710"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Y71-61-HRk" secondAttribute="height" multiplier="115:346" id="5nf-jb-wYh"/>
                                     <constraint firstAttribute="width" constant="40" id="BHB-Ks-6CM"/>
                                 </constraints>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="reappear" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Ue6-qi-wU7">
@@ -466,10 +465,9 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="dAT-Gv-PpJ" customClass="AntialiasedButton" customModule="Fixture_in_Picture" customModuleProvider="target">
-                                <rect key="frame" x="585" y="284" width="40" height="120"/>
+                                <rect key="frame" x="585" y="-100" width="40" height="710"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="2vh-OR-jjA"/>
-                                    <constraint firstAttribute="width" secondItem="dAT-Gv-PpJ" secondAttribute="height" multiplier="115:346" id="OTg-g6-MZX"/>
                                 </constraints>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="reappear reverse" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="XbT-6b-EfS">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -483,10 +481,12 @@
                         <constraints>
                             <constraint firstItem="dAT-Gv-PpJ" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="Jot-qg-iUS"/>
                             <constraint firstAttribute="trailing" secondItem="VXG-uK-loI" secondAttribute="trailing" constant="-4" id="RkQ-gx-3To"/>
+                            <constraint firstItem="Y71-61-HRk" firstAttribute="height" secondItem="m2S-Jp-Qdl" secondAttribute="height" multiplier="1.39216" id="TO5-Zh-F49"/>
                             <constraint firstItem="VXG-uK-loI" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="-4" id="V0L-Iu-TSo"/>
                             <constraint firstItem="Y71-61-HRk" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="VwB-X2-HE3"/>
                             <constraint firstItem="Y71-61-HRk" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="ZLz-LG-c3b"/>
                             <constraint firstAttribute="trailing" secondItem="dAT-Gv-PpJ" secondAttribute="trailing" id="hBc-5Y-bHa"/>
+                            <constraint firstItem="dAT-Gv-PpJ" firstAttribute="height" secondItem="m2S-Jp-Qdl" secondAttribute="height" multiplier="1.39216" id="xHM-sp-lEw"/>
                             <constraint firstItem="VXG-uK-loI" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="-4" id="yee-1Z-5JP"/>
                         </constraints>
                     </view>
@@ -498,7 +498,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="79.5" y="939"/>
+            <point key="canvasLocation" x="79.5" y="850"/>
         </scene>
     </scenes>
     <resources>
