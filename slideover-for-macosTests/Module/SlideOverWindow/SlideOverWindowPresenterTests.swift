@@ -9,6 +9,7 @@ class SlideOverWindowPresenterTests: XCTestCase {
     var alertService: AlertServiceMock!
     var slideOverService: SlideOverServiceMock!
     var userSetting :UserSettingServiceMock!
+    var applicationService: ApplicationServiceMock!
     var output: SlideOverWindowControllableMock!
     var contentView: SlideOverViewableMock!
     var uiQueue: UIQueueMock!
@@ -19,6 +20,7 @@ class SlideOverWindowPresenterTests: XCTestCase {
         alertService = .init()
         slideOverService = .init()
         userSetting = .init()
+        applicationService = .init()
         contentView = .init()
         output = .init()
         output.fixWindowHandler = { $0(NSWindow()) }
@@ -31,6 +33,7 @@ class SlideOverWindowPresenterTests: XCTestCase {
         container.register(AlertService.self, impl: alertService)
         container.register(SlideOverService.self, impl: slideOverService)
         container.register(UserSettingService.self, impl: userSetting)
+        container.register(ApplicationService.self, impl: applicationService)
         container.register(SlideOverWindowControllable.self, impl: output)
         container.register(UIQueue.self, impl: uiQueue)
         let injector = TestInjector(container: container)
@@ -73,6 +76,9 @@ class SlideOverWindowPresenterTests: XCTestCase {
     
     func test_loadWebPage() {
         subject.loadWebPage(url: .stubUrl)
+        
+        XCTAssertEqual(applicationService.openCallCount, 1)
+        XCTAssertEqual(applicationService.openArgValues.first, .stubUrl)
     }
     
     func test_showHttpAlert() {

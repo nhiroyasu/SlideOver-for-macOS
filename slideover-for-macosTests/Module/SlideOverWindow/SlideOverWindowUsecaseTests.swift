@@ -14,7 +14,7 @@ class SlideOverWindowUseCaseTests: XCTestCase {
     var notificationManager: NotificationManagerMock!
     var globalShortcutService: GlobalShortcutServiceMock!
     var windowManager: WindowManagerMock!
-    var appInfoService: AppInfoServiceMock!
+    var appInfoService: ApplicationServiceMock!
     
     override func setUp() {
         super.setUp()
@@ -39,7 +39,7 @@ class SlideOverWindowUseCaseTests: XCTestCase {
         container.register(NotificationManager.self, impl: notificationManager)
         container.register(GlobalShortcutService.self, impl: globalShortcutService)
         container.register(WindowManager.self, impl: windowManager)
-        container.register(AppInfoService.self, impl: appInfoService)
+        container.register(ApplicationService.self, impl: appInfoService)
         let injector = TestInjector(container: container)
         subject = .init(injector: injector)
     }

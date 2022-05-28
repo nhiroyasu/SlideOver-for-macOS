@@ -28,6 +28,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     private let alertService: AlertService
     private let slideOverService: SlideOverService
     private let userSetting :UserSettingService
+    private let applicationService: ApplicationService
     private let uiQueue: UIQueue
     private let injector: Injectable
     
@@ -36,6 +37,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         self.alertService = injector.build(AlertService.self)
         self.slideOverService = injector.build(SlideOverService.self)
         self.userSetting = injector.build(UserSettingService.self)
+        self.applicationService = injector.build(ApplicationService.self)
         self.uiQueue = injector.build(UIQueue.self)
     }
     
@@ -68,7 +70,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     
     func loadWebPage(url: URL?) {
         guard let url = url else { return }
-        NSWorkspace.shared.open(url)
+        applicationService.open(url)
     }
     
     func showHttpAlert() {

@@ -15,21 +15,6 @@ import WebKit
 @testable import Fixture_in_Picture
 
 
-class AppInfoServiceMock: AppInfoService {
-    init() { }
-    init(appVersion: String? = nil, featurePresentVersion: String = "") {
-        self.appVersion = appVersion
-        self.featurePresentVersion = featurePresentVersion
-    }
-
-
-    private(set) var appVersionSetCallCount = 0
-    var appVersion: String? = nil { didSet { appVersionSetCallCount += 1 } }
-
-    private(set) var featurePresentVersionSetCallCount = 0
-    var featurePresentVersion: String = "" { didSet { featurePresentVersionSetCallCount += 1 } }
-}
-
 class SlideOverWindowActionMock: SlideOverWindowAction {
     init() { }
 
@@ -967,6 +952,33 @@ class SlideOverWindowUseCaseMock: SlideOverWindowUseCase {
     }
 }
 
+class ApplicationServiceMock: ApplicationService {
+    init() { }
+    init(appVersion: String? = nil, featurePresentVersion: String = "") {
+        self.appVersion = appVersion
+        self.featurePresentVersion = featurePresentVersion
+    }
+
+
+    private(set) var appVersionSetCallCount = 0
+    var appVersion: String? = nil { didSet { appVersionSetCallCount += 1 } }
+
+    private(set) var featurePresentVersionSetCallCount = 0
+    var featurePresentVersion: String = "" { didSet { featurePresentVersionSetCallCount += 1 } }
+
+    private(set) var openCallCount = 0
+    var openArgValues = [URL]()
+    var openHandler: ((URL) -> ())?
+    func open(_ url: URL)  {
+        openCallCount += 1
+        openArgValues.append(url)
+        if let openHandler = openHandler {
+            openHandler(url)
+        }
+        
+    }
+}
+
 class SlideOverComputableMock: SlideOverComputable {
     init() { }
 
@@ -1032,23 +1044,6 @@ class GlobalShortcutServiceMock: GlobalShortcutService {
         unregisterArgValues.append(keyType)
         if let unregisterHandler = unregisterHandler {
             unregisterHandler(keyType)
-        }
-        
-    }
-}
-
-class WindowManagerMock: WindowManager {
-    init() { }
-
-
-    private(set) var lunchCallCount = 0
-    var lunchArgValues = [AppWindow]()
-    var lunchHandler: ((AppWindow) -> ())?
-    func lunch(_ window: AppWindow)  {
-        lunchCallCount += 1
-        lunchArgValues.append(window)
-        if let lunchHandler = lunchHandler {
-            lunchHandler(window)
         }
         
     }
@@ -1210,6 +1205,23 @@ class MousePointServiceMock: MousePointService {
             return getVerticalCornerSplitHandler()
         }
         return nil
+    }
+}
+
+class WindowManagerMock: WindowManager {
+    init() { }
+
+
+    private(set) var lunchCallCount = 0
+    var lunchArgValues = [AppWindow]()
+    var lunchHandler: ((AppWindow) -> ())?
+    func lunch(_ window: AppWindow)  {
+        lunchCallCount += 1
+        lunchArgValues.append(window)
+        if let lunchHandler = lunchHandler {
+            lunchHandler(window)
+        }
+        
     }
 }
 

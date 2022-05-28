@@ -10,7 +10,7 @@
 		4F8836882841B8A8003C6333 /* FeaturePresentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8836872841B8A8003C6333 /* FeaturePresentWindowController.swift */; };
 		4F88368A2841B8CB003C6333 /* FeaturePresentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8836892841B8CB003C6333 /* FeaturePresentViewController.swift */; };
 		4F88368C2841DE32003C6333 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88368B2841DE32003C6333 /* WindowManager.swift */; };
-		4F88368E2841E22D003C6333 /* AppInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88368D2841E22D003C6333 /* AppInfoService.swift */; };
+		4F88368E2841E22D003C6333 /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88368D2841E22D003C6333 /* ApplicationService.swift */; };
 		4F9248F1283A3B5D0059C7AC /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9248F0283A3B5D0059C7AC /* String+.swift */; };
 		4FBCEAFA27C1FA3300BCF88C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEAF927C1FA3300BCF88C /* AppDelegate.swift */; };
 		4FBCEAFC27C1FA3300BCF88C /* SlideOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEAFB27C1FA3300BCF88C /* SlideOverViewController.swift */; };
@@ -77,7 +77,7 @@
 		4F8836872841B8A8003C6333 /* FeaturePresentWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturePresentWindowController.swift; sourceTree = "<group>"; };
 		4F8836892841B8CB003C6333 /* FeaturePresentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturePresentViewController.swift; sourceTree = "<group>"; };
 		4F88368B2841DE32003C6333 /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
-		4F88368D2841E22D003C6333 /* AppInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoService.swift; sourceTree = "<group>"; };
+		4F88368D2841E22D003C6333 /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
 		4F9248F0283A3B5D0059C7AC /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		4FBCEAF627C1FA3300BCF88C /* Fixture in Picture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fixture in Picture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FBCEAF927C1FA3300BCF88C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -246,7 +246,7 @@
 				4FBCEB5527D3259A00BCF88C /* WebViewService.swift */,
 				4FBE657D282124410001FB4E /* ShortcutService.swift */,
 				4F88368B2841DE32003C6333 /* WindowManager.swift */,
-				4F88368D2841E22D003C6333 /* AppInfoService.swift */,
+				4F88368D2841E22D003C6333 /* ApplicationService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -502,7 +502,7 @@
 				4FBCEB4227C63B8D00BCF88C /* SlideOverWindowUseCase.swift in Sources */,
 				4FBE657E282124410001FB4E /* ShortcutService.swift in Sources */,
 				4FD65B9727F02BAF0021D3E5 /* MenuTree.swift in Sources */,
-				4F88368E2841E22D003C6333 /* AppInfoService.swift in Sources */,
+				4F88368E2841E22D003C6333 /* ApplicationService.swift in Sources */,
 				4F9248F1283A3B5D0059C7AC /* String+.swift in Sources */,
 				4FEBB83028224183007B5DA3 /* UIQueue.swift in Sources */,
 				4FBCEB3327C6282200BCF88C /* SwinjectInjector.swift in Sources */,

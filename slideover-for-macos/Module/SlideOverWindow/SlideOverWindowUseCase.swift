@@ -28,7 +28,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     private let notificationManager: NotificationManager
     private let globalShortcutService: GlobalShortcutService
     private let windowManager: WindowManager
-    private let appInfoService: AppInfoService
+    private let appInfoService: ApplicationService
     
     var didMoveNotificationToken: AnyCancellable?
     var didDoubleRightClickNotificationToken: AnyCancellable?
@@ -56,7 +56,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         self.notificationManager = injector.build(NotificationManager.self)
         self.globalShortcutService = injector.build(GlobalShortcutService.self)
         self.windowManager = injector.build(WindowManager.self)
-        self.appInfoService = injector.build(AppInfoService.self)
+        self.appInfoService = injector.build(ApplicationService.self)
     }
     
     func setUp() {
