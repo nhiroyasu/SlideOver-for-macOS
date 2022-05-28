@@ -27,6 +27,8 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     private let presenter: SlideOverWindowPresenter
     private let notificationManager: NotificationManager
     private let globalShortcutService: GlobalShortcutService
+    private let windowManager: WindowManager
+    private let appInfoService: AppInfoService
     
     var didMoveNotificationToken: AnyCancellable?
     var didDoubleRightClickNotificationToken: AnyCancellable?
@@ -53,6 +55,8 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         self.presenter = injector.build(SlideOverWindowPresenter.self)
         self.notificationManager = injector.build(NotificationManager.self)
         self.globalShortcutService = injector.build(GlobalShortcutService.self)
+        self.windowManager = injector.build(WindowManager.self)
+        self.appInfoService = injector.build(AppInfoService.self)
     }
     
     func setUp() {
@@ -87,6 +91,15 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
             userSettingService.latestUserAgent = defaultUserAgent
             presenter.setUserAgent(defaultUserAgent)
         }
+        
+        if let latestShownFeatureVersion = userSettingService.latestShownFeatureVersion {
+            if latestShownFeatureVersion != appInfoService.featurePresentVersion {
+                windowManager.lunch(.featurePresent)
+            }
+        } else {
+            windowManager.lunch(.featurePresent)
+        }
+        userSettingService.latestShownFeatureVersion = appInfoService.featurePresentVersion
     }
     
     func loadWebPage(url: URL?) {
