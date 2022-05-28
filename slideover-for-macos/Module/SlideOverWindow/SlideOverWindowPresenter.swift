@@ -18,7 +18,7 @@ protocol SlideOverWindowPresenter {
     func applyTranslucentWindow()
     func resetTranslucentWindow()
     func disappearWindow(completion: @escaping (Bool) -> Void)
-    func appearWindow()
+    func appearWindow(completion: @escaping (Bool) -> Void)
 }
 
 class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
@@ -47,8 +47,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     }
     
     func adjustWindow() {
-        output?.contentView?.hideReappearLeftButton()
-        output?.contentView?.hideReappearRightButton()
+        restoreHiddenWindow()
         output?.fixWindow { [weak self] window in
             guard let self = self, let window = window else { return }
             self.slideOverService.fixMovedWindow(for: window)
@@ -56,8 +55,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     }
     
     func reverseWindow() {
-        output?.contentView?.hideReappearLeftButton()
-        output?.contentView?.hideReappearRightButton()
+        restoreHiddenWindow()
         output?.fixWindow { [weak self] window in
             guard let self = self, let window = window else { return }
             self.slideOverService.reverseMoveWindow(for: window)
@@ -134,28 +132,46 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     }
     
     func disappearWindow(completion: @escaping (Bool) -> Void) {
-        output?.fixWindow { [weak self] window in
-            guard let self = self, let window = window, let position = self.userSetting.latestPosition else { return }
+        guard let output = output, !output.isMiniaturized else {
+            completion(false)
+            return
+        }
+        
+        output.fixWindow { [weak self] window in
+            guard let self = self, let window = window, let position = self.userSetting.latestPosition else {
+                completion(false)
+                return
+            }
             let isSuccess = self.slideOverService.hideWindow(for: window, type: position)
             if isSuccess {
                 switch position {
                 case .left, .topLeft, .bottomLeft:
-                    self.output?.contentView?.hideReappearLeftButton()
-                    self.output?.contentView?.showReappearRightButton()
+                    self.output?.contentView?.hideReappearLeftButton(completion: {})
+                    self.output?.contentView?.showReappearRightButton(completion: { [weak self] in
+                        self?.output?.setWindowAlpha(0.4)
+                    })
                 case .right, .topRight, .bottomRight:
-                    self.output?.contentView?.hideReappearRightButton()
-                    self.output?.contentView?.showReappearLeftButton()
+                    self.output?.contentView?.hideReappearRightButton(completion: {})
+                    self.output?.contentView?.showReappearLeftButton(completion: { [weak self] in
+                        self?.output?.setWindowAlpha(0.4)
+                    })
                 }
             }
             completion(isSuccess)
         }
     }
     
-    func appearWindow() {
-        guard let position = userSetting.latestPosition else { return }
+    func appearWindow(completion: @escaping (Bool) -> Void) {
+        guard let position = userSetting.latestPosition,
+              let output = output,
+              !output.isMiniaturized else {
+            completion(false)
+            return
+        }
+        
         fixWindow(type: position)
-        self.output?.contentView?.hideReappearLeftButton()
-        self.output?.contentView?.hideReappearRightButton()
+        restoreHiddenWindow()
+        completion(true)
     }
     
     func applyTranslucentWindow() {
@@ -164,5 +180,11 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     
     func resetTranslucentWindow() {
         output?.setWindowAlpha(1.0)
+    }
+    
+    private func restoreHiddenWindow() {
+        output?.setWindowAlpha(1.0)
+        self.output?.contentView?.hideReappearLeftButton(completion: {})
+        self.output?.contentView?.hideReappearRightButton(completion: {})
     }
 }

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Search Toolbar Item" minToolsVersion="12.0" minSystemVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -288,6 +289,12 @@
                                                 <action selector="didTapHelpItem:" target="Voe-Tx-rLC" id="2dR-pu-75U"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="New Feature" id="kzC-bV-pbj">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <segue destination="xJk-Kj-xO2" kind="show" id="I3L-dS-fih"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="License" id="lPT-UT-UAm">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -312,7 +319,7 @@
         <!--Window Controller-->
         <scene sceneID="3z4-Jt-DIH">
             <objects>
-                <windowController id="QPD-Yn-mck" customClass="SettingWindowController" customModule="Fixture_in_Picture" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="settingWindowController" id="QPD-Yn-mck" customClass="SettingWindowController" customModule="Fixture_in_Picture" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Setting" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="pqz-Q6-YN9">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <rect key="contentRect" x="604" y="462" width="480" height="270"/>
@@ -332,6 +339,100 @@
                 <customObject id="WYg-XC-2mR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="868" y="41"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="9nt-8G-QTd">
+            <objects>
+                <windowController storyboardIdentifier="featurePresentWindowController" id="xJk-Kj-xO2" customClass="FeaturePresentWindowController" customModule="Fixture_in_Picture" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" identifier="featurePresentWindow" title="New Feature" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Ds4-2N-MSn">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <rect key="contentRect" x="604" y="462" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="3440" height="1415"/>
+                        <view key="contentView" id="qPE-7O-18b">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                        <connections>
+                            <outlet property="delegate" destination="xJk-Kj-xO2" id="Ee0-Ag-JA8"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="31w-pq-SK4" kind="relationship" relationship="window.shadowedContentViewController" id="m7J-yb-otw"/>
+                    </connections>
+                </windowController>
+                <customObject id="7Wj-47-JSQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="904" y="515"/>
+        </scene>
+        <!--Feature Present View Controller-->
+        <scene sceneID="2PF-nW-a2a">
+            <objects>
+                <viewController storyboardIdentifier="featurePresentViewController" id="31w-pq-SK4" customClass="FeaturePresentViewController" customModule="Fixture_in_Picture" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" appearanceType="aqua" id="1DK-KJ-K0Q">
+                        <rect key="frame" x="0.0" y="0.0" width="420" height="480"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7rf-Da-UuW">
+                                <rect key="frame" x="0.0" y="60" width="420" height="420"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="7rf-Da-UuW" secondAttribute="height" multiplier="1:1" id="fl6-L5-ZRe"/>
+                                    <constraint firstAttribute="width" constant="420" id="sx2-pk-DCF"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="feature_1.4.0" id="M2A-Q9-V83"/>
+                            </imageView>
+                            <stackView distribution="equalCentering" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vaF-99-jU6">
+                                <rect key="frame" x="140" y="0.0" width="140" height="60"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DMj-lt-Jek">
+                                        <rect key="frame" x="-7" y="13" width="106" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Show Detail" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="emQ-JI-Fa6">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="didTapShowDetailButton:" target="31w-pq-SK4" id="qZb-l1-Vu4"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qEo-87-Nk0">
+                                        <rect key="frame" x="93" y="13" width="54" height="32"/>
+                                        <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NZi-uS-Gc3">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                        </buttonCell>
+                                        <color key="bezelColor" name="AccentColor"/>
+                                        <connections>
+                                            <action selector="didTapOKButton:" target="31w-pq-SK4" id="YEZ-uQ-poV"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="7rf-Da-UuW" firstAttribute="top" secondItem="1DK-KJ-K0Q" secondAttribute="top" id="2Q4-F7-WsT"/>
+                            <constraint firstItem="vaF-99-jU6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1DK-KJ-K0Q" secondAttribute="leading" id="JgP-9Y-oLY"/>
+                            <constraint firstItem="7rf-Da-UuW" firstAttribute="leading" secondItem="1DK-KJ-K0Q" secondAttribute="leading" id="M0L-vq-MLr"/>
+                            <constraint firstItem="vaF-99-jU6" firstAttribute="top" secondItem="7rf-Da-UuW" secondAttribute="bottom" id="M5c-oC-Hqb"/>
+                            <constraint firstAttribute="trailing" secondItem="7rf-Da-UuW" secondAttribute="trailing" id="ZUQ-he-fp1"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vaF-99-jU6" secondAttribute="trailing" id="iQO-1i-Lje"/>
+                            <constraint firstAttribute="bottom" secondItem="vaF-99-jU6" secondAttribute="bottom" id="phV-CF-9Pj"/>
+                            <constraint firstItem="vaF-99-jU6" firstAttribute="centerX" secondItem="1DK-KJ-K0Q" secondAttribute="centerX" id="sbk-6F-32R"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="UFI-4a-vr0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1527" y="578"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="7wb-c6-CRZ">
@@ -445,16 +546,15 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="SlideOverViewController" customModule="Fixture_in_Picture" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl" customClass="SlideOverView" customModule="Fixture_in_Picture" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="625" height="688"/>
+                        <rect key="frame" x="0.0" y="0.0" width="625" height="510"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <progressIndicator maxValue="100" doubleValue="50" controlSize="small" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="VXG-uK-loI">
-                                <rect key="frame" x="-4" y="680" width="633" height="12"/>
+                                <rect key="frame" x="-4" y="502" width="633" height="12"/>
                             </progressIndicator>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="Y71-61-HRk" customClass="AntialiasedButton" customModule="Fixture_in_Picture" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="284" width="40" height="120"/>
+                                <rect key="frame" x="0.0" y="-100" width="40" height="710"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Y71-61-HRk" secondAttribute="height" multiplier="115:346" id="5nf-jb-wYh"/>
                                     <constraint firstAttribute="width" constant="40" id="BHB-Ks-6CM"/>
                                 </constraints>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="reappear" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Ue6-qi-wU7">
@@ -466,10 +566,9 @@
                                 </connections>
                             </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="dAT-Gv-PpJ" customClass="AntialiasedButton" customModule="Fixture_in_Picture" customModuleProvider="target">
-                                <rect key="frame" x="585" y="284" width="40" height="120"/>
+                                <rect key="frame" x="585" y="-100" width="40" height="710"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="2vh-OR-jjA"/>
-                                    <constraint firstAttribute="width" secondItem="dAT-Gv-PpJ" secondAttribute="height" multiplier="115:346" id="OTg-g6-MZX"/>
                                 </constraints>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="reappear reverse" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="XbT-6b-EfS">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -483,10 +582,12 @@
                         <constraints>
                             <constraint firstItem="dAT-Gv-PpJ" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="Jot-qg-iUS"/>
                             <constraint firstAttribute="trailing" secondItem="VXG-uK-loI" secondAttribute="trailing" constant="-4" id="RkQ-gx-3To"/>
+                            <constraint firstItem="Y71-61-HRk" firstAttribute="height" secondItem="m2S-Jp-Qdl" secondAttribute="height" multiplier="1.39216" id="TO5-Zh-F49"/>
                             <constraint firstItem="VXG-uK-loI" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="-4" id="V0L-Iu-TSo"/>
                             <constraint firstItem="Y71-61-HRk" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="VwB-X2-HE3"/>
                             <constraint firstItem="Y71-61-HRk" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="ZLz-LG-c3b"/>
                             <constraint firstAttribute="trailing" secondItem="dAT-Gv-PpJ" secondAttribute="trailing" id="hBc-5Y-bHa"/>
+                            <constraint firstItem="dAT-Gv-PpJ" firstAttribute="height" secondItem="m2S-Jp-Qdl" secondAttribute="height" multiplier="1.39216" id="xHM-sp-lEw"/>
                             <constraint firstItem="VXG-uK-loI" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="-4" id="yee-1Z-5JP"/>
                         </constraints>
                     </view>
@@ -498,7 +599,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="79.5" y="939"/>
+            <point key="canvasLocation" x="79.5" y="850"/>
         </scene>
     </scenes>
     <resources>
@@ -507,8 +608,12 @@
         <image name="arrow.forward" catalog="system" width="16" height="12"/>
         <image name="bookmark" catalog="system" width="13" height="16"/>
         <image name="checkmark.circle" catalog="system" width="15" height="15"/>
+        <image name="feature_1.4.0" width="513" height="512"/>
         <image name="iphone" catalog="system" width="13" height="16"/>
         <image name="reappear" width="248" height="710"/>
         <image name="reappear reverse" width="248" height="710"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

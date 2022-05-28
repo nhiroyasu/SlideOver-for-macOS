@@ -10,10 +10,10 @@ protocol SlideOverViewable {
     var currentUrl: URL? { get }
     var progressBar: NSProgressIndicator! { get }
     var webView: SlideOverWebView! { get }
-    func showReappearLeftButton()
-    func showReappearRightButton()
-    func hideReappearLeftButton()
-    func hideReappearRightButton()
+    func showReappearLeftButton(completion: @escaping () -> Void)
+    func showReappearRightButton(completion: @escaping () -> Void)
+    func hideReappearLeftButton(completion: @escaping () -> Void)
+    func hideReappearRightButton(completion: @escaping () -> Void)
 }
 
 class SlideOverViewController: NSViewController {
@@ -111,23 +111,23 @@ extension SlideOverViewController: SlideOverViewable {
         webView.url
     }
     
-    func showReappearLeftButton() {
-        fadeInViewIfNeeded(reappearLeftButton)
+    func showReappearLeftButton(completion: @escaping () -> Void) {
+        fadeInViewIfNeeded(reappearLeftButton, completion: completion)
     }
     
-    func showReappearRightButton() {
-        fadeInViewIfNeeded(reappearRightButton)
+    func showReappearRightButton(completion: @escaping () -> Void) {
+        fadeInViewIfNeeded(reappearRightButton, completion: completion)
     }
     
-    func hideReappearLeftButton() {
-        fadeOutViewIfNeeded(reappearLeftButton)
+    func hideReappearLeftButton(completion: @escaping () -> Void) {
+        fadeOutViewIfNeeded(reappearLeftButton, completion: completion)
     }
     
-    func hideReappearRightButton() {
-        fadeOutViewIfNeeded(reappearRightButton)
+    func hideReappearRightButton(completion: @escaping () -> Void) {
+        fadeOutViewIfNeeded(reappearRightButton, completion: completion)
     }
     
-    private func fadeInViewIfNeeded(_ view: NSView) {
+    private func fadeInViewIfNeeded(_ view: NSView, completion: @escaping () -> Void) {
         guard view.isHidden == true else { return }
         view.isHidden = false
         view.alphaValue = 0.0
@@ -136,10 +136,11 @@ extension SlideOverViewController: SlideOverViewable {
             view.animator().alphaValue = 1.0
         } completionHandler: {
             view.alphaValue = 1.0
+            completion()
         }
     }
     
-    private func fadeOutViewIfNeeded(_ view: NSView) {
+    private func fadeOutViewIfNeeded(_ view: NSView, completion: @escaping () -> Void) {
         guard view.isHidden == false else { return }
         view.alphaValue = 1.0
         NSAnimationContext.runAnimationGroup { context in
@@ -148,6 +149,7 @@ extension SlideOverViewController: SlideOverViewable {
         } completionHandler: {
             view.isHidden = true
             view.alphaValue = 0.0
+            completion()
         }
     }
 }

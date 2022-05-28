@@ -9,6 +9,7 @@ protocol SlideOverWindowControllable {
     func loadWebPage(url: URL?)
     func focusSearchBar()
     func setWindowAlpha(_ value: CGFloat)
+    var isMiniaturized: Bool { get }
     var progressBar: NSProgressIndicator? { get }
     var action: SlideOverWindowAction { get }
     var contentView: SlideOverViewable? { get }
@@ -151,6 +152,10 @@ extension SlideOverWindowController: SlideOverWindowControllable {
     
     func setWindowAlpha(_ value: CGFloat) {
         window?.alphaValue = value
+    }
+    
+    var isMiniaturized: Bool {
+        window?.isMiniaturized ?? false
     }
     
     var progressBar: NSProgressIndicator? {

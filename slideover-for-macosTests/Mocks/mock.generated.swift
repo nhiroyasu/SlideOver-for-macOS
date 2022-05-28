@@ -15,6 +15,21 @@ import WebKit
 @testable import Fixture_in_Picture
 
 
+class AppInfoServiceMock: AppInfoService {
+    init() { }
+    init(appVersion: String? = nil, featurePresentVersion: String = "") {
+        self.appVersion = appVersion
+        self.featurePresentVersion = featurePresentVersion
+    }
+
+
+    private(set) var appVersionSetCallCount = 0
+    var appVersion: String? = nil { didSet { appVersionSetCallCount += 1 } }
+
+    private(set) var featurePresentVersionSetCallCount = 0
+    var featurePresentVersion: String = "" { didSet { featurePresentVersionSetCallCount += 1 } }
+}
+
 class SlideOverWindowActionMock: SlideOverWindowAction {
     init() { }
 
@@ -217,12 +232,13 @@ class URLValidationServiceMock: URLValidationService {
 
 class UserSettingServiceMock: UserSettingService {
     init() { }
-    init(initialPage: URL? = nil, latestPage: URL? = nil, latestPosition: SlideOverKind? = nil, latestUserAgent: UserAgent? = nil, isNotAllowedGlobalShortcut: Bool = false) {
+    init(initialPage: URL? = nil, latestPage: URL? = nil, latestPosition: SlideOverKind? = nil, latestUserAgent: UserAgent? = nil, isNotAllowedGlobalShortcut: Bool = false, latestShownFeatureVersion: String? = nil) {
         self.initialPage = initialPage
         self.latestPage = latestPage
         self.latestPosition = latestPosition
         self.latestUserAgent = latestUserAgent
         self.isNotAllowedGlobalShortcut = isNotAllowedGlobalShortcut
+        self.latestShownFeatureVersion = latestShownFeatureVersion
     }
 
 
@@ -240,6 +256,9 @@ class UserSettingServiceMock: UserSettingService {
 
     private(set) var isNotAllowedGlobalShortcutSetCallCount = 0
     var isNotAllowedGlobalShortcut: Bool = false { didSet { isNotAllowedGlobalShortcutSetCallCount += 1 } }
+
+    private(set) var latestShownFeatureVersionSetCallCount = 0
+    var latestShownFeatureVersion: String? = nil { didSet { latestShownFeatureVersionSetCallCount += 1 } }
 }
 
 class WebViewServiceMock: WebViewService {
@@ -355,41 +374,41 @@ class SlideOverViewableMock: SlideOverViewable {
     }
 
     private(set) var showReappearLeftButtonCallCount = 0
-    var showReappearLeftButtonHandler: (() -> ())?
-    func showReappearLeftButton()  {
+    var showReappearLeftButtonHandler: ((@escaping () -> Void) -> ())?
+    func showReappearLeftButton(completion: @escaping () -> Void)  {
         showReappearLeftButtonCallCount += 1
         if let showReappearLeftButtonHandler = showReappearLeftButtonHandler {
-            showReappearLeftButtonHandler()
+            showReappearLeftButtonHandler(completion)
         }
         
     }
 
     private(set) var showReappearRightButtonCallCount = 0
-    var showReappearRightButtonHandler: (() -> ())?
-    func showReappearRightButton()  {
+    var showReappearRightButtonHandler: ((@escaping () -> Void) -> ())?
+    func showReappearRightButton(completion: @escaping () -> Void)  {
         showReappearRightButtonCallCount += 1
         if let showReappearRightButtonHandler = showReappearRightButtonHandler {
-            showReappearRightButtonHandler()
+            showReappearRightButtonHandler(completion)
         }
         
     }
 
     private(set) var hideReappearLeftButtonCallCount = 0
-    var hideReappearLeftButtonHandler: (() -> ())?
-    func hideReappearLeftButton()  {
+    var hideReappearLeftButtonHandler: ((@escaping () -> Void) -> ())?
+    func hideReappearLeftButton(completion: @escaping () -> Void)  {
         hideReappearLeftButtonCallCount += 1
         if let hideReappearLeftButtonHandler = hideReappearLeftButtonHandler {
-            hideReappearLeftButtonHandler()
+            hideReappearLeftButtonHandler(completion)
         }
         
     }
 
     private(set) var hideReappearRightButtonCallCount = 0
-    var hideReappearRightButtonHandler: (() -> ())?
-    func hideReappearRightButton()  {
+    var hideReappearRightButtonHandler: ((@escaping () -> Void) -> ())?
+    func hideReappearRightButton(completion: @escaping () -> Void)  {
         hideReappearRightButtonCallCount += 1
         if let hideReappearRightButtonHandler = hideReappearRightButtonHandler {
-            hideReappearRightButtonHandler()
+            hideReappearRightButtonHandler(completion)
         }
         
     }
@@ -397,7 +416,8 @@ class SlideOverViewableMock: SlideOverViewable {
 
 class SlideOverWindowControllableMock: SlideOverWindowControllable {
     init() { }
-    init(progressBar: NSProgressIndicator? = nil, action: SlideOverWindowAction = SlideOverWindowActionMock(), contentView: SlideOverViewable? = nil, webDisplayTypeItem: NSToolbarItem!) {
+    init(isMiniaturized: Bool = false, progressBar: NSProgressIndicator? = nil, action: SlideOverWindowAction = SlideOverWindowActionMock(), contentView: SlideOverViewable? = nil, webDisplayTypeItem: NSToolbarItem!) {
+        self.isMiniaturized = isMiniaturized
         self.progressBar = progressBar
         self.action = action
         self.contentView = contentView
@@ -472,6 +492,9 @@ class SlideOverWindowControllableMock: SlideOverWindowControllable {
         }
         
     }
+
+    private(set) var isMiniaturizedSetCallCount = 0
+    var isMiniaturized: Bool = false { didSet { isMiniaturizedSetCallCount += 1 } }
 
     private(set) var progressBarSetCallCount = 0
     var progressBar: NSProgressIndicator? = nil { didSet { progressBarSetCallCount += 1 } }
@@ -783,11 +806,11 @@ class SlideOverWindowPresenterMock: SlideOverWindowPresenter {
     }
 
     private(set) var appearWindowCallCount = 0
-    var appearWindowHandler: (() -> ())?
-    func appearWindow()  {
+    var appearWindowHandler: ((@escaping (Bool) -> Void) -> ())?
+    func appearWindow(completion: @escaping (Bool) -> Void)  {
         appearWindowCallCount += 1
         if let appearWindowHandler = appearWindowHandler {
-            appearWindowHandler()
+            appearWindowHandler(completion)
         }
         
     }
@@ -1009,6 +1032,23 @@ class GlobalShortcutServiceMock: GlobalShortcutService {
         unregisterArgValues.append(keyType)
         if let unregisterHandler = unregisterHandler {
             unregisterHandler(keyType)
+        }
+        
+    }
+}
+
+class WindowManagerMock: WindowManager {
+    init() { }
+
+
+    private(set) var lunchCallCount = 0
+    var lunchArgValues = [AppWindow]()
+    var lunchHandler: ((AppWindow) -> ())?
+    func lunch(_ window: AppWindow)  {
+        lunchCallCount += 1
+        lunchArgValues.append(window)
+        if let lunchHandler = lunchHandler {
+            lunchHandler(window)
         }
         
     }
