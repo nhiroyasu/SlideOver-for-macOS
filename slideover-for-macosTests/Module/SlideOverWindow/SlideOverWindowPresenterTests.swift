@@ -73,9 +73,6 @@ class SlideOverWindowPresenterTests: XCTestCase {
     
     func test_loadWebPage() {
         subject.loadWebPage(url: .stubUrl)
-        
-        XCTAssertEqual(output.loadWebPageCallCount, 1)
-        XCTAssertEqual(output.loadWebPageArgValues.first, .stubUrl)
     }
     
     func test_showHttpAlert() {

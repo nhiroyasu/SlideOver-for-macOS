@@ -67,7 +67,8 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     }
     
     func loadWebPage(url: URL?) {
-        output?.loadWebPage(url: url)
+        guard let url = url else { return }
+        NSWorkspace.shared.open(url)
     }
     
     func showHttpAlert() {
