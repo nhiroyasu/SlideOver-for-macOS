@@ -7,6 +7,7 @@ protocol UserSettingService {
     var latestPosition: SlideOverKind? { get set }
     var latestUserAgent: UserAgent? { get set }
     var isNotAllowedGlobalShortcut: Bool { get set }
+    var latestShownFeatureVersion: String? { get set }
 }
 
 class UserSettingServiceImpl: UserSettingService {
@@ -60,6 +61,15 @@ class UserSettingServiceImpl: UserSettingService {
         }
         set {
             userDefaults.set(newValue, forKey: "isNotAllowedGlobalShortcut")
+        }
+    }
+    
+    var latestShownFeatureVersion: String? {
+        get {
+            userDefaults.string(forKey: "latestShownFeatureVersion")
+        }
+        set {
+            userDefaults.set(newValue, forKey: "latestShownFeatureVersion")
         }
     }
 }
