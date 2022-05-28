@@ -15,21 +15,6 @@ import WebKit
 @testable import Fixture_in_Picture
 
 
-class AppInfoServiceMock: AppInfoService {
-    init() { }
-    init(appVersion: String? = nil, featurePresentVersion: String = "") {
-        self.appVersion = appVersion
-        self.featurePresentVersion = featurePresentVersion
-    }
-
-
-    private(set) var appVersionSetCallCount = 0
-    var appVersion: String? = nil { didSet { appVersionSetCallCount += 1 } }
-
-    private(set) var featurePresentVersionSetCallCount = 0
-    var featurePresentVersion: String = "" { didSet { featurePresentVersionSetCallCount += 1 } }
-}
-
 class SlideOverWindowActionMock: SlideOverWindowAction {
     init() { }
 
@@ -232,13 +217,12 @@ class URLValidationServiceMock: URLValidationService {
 
 class UserSettingServiceMock: UserSettingService {
     init() { }
-    init(initialPage: URL? = nil, latestPage: URL? = nil, latestPosition: SlideOverKind? = nil, latestUserAgent: UserAgent? = nil, isNotAllowedGlobalShortcut: Bool = false, latestShownFeatureVersion: String? = nil) {
+    init(initialPage: URL? = nil, latestPage: URL? = nil, latestPosition: SlideOverKind? = nil, latestUserAgent: UserAgent? = nil, isNotAllowedGlobalShortcut: Bool = false) {
         self.initialPage = initialPage
         self.latestPage = latestPage
         self.latestPosition = latestPosition
         self.latestUserAgent = latestUserAgent
         self.isNotAllowedGlobalShortcut = isNotAllowedGlobalShortcut
-        self.latestShownFeatureVersion = latestShownFeatureVersion
     }
 
 
@@ -256,9 +240,6 @@ class UserSettingServiceMock: UserSettingService {
 
     private(set) var isNotAllowedGlobalShortcutSetCallCount = 0
     var isNotAllowedGlobalShortcut: Bool = false { didSet { isNotAllowedGlobalShortcutSetCallCount += 1 } }
-
-    private(set) var latestShownFeatureVersionSetCallCount = 0
-    var latestShownFeatureVersion: String? = nil { didSet { latestShownFeatureVersionSetCallCount += 1 } }
 }
 
 class WebViewServiceMock: WebViewService {
@@ -1032,23 +1013,6 @@ class GlobalShortcutServiceMock: GlobalShortcutService {
         unregisterArgValues.append(keyType)
         if let unregisterHandler = unregisterHandler {
             unregisterHandler(keyType)
-        }
-        
-    }
-}
-
-class WindowManagerMock: WindowManager {
-    init() { }
-
-
-    private(set) var lunchCallCount = 0
-    var lunchArgValues = [AppWindow]()
-    var lunchHandler: ((AppWindow) -> ())?
-    func lunch(_ window: AppWindow)  {
-        lunchCallCount += 1
-        lunchArgValues.append(window)
-        if let lunchHandler = lunchHandler {
-            lunchHandler(window)
         }
         
     }

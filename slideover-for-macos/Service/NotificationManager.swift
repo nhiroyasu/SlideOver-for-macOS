@@ -7,7 +7,6 @@ extension Notification.Name {
     static let openHelp = Notification.Name("openHelp")
     static let searchFocus = Notification.Name("searchFocus")
     static let hideWindow = Notification.Name("hideWindow")
-    static let showFeaturePresent = Notification.Name("showFeaturePresent")
 }
 
 /// @mockable
