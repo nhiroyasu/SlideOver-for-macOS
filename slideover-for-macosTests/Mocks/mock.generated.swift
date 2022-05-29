@@ -686,6 +686,18 @@ class SlideOverWindowPresenterMock: SlideOverWindowPresenter {
         
     }
 
+    private(set) var openBrowserCallCount = 0
+    var openBrowserArgValues = [URL?]()
+    var openBrowserHandler: ((URL?) -> ())?
+    func openBrowser(url: URL?)  {
+        openBrowserCallCount += 1
+        openBrowserArgValues.append(url)
+        if let openBrowserHandler = openBrowserHandler {
+            openBrowserHandler(url)
+        }
+        
+    }
+
     private(set) var showHttpAlertCallCount = 0
     var showHttpAlertHandler: (() -> ())?
     func showHttpAlert()  {

@@ -171,7 +171,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     }
     
     func showHelpPage() {
-        presenter.loadWebPage(url: helpUrl)
+        presenter.openBrowser(url: helpUrl)
     }
 }
 

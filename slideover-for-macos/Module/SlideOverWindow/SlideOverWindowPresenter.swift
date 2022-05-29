@@ -8,6 +8,7 @@ protocol SlideOverWindowPresenter {
     func reverseWindow()
     func setInitialPage(url: URL?)
     func loadWebPage(url: URL?)
+    func openBrowser(url: URL?)
     func showHttpAlert()
     func showErrorAlert()
     func setProgress(value: Double)
@@ -69,6 +70,11 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     }
     
     func loadWebPage(url: URL?) {
+        guard let url = url else { return }
+        output?.loadWebPage(url: url)
+    }
+    
+    func openBrowser(url: URL?) {
         guard let url = url else { return }
         applicationService.open(url)
     }

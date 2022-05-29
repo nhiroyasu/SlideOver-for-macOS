@@ -324,7 +324,7 @@ class SlideOverWindowUseCaseTests: XCTestCase {
     func test_showHelpPage() {
         subject.showHelpPage()
         
-        XCTAssertEqual(presenter.loadWebPageCallCount, 1)
-        XCTAssertEqual(presenter.loadWebPageArgValues.first, URL(string: "https://nhiro.notion.site/Fixture-in-Picture-0eef7a658b4b481a84fbc57d6e43a8f2")!)
+        XCTAssertEqual(presenter.openBrowserCallCount, 1)
+        XCTAssertEqual(presenter.openBrowserArgValues.first, URL(string: "https://nhiro.notion.site/Fixture-in-Picture-0eef7a658b4b481a84fbc57d6e43a8f2")!)
     }
 }
