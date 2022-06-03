@@ -8,6 +8,7 @@ protocol SlideOverWindowPresenter {
     func reverseWindow()
     func setInitialPage(url: URL?)
     func loadWebPage(url: URL?)
+    func openBrowser(url: URL?)
     func showHttpAlert()
     func showErrorAlert()
     func setProgress(value: Double)
@@ -28,6 +29,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     private let alertService: AlertService
     private let slideOverService: SlideOverService
     private let userSetting :UserSettingService
+    private let applicationService: ApplicationService
     private let uiQueue: UIQueue
     private let injector: Injectable
     
@@ -36,6 +38,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         self.alertService = injector.build(AlertService.self)
         self.slideOverService = injector.build(SlideOverService.self)
         self.userSetting = injector.build(UserSettingService.self)
+        self.applicationService = injector.build(ApplicationService.self)
         self.uiQueue = injector.build(UIQueue.self)
     }
     
@@ -67,7 +70,13 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     }
     
     func loadWebPage(url: URL?) {
+        guard let url = url else { return }
         output?.loadWebPage(url: url)
+    }
+    
+    func openBrowser(url: URL?) {
+        guard let url = url else { return }
+        applicationService.open(url)
     }
     
     func showHttpAlert() {

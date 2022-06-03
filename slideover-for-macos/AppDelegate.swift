@@ -66,6 +66,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func didTapLicenseItem(_ sender: Any) {
-        notificationManager?.push(name: .openUrl, param: "https://nhiro.notion.site/Fixture-in-Picture-License-10d29166c48d44bcba28e828afaaa667")
+        notificationManager?.push(name: .openUrlForBrowser, param: "https://nhiro.notion.site/Fixture-in-Picture-License-10d29166c48d44bcba28e828afaaa667")
     }
 }

@@ -13,6 +13,8 @@ class SlideOverWindowUseCaseTests: XCTestCase {
     var presenter: SlideOverWindowPresenterMock!
     var notificationManager: NotificationManagerMock!
     var globalShortcutService: GlobalShortcutServiceMock!
+    var windowManager: WindowManagerMock!
+    var appInfoService: ApplicationServiceMock!
     
     override func setUp() {
         super.setUp()
@@ -24,6 +26,8 @@ class SlideOverWindowUseCaseTests: XCTestCase {
         presenter = .init()
         notificationManager = .init()
         globalShortcutService = .init()
+        windowManager = .init()
+        appInfoService = .init()
         
         let container = Container()
 
@@ -34,6 +38,8 @@ class SlideOverWindowUseCaseTests: XCTestCase {
         container.register(SlideOverWindowPresenter.self, impl: presenter)
         container.register(NotificationManager.self, impl: notificationManager)
         container.register(GlobalShortcutService.self, impl: globalShortcutService)
+        container.register(WindowManager.self, impl: windowManager)
+        container.register(ApplicationService.self, impl: appInfoService)
         let injector = TestInjector(container: container)
         subject = .init(injector: injector)
     }
@@ -153,6 +159,43 @@ class SlideOverWindowUseCaseTests: XCTestCase {
                 XCTAssertEqual(presenter.setUserAgentCallCount, 1)
                 XCTAssertEqual(presenter.setUserAgentArgValues.first, .desktop)
                 XCTAssertEqual(userSettingService.latestUserAgent, .desktop)
+            }
+        }
+        
+        XCTContext.runActivity(named: "FeaturePresentの表示") { _ in
+            XCTContext.runActivity(named: "新機能の表示記録がない場合は、新機能ウィンドウを表示すること") { _ in
+                setUp()
+                appInfoService.featurePresentVersion = "1.4.0"
+                userSettingService.latestShownFeatureVersion = nil
+                
+                subject.setUp()
+                
+                XCTAssertEqual(windowManager.lunchCallCount, 1)
+                XCTAssertEqual(windowManager.lunchArgValues.first, .featurePresent)
+                XCTAssertEqual(userSettingService.latestShownFeatureVersion, "1.4.0")
+            }
+            
+            XCTContext.runActivity(named: "新機能の表示記録が最新のものではない場合は、新機能ウィンドウを表示すること") { _ in
+                setUp()
+                appInfoService.featurePresentVersion = "1.4.0"
+                userSettingService.latestShownFeatureVersion = "1.3.1"
+                
+                subject.setUp()
+                
+                XCTAssertEqual(windowManager.lunchCallCount, 1)
+                XCTAssertEqual(windowManager.lunchArgValues.first, .featurePresent)
+                XCTAssertEqual(userSettingService.latestShownFeatureVersion, "1.4.0")
+            }
+            
+            XCTContext.runActivity(named: "新機能の表示記録が最新の場合は、新機能ウィンドウを表示しないこと") { _ in
+                setUp()
+                appInfoService.featurePresentVersion = "1.4.0"
+                userSettingService.latestShownFeatureVersion = "1.4.0"
+                
+                subject.setUp()
+                
+                XCTAssertEqual(windowManager.lunchCallCount, 0)
+                XCTAssertEqual(userSettingService.latestShownFeatureVersion, "1.4.0")
             }
         }
     }
@@ -281,7 +324,7 @@ class SlideOverWindowUseCaseTests: XCTestCase {
     func test_showHelpPage() {
         subject.showHelpPage()
         
-        XCTAssertEqual(presenter.loadWebPageCallCount, 1)
-        XCTAssertEqual(presenter.loadWebPageArgValues.first, URL(string: "https://nhiro.notion.site/Fixture-in-Picture-0eef7a658b4b481a84fbc57d6e43a8f2")!)
+        XCTAssertEqual(presenter.openBrowserCallCount, 1)
+        XCTAssertEqual(presenter.openBrowserArgValues.first, URL(string: "https://nhiro.notion.site/Fixture-in-Picture-0eef7a658b4b481a84fbc57d6e43a8f2")!)
     }
 }
