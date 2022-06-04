@@ -9,6 +9,9 @@ extension Notification.Name {
     static let searchFocus = Notification.Name("searchFocus")
     static let hideWindow = Notification.Name("hideWindow")
     static let showFeaturePresent = Notification.Name("showFeaturePresent")
+    static let zoomInWebView = Notification.Name("zoomInWebView")
+    static let zoomOutWebView = Notification.Name("zoomOutWebView")
+    static let zoomResetWebView = Notification.Name("zoomResetWebView")
 }
 
 /// @mockable

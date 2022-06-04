@@ -97,6 +97,7 @@ class SlideOverWindowController: NSWindowController {
 
 extension SlideOverWindowController: NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
+        action.windowWillClose(size: window?.frame.size)
         NSApplication.shared.terminate(nil)
     }
     

@@ -47,8 +47,8 @@ class SlideOverWindowPresenterTests: XCTestCase {
         XCTAssertEqual(slideOverService.fixWindowCallCount, 1)
     }
     
-    func test_adjustWindow() {
-        subject.adjustWindow()
+    func test_fixWindowByMousePosition() {
+        subject.fixWindowByMousePosition()
         
         XCTAssertEqual(output.setWindowAlphaCallCount, 1)
         XCTAssertEqual(output.setWindowAlphaArgValues.first, 1.0)
@@ -56,6 +56,23 @@ class SlideOverWindowPresenterTests: XCTestCase {
         XCTAssertEqual(contentView.hideReappearRightButtonCallCount, 1)
         XCTAssertEqual(output.fixWindowCallCount, 1)
         XCTAssertEqual(slideOverService.fixMovedWindowCallCount, 1)
+    }
+    
+    func test_arrangeWindow() {
+        subject.arrangeWindow(type: .bottomLeft)
+        
+        XCTAssertEqual(output.fixWindowCallCount, 1)
+        XCTAssertEqual(slideOverService.arrangeWindowCallCount, 1)
+        XCTAssertEqual(slideOverService.arrangeWindowArgValues.first?.1, .bottomLeft)
+    }
+    
+    func test_initialArrangeWindow() {
+        subject.initialArrangeWindow(type: .bottomRight, size: .init(width: 100, height: 100))
+        
+        XCTAssertEqual(output.fixWindowCallCount, 1)
+        XCTAssertEqual(slideOverService.arrangeWindowForCallCount, 1)
+        XCTAssertEqual(slideOverService.arrangeWindowForArgValues.first?.1, .init(width: 100, height: 100))
+        XCTAssertEqual(slideOverService.arrangeWindowForArgValues.first?.2, .bottomRight)
     }
     
     func test_reverseWindow() {
@@ -311,7 +328,8 @@ class SlideOverWindowPresenterTests: XCTestCase {
             XCTAssertEqual(output.setWindowAlphaCallCount, 1)
             XCTAssertEqual(output.setWindowAlphaArgValues.first, 1.0)
             XCTAssertEqual(output.fixWindowCallCount, 1)
-            XCTAssertEqual(slideOverService.fixWindowCallCount, 1)
+            XCTAssertEqual(slideOverService.arrangeWindowCallCount, 1)
+            XCTAssertEqual(slideOverService.arrangeWindowArgValues.first?.1, .bottomLeft)
             XCTAssertEqual(contentView.hideReappearLeftButtonCallCount, 1)
             XCTAssertEqual(contentView.hideReappearRightButtonCallCount, 1)
             XCTAssertEqual(isSuccess, true)

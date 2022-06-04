@@ -3,8 +3,14 @@ import QuartzCore
 
 /// @mockable
 protocol SlideOverWindowPresenter {
+    /// ウィンドウをtypeの位置に配置（サイズ,座標を修正）
     func fixWindow(type: SlideOverKind)
-    func adjustWindow()
+    /// ウィンドウをtypeの位置に移動（座標を修正、サイズはそのまま）
+    func arrangeWindow(type: SlideOverKind)
+    /// 初期表示用arrange
+    func initialArrangeWindow(type: SlideOverKind, size: NSSize)
+    /// ウィンドウをマウスの位置によって配置（サイズ,座標を修正）
+    func fixWindowByMousePosition()
     func reverseWindow()
     func setInitialPage(url: URL?)
     func loadWebPage(url: URL?)
@@ -20,6 +26,9 @@ protocol SlideOverWindowPresenter {
     func resetTranslucentWindow()
     func disappearWindow(completion: @escaping (Bool) -> Void)
     func appearWindow(completion: @escaping (Bool) -> Void)
+    func zoomIn()
+    func zoomOut()
+    func resetZoom()
 }
 
 class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
@@ -49,11 +58,25 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         }
     }
     
-    func adjustWindow() {
+    func fixWindowByMousePosition() {
         restoreHiddenWindow()
         output?.fixWindow { [weak self] window in
             guard let self = self, let window = window else { return }
             self.slideOverService.fixMovedWindow(for: window)
+        }
+    }
+    
+    func arrangeWindow(type: SlideOverKind) {
+        output?.fixWindow { [weak self] window in
+            guard let self = self, let window = window else { return }
+            self.slideOverService.arrangeWindow(for: window, type: type)
+        }
+    }
+    
+    func initialArrangeWindow(type: SlideOverKind, size: NSSize) {
+        output?.fixWindow { [weak self] window in
+            guard let self = self, let window = window else { return }
+            self.slideOverService.arrangeWindow(for: window, windowSize: size, type: type)
         }
     }
     
@@ -131,7 +154,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         var window = output
         window?.windowWillResizeHandler = { [weak self] currentWindow, next in
             let (nextSize, type) = handler(currentWindow.frame.size, next)
-            self?.slideOverService.arrangeWindowPosition(for: currentWindow, size: nextSize, type: type)
+            self?.slideOverService.arrangeWindowPosition(for: currentWindow, windowSize: nextSize, type: type)
             return nextSize
         }
     }
@@ -178,9 +201,15 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
             return
         }
         
-        fixWindow(type: position)
-        restoreHiddenWindow()
-        completion(true)
+        output.fixWindow { [weak self] window in
+            guard let window = window else {
+                completion(false)
+                return
+            }
+            self?.slideOverService.arrangeWindow(for: window, type: position)
+            self?.restoreHiddenWindow()
+            completion(true)
+        }
     }
     
     func applyTranslucentWindow() {
@@ -195,5 +224,20 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         output?.setWindowAlpha(1.0)
         self.output?.contentView?.hideReappearLeftButton(completion: {})
         self.output?.contentView?.hideReappearRightButton(completion: {})
+    }
+    
+    func zoomIn() {
+        guard let webView = output?.contentView?.webView else { return }
+        webView.setMagnification(webView.magnification + 0.1, centeredAt: .zero)
+    }
+    
+    func zoomOut() {
+        guard let webView = output?.contentView?.webView else { return }
+        webView.setMagnification(webView.magnification - 0.1, centeredAt: .zero)
+    }
+    
+    func resetZoom() {
+        guard let webView = output?.contentView?.webView else { return }
+        webView.setMagnification(1.0, centeredAt: .zero)
     }
 }

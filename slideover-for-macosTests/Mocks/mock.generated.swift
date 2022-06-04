@@ -152,6 +152,18 @@ class SlideOverWindowActionMock: SlideOverWindowAction {
         }
         
     }
+
+    private(set) var windowWillCloseCallCount = 0
+    var windowWillCloseArgValues = [NSSize?]()
+    var windowWillCloseHandler: ((NSSize?) -> ())?
+    func windowWillClose(size: NSSize?)  {
+        windowWillCloseCallCount += 1
+        windowWillCloseArgValues.append(size)
+        if let windowWillCloseHandler = windowWillCloseHandler {
+            windowWillCloseHandler(size)
+        }
+        
+    }
 }
 
 class UIQueueMock: UIQueue {
@@ -217,10 +229,11 @@ class URLValidationServiceMock: URLValidationService {
 
 class UserSettingServiceMock: UserSettingService {
     init() { }
-    init(initialPage: URL? = nil, latestPage: URL? = nil, latestPosition: SlideOverKind? = nil, latestUserAgent: UserAgent? = nil, isNotAllowedGlobalShortcut: Bool = false, latestShownFeatureVersion: String? = nil) {
+    init(initialPage: URL? = nil, latestPage: URL? = nil, latestPosition: SlideOverKind? = nil, latestWindowSize: NSSize? = nil, latestUserAgent: UserAgent? = nil, isNotAllowedGlobalShortcut: Bool = false, latestShownFeatureVersion: String? = nil) {
         self.initialPage = initialPage
         self.latestPage = latestPage
         self.latestPosition = latestPosition
+        self.latestWindowSize = latestWindowSize
         self.latestUserAgent = latestUserAgent
         self.isNotAllowedGlobalShortcut = isNotAllowedGlobalShortcut
         self.latestShownFeatureVersion = latestShownFeatureVersion
@@ -235,6 +248,9 @@ class UserSettingServiceMock: UserSettingService {
 
     private(set) var latestPositionSetCallCount = 0
     var latestPosition: SlideOverKind? = nil { didSet { latestPositionSetCallCount += 1 } }
+
+    private(set) var latestWindowSizeSetCallCount = 0
+    var latestWindowSize: NSSize? = nil { didSet { latestWindowSizeSetCallCount += 1 } }
 
     private(set) var latestUserAgentSetCallCount = 0
     var latestUserAgent: UserAgent? = nil { didSet { latestUserAgentSetCallCount += 1 } }
@@ -642,12 +658,36 @@ class SlideOverWindowPresenterMock: SlideOverWindowPresenter {
         
     }
 
-    private(set) var adjustWindowCallCount = 0
-    var adjustWindowHandler: (() -> ())?
-    func adjustWindow()  {
-        adjustWindowCallCount += 1
-        if let adjustWindowHandler = adjustWindowHandler {
-            adjustWindowHandler()
+    private(set) var arrangeWindowCallCount = 0
+    var arrangeWindowArgValues = [SlideOverKind]()
+    var arrangeWindowHandler: ((SlideOverKind) -> ())?
+    func arrangeWindow(type: SlideOverKind)  {
+        arrangeWindowCallCount += 1
+        arrangeWindowArgValues.append(type)
+        if let arrangeWindowHandler = arrangeWindowHandler {
+            arrangeWindowHandler(type)
+        }
+        
+    }
+
+    private(set) var initialArrangeWindowCallCount = 0
+    var initialArrangeWindowArgValues = [(SlideOverKind, NSSize)]()
+    var initialArrangeWindowHandler: ((SlideOverKind, NSSize) -> ())?
+    func initialArrangeWindow(type: SlideOverKind, size: NSSize)  {
+        initialArrangeWindowCallCount += 1
+        initialArrangeWindowArgValues.append((type, size))
+        if let initialArrangeWindowHandler = initialArrangeWindowHandler {
+            initialArrangeWindowHandler(type, size)
+        }
+        
+    }
+
+    private(set) var fixWindowByMousePositionCallCount = 0
+    var fixWindowByMousePositionHandler: (() -> ())?
+    func fixWindowByMousePosition()  {
+        fixWindowByMousePositionCallCount += 1
+        if let fixWindowByMousePositionHandler = fixWindowByMousePositionHandler {
+            fixWindowByMousePositionHandler()
         }
         
     }
@@ -811,6 +851,36 @@ class SlideOverWindowPresenterMock: SlideOverWindowPresenter {
         }
         
     }
+
+    private(set) var zoomInCallCount = 0
+    var zoomInHandler: (() -> ())?
+    func zoomIn()  {
+        zoomInCallCount += 1
+        if let zoomInHandler = zoomInHandler {
+            zoomInHandler()
+        }
+        
+    }
+
+    private(set) var zoomOutCallCount = 0
+    var zoomOutHandler: (() -> ())?
+    func zoomOut()  {
+        zoomOutCallCount += 1
+        if let zoomOutHandler = zoomOutHandler {
+            zoomOutHandler()
+        }
+        
+    }
+
+    private(set) var resetZoomCallCount = 0
+    var resetZoomHandler: (() -> ())?
+    func resetZoom()  {
+        resetZoomCallCount += 1
+        if let resetZoomHandler = resetZoomHandler {
+            resetZoomHandler()
+        }
+        
+    }
 }
 
 class SlideOverWindowUseCaseMock: SlideOverWindowUseCase {
@@ -962,6 +1032,18 @@ class SlideOverWindowUseCaseMock: SlideOverWindowUseCase {
         }
         
     }
+
+    private(set) var memorizeLatestWindowSizeCallCount = 0
+    var memorizeLatestWindowSizeArgValues = [NSSize?]()
+    var memorizeLatestWindowSizeHandler: ((NSSize?) -> ())?
+    func memorizeLatestWindowSize(_ size: NSSize?)  {
+        memorizeLatestWindowSizeCallCount += 1
+        memorizeLatestWindowSizeArgValues.append(size)
+        if let memorizeLatestWindowSizeHandler = memorizeLatestWindowSizeHandler {
+            memorizeLatestWindowSizeHandler(size)
+        }
+        
+    }
 }
 
 class ApplicationServiceMock: ApplicationService {
@@ -1020,13 +1102,13 @@ class SlideOverComputableMock: SlideOverComputable {
     }
 
     private(set) var computeResizeCallCount = 0
-    var computeResizeArgValues = [(NSSize, NSSize)]()
-    var computeResizeHandler: ((NSSize, NSSize) -> (NSSize))?
-    func computeResize(from current: NSSize, to next: NSSize) -> NSSize {
+    var computeResizeArgValues = [(CGSize, NSSize, NSSize)]()
+    var computeResizeHandler: ((CGSize, NSSize, NSSize) -> (NSSize))?
+    func computeResize(screenSize: CGSize, from current: NSSize, to next: NSSize) -> NSSize {
         computeResizeCallCount += 1
-        computeResizeArgValues.append((current, next))
+        computeResizeArgValues.append((screenSize, current, next))
         if let computeResizeHandler = computeResizeHandler {
-            return computeResizeHandler(current, next)
+            return computeResizeHandler(screenSize, current, next)
         }
         fatalError("computeResizeHandler returns can't have a default value thus its handler must be set")
     }
@@ -1056,35 +1138,6 @@ class GlobalShortcutServiceMock: GlobalShortcutService {
         unregisterArgValues.append(keyType)
         if let unregisterHandler = unregisterHandler {
             unregisterHandler(keyType)
-        }
-        
-    }
-}
-
-class NotificationManagerMock: NotificationManager {
-    init() { }
-
-
-    private(set) var pushCallCount = 0
-    var pushArgValues = [(Notification.Name, Any?)]()
-    var pushHandler: ((Notification.Name, Any?) -> ())?
-    func push(name: Notification.Name, param: Any?)  {
-        pushCallCount += 1
-        pushArgValues.append((name, param))
-        if let pushHandler = pushHandler {
-            pushHandler(name, param)
-        }
-        
-    }
-
-    private(set) var observeCallCount = 0
-    var observeArgValues = [Notification.Name]()
-    var observeHandler: ((Notification.Name, @escaping (Any?) -> Void) -> ())?
-    func observe(name: Notification.Name, handler: @escaping (Any?) -> Void)  {
-        observeCallCount += 1
-        observeArgValues.append(name)
-        if let observeHandler = observeHandler {
-            observeHandler(name, handler)
         }
         
     }
@@ -1130,14 +1183,38 @@ class SlideOverServiceMock: SlideOverService {
         
     }
 
+    private(set) var arrangeWindowCallCount = 0
+    var arrangeWindowArgValues = [(NSWindow, SlideOverKind)]()
+    var arrangeWindowHandler: ((NSWindow, SlideOverKind) -> ())?
+    func arrangeWindow(for window: NSWindow, type: SlideOverKind)  {
+        arrangeWindowCallCount += 1
+        arrangeWindowArgValues.append((window, type))
+        if let arrangeWindowHandler = arrangeWindowHandler {
+            arrangeWindowHandler(window, type)
+        }
+        
+    }
+
+    private(set) var arrangeWindowForCallCount = 0
+    var arrangeWindowForArgValues = [(NSWindow, NSSize, SlideOverKind)]()
+    var arrangeWindowForHandler: ((NSWindow, NSSize, SlideOverKind) -> ())?
+    func arrangeWindow(for window: NSWindow, windowSize: NSSize, type: SlideOverKind)  {
+        arrangeWindowForCallCount += 1
+        arrangeWindowForArgValues.append((window, windowSize, type))
+        if let arrangeWindowForHandler = arrangeWindowForHandler {
+            arrangeWindowForHandler(window, windowSize, type)
+        }
+        
+    }
+
     private(set) var arrangeWindowPositionCallCount = 0
     var arrangeWindowPositionArgValues = [(NSWindow, NSSize, SlideOverKind)]()
     var arrangeWindowPositionHandler: ((NSWindow, NSSize, SlideOverKind) -> ())?
-    func arrangeWindowPosition(for window: NSWindow, size: NSSize, type: SlideOverKind)  {
+    func arrangeWindowPosition(for window: NSWindow, windowSize: NSSize, type: SlideOverKind)  {
         arrangeWindowPositionCallCount += 1
-        arrangeWindowPositionArgValues.append((window, size, type))
+        arrangeWindowPositionArgValues.append((window, windowSize, type))
         if let arrangeWindowPositionHandler = arrangeWindowPositionHandler {
-            arrangeWindowPositionHandler(window, size, type)
+            arrangeWindowPositionHandler(window, windowSize, type)
         }
         
     }
@@ -1232,6 +1309,35 @@ class WindowManagerMock: WindowManager {
         lunchArgValues.append(window)
         if let lunchHandler = lunchHandler {
             lunchHandler(window)
+        }
+        
+    }
+}
+
+class NotificationManagerMock: NotificationManager {
+    init() { }
+
+
+    private(set) var pushCallCount = 0
+    var pushArgValues = [(Notification.Name, Any?)]()
+    var pushHandler: ((Notification.Name, Any?) -> ())?
+    func push(name: Notification.Name, param: Any?)  {
+        pushCallCount += 1
+        pushArgValues.append((name, param))
+        if let pushHandler = pushHandler {
+            pushHandler(name, param)
+        }
+        
+    }
+
+    private(set) var observeCallCount = 0
+    var observeArgValues = [Notification.Name]()
+    var observeHandler: ((Notification.Name, @escaping (Any?) -> Void) -> ())?
+    func observe(name: Notification.Name, handler: @escaping (Any?) -> Void)  {
+        observeCallCount += 1
+        observeArgValues.append(name)
+        if let observeHandler = observeHandler {
+            observeHandler(name, handler)
         }
         
     }

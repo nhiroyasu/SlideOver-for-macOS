@@ -115,4 +115,11 @@ class SlideOverWindowActionTests: XCTestCase {
         
         XCTAssertEqual(useCase.requestAppearWindowCallCount, 1)
     }
+    
+    func test_windowWillClose() {
+        subject.windowWillClose(size: .init(width: 100, height: 100))
+        
+        XCTAssertEqual(useCase.memorizeLatestWindowSizeCallCount, 1)
+        XCTAssertEqual(useCase.memorizeLatestWindowSizeArgValues.first, .init(width: 100, height: 100))
+    }
 }

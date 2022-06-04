@@ -46,6 +46,10 @@ class SlideOverViewController: NSViewController {
         
         let configuration = WKWebViewConfiguration()
         webView = SlideOverWebView(frame: .zero, configuration: configuration)
+        setupWebView()
+    }
+
+    private func setupWebView() {
         view.subviews.insert(webView, at: 0)
         webView.delegate = self
         webView.uiDelegate = self
@@ -54,10 +58,8 @@ class SlideOverViewController: NSViewController {
         webView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         webView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         webView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        setupWebView()
-    }
-
-    private func setupWebView() {
+        webView.allowsMagnification = true
+        
         observers.append(webView.observe(\.title, options: [.new], changeHandler: { [weak self] webView, _ in
             self?.view.window?.title = webView.title ?? ""
         }))
