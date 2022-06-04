@@ -1130,14 +1130,26 @@ class SlideOverServiceMock: SlideOverService {
         
     }
 
+    private(set) var arrangeWindowCallCount = 0
+    var arrangeWindowArgValues = [(NSWindow, SlideOverKind)]()
+    var arrangeWindowHandler: ((NSWindow, SlideOverKind) -> ())?
+    func arrangeWindow(for window: NSWindow, type: SlideOverKind)  {
+        arrangeWindowCallCount += 1
+        arrangeWindowArgValues.append((window, type))
+        if let arrangeWindowHandler = arrangeWindowHandler {
+            arrangeWindowHandler(window, type)
+        }
+        
+    }
+
     private(set) var arrangeWindowPositionCallCount = 0
     var arrangeWindowPositionArgValues = [(NSWindow, NSSize, SlideOverKind)]()
     var arrangeWindowPositionHandler: ((NSWindow, NSSize, SlideOverKind) -> ())?
-    func arrangeWindowPosition(for window: NSWindow, size: NSSize, type: SlideOverKind)  {
+    func arrangeWindowPosition(for window: NSWindow, windowSize: NSSize, type: SlideOverKind)  {
         arrangeWindowPositionCallCount += 1
-        arrangeWindowPositionArgValues.append((window, size, type))
+        arrangeWindowPositionArgValues.append((window, windowSize, type))
         if let arrangeWindowPositionHandler = arrangeWindowPositionHandler {
-            arrangeWindowPositionHandler(window, size, type)
+            arrangeWindowPositionHandler(window, windowSize, type)
         }
         
     }

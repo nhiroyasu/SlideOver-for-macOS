@@ -3,7 +3,9 @@ import QuartzCore
 
 /// @mockable
 protocol SlideOverWindowPresenter {
+    /// ウィンドウをtypeの位置に配置（サイズ,座標を修正）
     func fixWindow(type: SlideOverKind)
+    /// ウィンドウをマウスの位置によって配置（サイズ,座標を修正）
     func adjustWindow()
     func reverseWindow()
     func setInitialPage(url: URL?)
@@ -131,7 +133,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         var window = output
         window?.windowWillResizeHandler = { [weak self] currentWindow, next in
             let (nextSize, type) = handler(currentWindow.frame.size, next)
-            self?.slideOverService.arrangeWindowPosition(for: currentWindow, size: nextSize, type: type)
+            self?.slideOverService.arrangeWindowPosition(for: currentWindow, windowSize: nextSize, type: type)
             return nextSize
         }
     }
@@ -178,9 +180,15 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
             return
         }
         
-        fixWindow(type: position)
-        restoreHiddenWindow()
-        completion(true)
+        output.fixWindow { [weak self] window in
+            guard let window = window else {
+                completion(false)
+                return
+            }
+            self?.slideOverService.arrangeWindow(for: window, type: position)
+            self?.restoreHiddenWindow()
+            completion(true)
+        }
     }
     
     func applyTranslucentWindow() {
