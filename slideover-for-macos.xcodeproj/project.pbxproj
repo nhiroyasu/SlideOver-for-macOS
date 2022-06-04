@@ -261,9 +261,9 @@
 				4FBCEB0827C1FA5600BCF88C /* SlideOverWindowController.swift */,
 				4FBCEAFB27C1FA3300BCF88C /* SlideOverViewController.swift */,
 				4FBE65852821601D0001FB4E /* SlideOverView.swift */,
-				4FBCEAFF27C1FA3400BCF88C /* Main.storyboard */,
 				4FBE6581282157E50001FB4E /* SlideOverWindow.swift */,
 				4FBE658328215A540001FB4E /* SlideOverToolbar.swift */,
+				4FBCEAFF27C1FA3400BCF88C /* Main.storyboard */,
 			);
 			path = UI;
 			sourceTree = "<group>";

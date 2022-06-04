@@ -26,6 +26,9 @@ protocol SlideOverWindowPresenter {
     func resetTranslucentWindow()
     func disappearWindow(completion: @escaping (Bool) -> Void)
     func appearWindow(completion: @escaping (Bool) -> Void)
+    func zoomIn()
+    func zoomOut()
+    func resetZoom()
 }
 
 class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
@@ -221,5 +224,20 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         output?.setWindowAlpha(1.0)
         self.output?.contentView?.hideReappearLeftButton(completion: {})
         self.output?.contentView?.hideReappearRightButton(completion: {})
+    }
+    
+    func zoomIn() {
+        guard let webView = output?.contentView?.webView else { return }
+        webView.setMagnification(webView.magnification + 0.1, centeredAt: .zero)
+    }
+    
+    func zoomOut() {
+        guard let webView = output?.contentView?.webView else { return }
+        webView.setMagnification(webView.magnification - 0.1, centeredAt: .zero)
+    }
+    
+    func resetZoom() {
+        guard let webView = output?.contentView?.webView else { return }
+        webView.setMagnification(1.0, centeredAt: .zero)
     }
 }

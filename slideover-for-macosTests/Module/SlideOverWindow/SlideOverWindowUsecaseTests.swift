@@ -49,13 +49,16 @@ class SlideOverWindowUseCaseTests: XCTestCase {
             setUp()
             subject.setUp()
             
-            XCTAssertEqual(notificationManager.observeCallCount, 6)
+            XCTAssertEqual(notificationManager.observeCallCount, 9)
             XCTAssertEqual(notificationManager.observeArgValues.first, .reload)
             XCTAssertEqual(notificationManager.observeArgValues[1], .clearCache)
             XCTAssertEqual(notificationManager.observeArgValues[2], .openUrl)
             XCTAssertEqual(notificationManager.observeArgValues[3], .openHelp)
             XCTAssertEqual(notificationManager.observeArgValues[4], .searchFocus)
             XCTAssertEqual(notificationManager.observeArgValues[5], .hideWindow)
+            XCTAssertEqual(notificationManager.observeArgValues[6], .zoomInWebView)
+            XCTAssertEqual(notificationManager.observeArgValues[7], .zoomOutWebView)
+            XCTAssertEqual(notificationManager.observeArgValues[8], .zoomResetWebView)
         }
         
         XCTContext.runActivity(named: "publisherが正しく設定されること") { _ in

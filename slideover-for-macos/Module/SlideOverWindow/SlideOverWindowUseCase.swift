@@ -17,7 +17,7 @@ protocol SlideOverWindowUseCase {
     func requestDisappearWindow()
     func requestAppearWindow()
     func showHelpPage()
-    func memorizeLatestWindowSize(_ size: NSSize)
+    func memorizeLatestWindowSize(_ size: NSSize?)
 }
 
 class SlideOverWindowInteractor: SlideOverWindowUseCase {
@@ -68,6 +68,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         observeSearchFocusNotification()
         observeHideWindowNotification()
         observeMouseEvent()
+        observeZoomNotifications()
         setWillMoveNotification()
         setRightMouseUpSubject()
         resizeWindow()
@@ -177,7 +178,7 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         presenter.openBrowser(url: helpUrl)
     }
     
-    func memorizeLatestWindowSize(_ size: NSSize) {
+    func memorizeLatestWindowSize(_ size: NSSize?) {
         userSettingService.latestWindowSize = size
     }
 }
@@ -292,6 +293,20 @@ extension SlideOverWindowInteractor {
             guard let urlStr = urlValue as? String,
                   let url = URL(string: urlStr) else { return }
             self?.presenter.loadWebPage(url: url)
+        }
+    }
+    
+    private func observeZoomNotifications() {
+        notificationManager.observe(name: .zoomInWebView) { [weak self] _ in
+            self?.presenter.zoomIn()
+        }
+        
+        notificationManager.observe(name: .zoomOutWebView) { [weak self] _ in
+            self?.presenter.zoomOut()
+        }
+        
+        notificationManager.observe(name: .zoomResetWebView) { [weak self] _ in
+            self?.presenter.resetZoom()
         }
     }
 }

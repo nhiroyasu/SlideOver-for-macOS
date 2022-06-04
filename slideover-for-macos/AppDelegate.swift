@@ -68,4 +68,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func didTapLicenseItem(_ sender: Any) {
         notificationManager?.push(name: .openUrlForBrowser, param: "https://nhiro.notion.site/Fixture-in-Picture-License-10d29166c48d44bcba28e828afaaa667")
     }
+    
+    @IBAction func didTapZoomInItem(_ sender: Any) {
+        notificationManager?.push(name: .zoomInWebView, param: nil)
+    }
+    
+    @IBAction func didTapZoomOutItem(_ sender: Any) {
+        notificationManager?.push(name: .zoomOutWebView, param: nil)
+    }
+    
+    @IBAction func didTapZoomResetItem(_ sender: Any) {
+        notificationManager?.push(name: .zoomResetWebView, param: nil)
+    }
 }

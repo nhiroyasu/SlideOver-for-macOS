@@ -84,8 +84,11 @@ class UserSettingServiceImpl: UserSettingService {
             }
         }
         set {
-            guard let newValue = newValue else { return }
-            userDefaults.set([Double(newValue.width), Double(newValue.height)], forKey: "latestWindowSize")
+            if let newValue = newValue {
+                userDefaults.set([Double(newValue.width), Double(newValue.height)], forKey: "latestWindowSize")
+            } else {
+                userDefaults.set(nil, forKey: "latestWindowSize")
+            }
         }
     }
 }

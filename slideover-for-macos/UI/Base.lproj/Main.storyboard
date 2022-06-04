@@ -266,10 +266,26 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Web" id="AI6-A0-TdK">
+                            <menuItem title="View" id="AI6-A0-TdK">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Web" id="eIm-rB-cev">
+                                <menu key="submenu" title="View" id="eIm-rB-cev">
                                     <items>
+                                        <menuItem title="Zoom In" keyEquivalent="=" id="3ha-De-hEf">
+                                            <connections>
+                                                <action selector="didTapZoomInItem:" target="Voe-Tx-rLC" id="3si-kn-KU3"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Zoom Out" keyEquivalent="-" id="SPt-53-dJI">
+                                            <connections>
+                                                <action selector="didTapZoomOutItem:" target="Voe-Tx-rLC" id="yW3-jw-N8N"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Zoom Reset" keyEquivalent="0" id="VZZ-xk-zcZ">
+                                            <connections>
+                                                <action selector="didTapZoomResetItem:" target="Voe-Tx-rLC" id="eKm-C7-E0U"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="v04-Zm-Mp9"/>
                                         <menuItem title="Clear Cache" id="6nL-5w-I5j">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>

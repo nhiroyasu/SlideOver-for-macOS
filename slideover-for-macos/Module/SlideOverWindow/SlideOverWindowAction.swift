@@ -14,7 +14,7 @@ protocol SlideOverWindowAction {
     func didTapHideWindow()
     func didTapHelp()
     func didTapReappearButton()
-    func windowWillClose(size: NSSize)
+    func windowWillClose(size: NSSize?)
 }
 
 class SlideOverWindowActionImpl: SlideOverWindowAction {
@@ -79,7 +79,7 @@ class SlideOverWindowActionImpl: SlideOverWindowAction {
         useCase.requestAppearWindow()
     }
     
-    func windowWillClose(size: NSSize) {
+    func windowWillClose(size: NSSize?) {
         useCase.memorizeLatestWindowSize(size)
     }
 }

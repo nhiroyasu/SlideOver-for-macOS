@@ -154,9 +154,9 @@ class SlideOverWindowActionMock: SlideOverWindowAction {
     }
 
     private(set) var windowWillCloseCallCount = 0
-    var windowWillCloseArgValues = [NSSize]()
-    var windowWillCloseHandler: ((NSSize) -> ())?
-    func windowWillClose(size: NSSize)  {
+    var windowWillCloseArgValues = [NSSize?]()
+    var windowWillCloseHandler: ((NSSize?) -> ())?
+    func windowWillClose(size: NSSize?)  {
         windowWillCloseCallCount += 1
         windowWillCloseArgValues.append(size)
         if let windowWillCloseHandler = windowWillCloseHandler {
@@ -851,6 +851,36 @@ class SlideOverWindowPresenterMock: SlideOverWindowPresenter {
         }
         
     }
+
+    private(set) var zoomInCallCount = 0
+    var zoomInHandler: (() -> ())?
+    func zoomIn()  {
+        zoomInCallCount += 1
+        if let zoomInHandler = zoomInHandler {
+            zoomInHandler()
+        }
+        
+    }
+
+    private(set) var zoomOutCallCount = 0
+    var zoomOutHandler: (() -> ())?
+    func zoomOut()  {
+        zoomOutCallCount += 1
+        if let zoomOutHandler = zoomOutHandler {
+            zoomOutHandler()
+        }
+        
+    }
+
+    private(set) var resetZoomCallCount = 0
+    var resetZoomHandler: (() -> ())?
+    func resetZoom()  {
+        resetZoomCallCount += 1
+        if let resetZoomHandler = resetZoomHandler {
+            resetZoomHandler()
+        }
+        
+    }
 }
 
 class SlideOverWindowUseCaseMock: SlideOverWindowUseCase {
@@ -1004,9 +1034,9 @@ class SlideOverWindowUseCaseMock: SlideOverWindowUseCase {
     }
 
     private(set) var memorizeLatestWindowSizeCallCount = 0
-    var memorizeLatestWindowSizeArgValues = [NSSize]()
-    var memorizeLatestWindowSizeHandler: ((NSSize) -> ())?
-    func memorizeLatestWindowSize(_ size: NSSize)  {
+    var memorizeLatestWindowSizeArgValues = [NSSize?]()
+    var memorizeLatestWindowSizeHandler: ((NSSize?) -> ())?
+    func memorizeLatestWindowSize(_ size: NSSize?)  {
         memorizeLatestWindowSizeCallCount += 1
         memorizeLatestWindowSizeArgValues.append(size)
         if let memorizeLatestWindowSizeHandler = memorizeLatestWindowSizeHandler {
@@ -1108,35 +1138,6 @@ class GlobalShortcutServiceMock: GlobalShortcutService {
         unregisterArgValues.append(keyType)
         if let unregisterHandler = unregisterHandler {
             unregisterHandler(keyType)
-        }
-        
-    }
-}
-
-class NotificationManagerMock: NotificationManager {
-    init() { }
-
-
-    private(set) var pushCallCount = 0
-    var pushArgValues = [(Notification.Name, Any?)]()
-    var pushHandler: ((Notification.Name, Any?) -> ())?
-    func push(name: Notification.Name, param: Any?)  {
-        pushCallCount += 1
-        pushArgValues.append((name, param))
-        if let pushHandler = pushHandler {
-            pushHandler(name, param)
-        }
-        
-    }
-
-    private(set) var observeCallCount = 0
-    var observeArgValues = [Notification.Name]()
-    var observeHandler: ((Notification.Name, @escaping (Any?) -> Void) -> ())?
-    func observe(name: Notification.Name, handler: @escaping (Any?) -> Void)  {
-        observeCallCount += 1
-        observeArgValues.append(name)
-        if let observeHandler = observeHandler {
-            observeHandler(name, handler)
         }
         
     }
@@ -1308,6 +1309,35 @@ class WindowManagerMock: WindowManager {
         lunchArgValues.append(window)
         if let lunchHandler = lunchHandler {
             lunchHandler(window)
+        }
+        
+    }
+}
+
+class NotificationManagerMock: NotificationManager {
+    init() { }
+
+
+    private(set) var pushCallCount = 0
+    var pushArgValues = [(Notification.Name, Any?)]()
+    var pushHandler: ((Notification.Name, Any?) -> ())?
+    func push(name: Notification.Name, param: Any?)  {
+        pushCallCount += 1
+        pushArgValues.append((name, param))
+        if let pushHandler = pushHandler {
+            pushHandler(name, param)
+        }
+        
+    }
+
+    private(set) var observeCallCount = 0
+    var observeArgValues = [Notification.Name]()
+    var observeHandler: ((Notification.Name, @escaping (Any?) -> Void) -> ())?
+    func observe(name: Notification.Name, handler: @escaping (Any?) -> Void)  {
+        observeCallCount += 1
+        observeArgValues.append(name)
+        if let observeHandler = observeHandler {
+            observeHandler(name, handler)
         }
         
     }
