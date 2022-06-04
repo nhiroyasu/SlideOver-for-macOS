@@ -5,8 +5,12 @@ import QuartzCore
 protocol SlideOverWindowPresenter {
     /// ウィンドウをtypeの位置に配置（サイズ,座標を修正）
     func fixWindow(type: SlideOverKind)
+    /// ウィンドウをtypeの位置に移動（座標を修正、サイズはそのまま）
+    func arrangeWindow(type: SlideOverKind)
+    /// 初期表示用arrange
+    func initialArrangeWindow(type: SlideOverKind, size: NSSize)
     /// ウィンドウをマウスの位置によって配置（サイズ,座標を修正）
-    func adjustWindow()
+    func fixWindowByMousePosition()
     func reverseWindow()
     func setInitialPage(url: URL?)
     func loadWebPage(url: URL?)
@@ -51,11 +55,25 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         }
     }
     
-    func adjustWindow() {
+    func fixWindowByMousePosition() {
         restoreHiddenWindow()
         output?.fixWindow { [weak self] window in
             guard let self = self, let window = window else { return }
             self.slideOverService.fixMovedWindow(for: window)
+        }
+    }
+    
+    func arrangeWindow(type: SlideOverKind) {
+        output?.fixWindow { [weak self] window in
+            guard let self = self, let window = window else { return }
+            self.slideOverService.arrangeWindow(for: window, type: type)
+        }
+    }
+    
+    func initialArrangeWindow(type: SlideOverKind, size: NSSize) {
+        output?.fixWindow { [weak self] window in
+            guard let self = self, let window = window else { return }
+            self.slideOverService.arrangeWindow(for: window, windowSize: size, type: type)
         }
     }
     

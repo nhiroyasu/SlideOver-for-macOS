@@ -10,7 +10,7 @@ let hideOffsetSpace: CGFloat = 40.0
 protocol SlideOverComputable {
     func computeWindowRect(screenSize: CGSize, screenOffset: CGPoint) -> CGRect
     func computeWindowPoint(windowSize: CGSize, screenSize: CGSize, screenOffset: CGPoint) -> CGPoint
-    func computeResize(from current: NSSize, to next: NSSize) -> NSSize
+    func computeResize(screenSize: CGSize, from current: NSSize, to next: NSSize) -> NSSize
 }
 
 class SlideOver {
@@ -33,7 +33,7 @@ class SlideOver {
             return bestHeightSize
         }
         
-        func computeResize(from current: NSSize, to next: NSSize) -> NSSize {
+        func computeResize(screenSize: CGSize, from current: NSSize, to next: NSSize) -> NSSize {
             var resultWidth = next.width
             if next.width > maxWidthSize {
                 resultWidth = maxWidthSize
@@ -101,6 +101,9 @@ class SlideOver {
     class Rectangle {
         let aspectRatio: CGFloat = 16.0 / 9.0
         let minHeightSize: CGFloat = 384.0
+        let minWidthSize: CGFloat = 420.0
+        let maxHeightRatio: CGFloat = 3.0 / 4.0
+        let maxWidthRatio: CGFloat = 1.0 / 2.0
         var minSize: CGSize {
             CGSize(width: minHeightSize * aspectRatio, height: minHeightSize)
         }
@@ -115,19 +118,24 @@ class SlideOver {
             }
         }
         
-        func computeResize(from current: NSSize, to next: NSSize) -> NSSize {
-            var resultSize = NSSize(width: 0, height: 0)
-            if current.width != next.width {
-                resultSize = NSSize(width: next.width, height: next.width / aspectRatio)
+        func computeResize(screenSize: CGSize, from current: NSSize, to next: NSSize) -> NSSize {
+            let maxHeightSize = screenSize.height * maxHeightRatio
+            let maxWidthSize = screenSize.width * maxWidthRatio
+            var width = next.width
+            var height = next.height
+            if width > maxWidthSize {
+                width = maxWidthSize
             }
-            if current.height != next.height {
-                resultSize = NSSize(width: next.height * aspectRatio, height: next.height)
+            if width < minWidthSize {
+                width = minWidthSize
             }
-            if resultSize.height < minHeightSize {
-                return minSize
-            } else {
-                return resultSize
+            if height > maxHeightSize {
+                height = maxHeightSize
             }
+            if height < minHeightSize {
+                height = minHeightSize
+            }
+            return NSSize(width: width, height: height)
         }
     }
     

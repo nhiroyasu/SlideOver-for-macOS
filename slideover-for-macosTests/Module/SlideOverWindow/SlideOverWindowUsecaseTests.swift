@@ -94,20 +94,34 @@ class SlideOverWindowUseCaseTests: XCTestCase {
             }
         }
         
-        XCTContext.runActivity(named: "latestPostionの反映") { _ in
-            XCTContext.runActivity(named: "保存された値があるとき") { _ in
+        XCTContext.runActivity(named: "latestPosition, latestWindowSizeの反映") { _ in
+            XCTContext.runActivity(named: "両方、保存されているとき") { _ in
                 setUp()
                 userSettingService.latestPosition = .bottomLeft
+                userSettingService.latestWindowSize = .init(width: 100, height: 100)
+                
+                subject.setUp()
+                
+                XCTAssertEqual(presenter.initialArrangeWindowCallCount, 1)
+                XCTAssertEqual(presenter.initialArrangeWindowArgValues.first?.0, .bottomLeft)
+                XCTAssertEqual(presenter.initialArrangeWindowArgValues.first?.1, .init(width: 100, height: 100))
+            }
+            
+            XCTContext.runActivity(named: "latestPositionの保存されているとき") { _ in
+                setUp()
+                userSettingService.latestPosition = .bottomRight
+                userSettingService.latestWindowSize = nil
                 
                 subject.setUp()
                 
                 XCTAssertEqual(presenter.fixWindowCallCount, 1)
-                XCTAssertEqual(presenter.fixWindowArgValues.first, .bottomLeft)
+                XCTAssertEqual(presenter.fixWindowArgValues.first, .bottomRight)
             }
             
             XCTContext.runActivity(named: "保存された値がないとき") { _ in
                 setUp()
                 userSettingService.latestPosition = nil
+                userSettingService.latestWindowSize = nil
                 
                 subject.setUp()
                 
@@ -326,5 +340,12 @@ class SlideOverWindowUseCaseTests: XCTestCase {
         
         XCTAssertEqual(presenter.openBrowserCallCount, 1)
         XCTAssertEqual(presenter.openBrowserArgValues.first, URL(string: "https://nhiro.notion.site/Fixture-in-Picture-0eef7a658b4b481a84fbc57d6e43a8f2")!)
+    }
+    
+    func test_memorizeLatestWindowSize() {
+        subject.memorizeLatestWindowSize(.init(width: 100, height: 100))
+        
+        XCTAssertEqual(userSettingService.latestWindowSizeSetCallCount, 1)
+        XCTAssertEqual(userSettingService.latestWindowSize, .init(width: 100, height: 100))
     }
 }

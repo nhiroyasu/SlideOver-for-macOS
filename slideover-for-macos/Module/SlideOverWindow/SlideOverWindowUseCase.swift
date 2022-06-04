@@ -17,6 +17,7 @@ protocol SlideOverWindowUseCase {
     func requestDisappearWindow()
     func requestAppearWindow()
     func showHelpPage()
+    func memorizeLatestWindowSize(_ size: NSSize)
 }
 
 class SlideOverWindowInteractor: SlideOverWindowUseCase {
@@ -72,7 +73,9 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         resizeWindow()
         registerSwitchWindowVisibilityShortcutKey()
         
-        if let latestPosition = userSettingService.latestPosition {
+        if let latestPosition = userSettingService.latestPosition, let latestWindowSize = userSettingService.latestWindowSize {
+            presenter.initialArrangeWindow(type: latestPosition, size: latestWindowSize)
+        } else if let latestPosition = userSettingService.latestPosition {
             presenter.fixWindow(type: latestPosition)
         } else {
             userSettingService.latestPosition = defaultSlideOverPosition
@@ -148,8 +151,8 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     
     private func resizeWindow() {
         presenter.setResizeHandler { [weak self] current, next in
-            guard let currentPosition = self?.userSettingService.latestPosition else { return (next, .right) }
-            return (currentPosition.state.computeResize(from: current, to: next), currentPosition)
+            guard let currentPosition = self?.userSettingService.latestPosition, let screen = NSScreen.main else { return (next, .right) }
+            return (currentPosition.state.computeResize(screenSize: screen.visibleFrame.size, from: current, to: next), currentPosition)
         }
     }
     
@@ -172,6 +175,10 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     
     func showHelpPage() {
         presenter.openBrowser(url: helpUrl)
+    }
+    
+    func memorizeLatestWindowSize(_ size: NSSize) {
+        userSettingService.latestWindowSize = size
     }
 }
 
@@ -205,7 +212,7 @@ extension SlideOverWindowInteractor {
             .prefix(1)
             .sink { [weak self] event in
                 guard let self = self else { return }
-                self.presenter.adjustWindow()
+                self.presenter.fixWindowByMousePosition()
                 self.state.isWindowHidden = false
             }
     }

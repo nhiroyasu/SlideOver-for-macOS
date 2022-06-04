@@ -5,6 +5,7 @@ protocol UserSettingService {
     var initialPage: URL? { get set }
     var latestPage: URL? { get set }
     var latestPosition: SlideOverKind? { get set }
+    var latestWindowSize: NSSize? { get set }
     var latestUserAgent: UserAgent? { get set }
     var isNotAllowedGlobalShortcut: Bool { get set }
     var latestShownFeatureVersion: String? { get set }
@@ -70,6 +71,21 @@ class UserSettingServiceImpl: UserSettingService {
         }
         set {
             userDefaults.set(newValue, forKey: "latestShownFeatureVersion")
+        }
+    }
+    
+    var latestWindowSize: NSSize? {
+        get {
+            let array = userDefaults.array(forKey: "latestWindowSize") as? [Double]
+            if let array = array {
+                return NSSize(width: array[0], height: array[1])
+            } else {
+                return nil
+            }
+        }
+        set {
+            guard let newValue = newValue else { return }
+            userDefaults.set([Double(newValue.width), Double(newValue.height)], forKey: "latestWindowSize")
         }
     }
 }
