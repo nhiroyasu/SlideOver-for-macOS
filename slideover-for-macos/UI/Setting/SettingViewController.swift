@@ -3,6 +3,7 @@ import Cocoa
 class SettingViewController: NSViewController {
 
     @IBOutlet weak var hideWindowShortcutSwitchButton: NSSwitch!
+    @IBOutlet weak var showALittleWhenHideWindowSwitch: NSSwitch!
     var userSetting: UserSettingService?
     var globalShortcutService: GlobalShortcutService?
     var alertService: AlertService?
@@ -13,8 +14,13 @@ class SettingViewController: NSViewController {
         userSetting = Injector.shared.buildSafe(UserSettingService.self)
         globalShortcutService = Injector.shared.buildSafe(GlobalShortcutService.self)
         alertService = Injector.shared.buildSafe(AlertService.self)
+        
         if let isNotAllow = userSetting?.isNotAllowedGlobalShortcut {
             hideWindowShortcutSwitchButton.state = isNotAllow ? .off : .on
+        }
+        
+        if let isCompletelyHide = userSetting?.isCompletelyHideWindow {
+            showALittleWhenHideWindowSwitch.state = isCompletelyHide ? .off : .on
         }
     }
     
@@ -30,5 +36,16 @@ class SettingViewController: NSViewController {
             break
         }
             
+    }
+    
+    @IBAction func didTapShowALittleWhenHideWindowSwitch(_ sender: Any) {
+        switch showALittleWhenHideWindowSwitch.state {
+        case .on:
+            userSetting?.isCompletelyHideWindow = false
+        case .off:
+            userSetting?.isCompletelyHideWindow = true
+        default:
+            break
+        }
     }
 }

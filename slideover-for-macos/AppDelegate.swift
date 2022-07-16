@@ -23,6 +23,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             mainWindowController.showWindow(self)
         }
     }
+    
+    func applicationDidUnhide(_ notification: Notification) {
+        notificationManager?.push(name: .displaySlideOver, param: nil)
+    }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application

@@ -163,6 +163,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         output?.focusSearchBar()
     }
     
+    private var windowSizeBeforeHideCompletely: NSSize?
     func disappearWindow(completion: @escaping (Bool) -> Void) {
         guard let output = output, !output.isMiniaturized else {
             completion(false)
@@ -174,23 +175,32 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
                 completion(false)
                 return
             }
-            let isSuccess = self.slideOverService.hideWindow(for: window, type: position)
-            if isSuccess {
-                switch position {
-                case .left, .topLeft, .bottomLeft:
-                    self.output?.contentView?.hideReappearLeftButton(completion: {})
-                    self.output?.contentView?.showReappearRightButton(completion: { [weak self] in
-                        self?.output?.setWindowAlpha(0.4)
-                    })
-                case .right, .topRight, .bottomRight:
-                    self.output?.contentView?.hideReappearRightButton(completion: {})
-                    self.output?.contentView?.showReappearLeftButton(completion: { [weak self] in
-                        self?.output?.setWindowAlpha(0.4)
-                    })
+            
+            if self.userSetting.isCompletelyHideWindow {
+                self.windowSizeBeforeHideCompletely = window.frame.size
+                let isSuccess = self.slideOverService.hideWindowCompletely(for: window, type: position)
+                NSApplication.shared.hide(nil)
+                completion(isSuccess)
+            } else {
+                let isSuccess = self.slideOverService.hideWindowOnlyHalf(for: window, type: position)
+                if isSuccess {
+                    switch position {
+                    case .left, .topLeft, .bottomLeft:
+                        self.output?.contentView?.hideReappearLeftButton(completion: {})
+                        self.output?.contentView?.showReappearRightButton(completion: { [weak self] in
+                            self?.output?.setWindowAlpha(0.4)
+                        })
+                    case .right, .topRight, .bottomRight:
+                        self.output?.contentView?.hideReappearRightButton(completion: {})
+                        self.output?.contentView?.showReappearLeftButton(completion: { [weak self] in
+                            self?.output?.setWindowAlpha(0.4)
+                        })
+                    }
                 }
+                completion(isSuccess)
             }
-            completion(isSuccess)
         }
+      
     }
     
     func appearWindow(completion: @escaping (Bool) -> Void) {
@@ -202,12 +212,21 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
         }
         
         output.fixWindow { [weak self] window in
-            guard let window = window else {
+            guard let self = self, let window = window else {
                 completion(false)
                 return
             }
-            self?.slideOverService.arrangeWindow(for: window, type: position)
-            self?.restoreHiddenWindow()
+            
+            if self.userSetting.isCompletelyHideWindow {
+                NSApplication.shared.unhide(nil)
+                if let windowSize = self.windowSizeBeforeHideCompletely {
+                    self.slideOverService.arrangeWindow(for: window, windowSize: windowSize, type: position)
+                    self.windowSizeBeforeHideCompletely = nil
+                }
+            } else {
+                self.slideOverService.arrangeWindow(for: window, type: position)
+            }
+            self.restoreHiddenWindow()
             completion(true)
         }
     }

@@ -12,6 +12,7 @@
 		4F88368C2841DE32003C6333 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88368B2841DE32003C6333 /* WindowManager.swift */; };
 		4F88368E2841E22D003C6333 /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F88368D2841E22D003C6333 /* ApplicationService.swift */; };
 		4F9248F1283A3B5D0059C7AC /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9248F0283A3B5D0059C7AC /* String+.swift */; };
+		4FB85F96288272E300D03E22 /* SlideOverWindowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB85F95288272E300D03E22 /* SlideOverWindowState.swift */; };
 		4FBCEAFA27C1FA3300BCF88C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEAF927C1FA3300BCF88C /* AppDelegate.swift */; };
 		4FBCEAFC27C1FA3300BCF88C /* SlideOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCEAFB27C1FA3300BCF88C /* SlideOverViewController.swift */; };
 		4FBCEAFE27C1FA3400BCF88C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FBCEAFD27C1FA3400BCF88C /* Assets.xcassets */; };
@@ -79,6 +80,7 @@
 		4F88368B2841DE32003C6333 /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 		4F88368D2841E22D003C6333 /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
 		4F9248F0283A3B5D0059C7AC /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		4FB85F95288272E300D03E22 /* SlideOverWindowState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverWindowState.swift; sourceTree = "<group>"; };
 		4FBCEAF627C1FA3300BCF88C /* Fixture in Picture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fixture in Picture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FBCEAF927C1FA3300BCF88C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4FBCEAFB27C1FA3300BCF88C /* SlideOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOverViewController.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				4FBCEB3F27C63B6C00BCF88C /* SlideOverWindowAction.swift */,
 				4FBCEB4127C63B8D00BCF88C /* SlideOverWindowUseCase.swift */,
 				4FBCEB3C27C63A3000BCF88C /* SlideOverWindowPresenter.swift */,
+				4FB85F95288272E300D03E22 /* SlideOverWindowState.swift */,
 			);
 			path = SlideOverWindow;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				4FBE65862821601D0001FB4E /* SlideOverView.swift in Sources */,
 				4FBCEB3527C6285000BCF88C /* AppContainer.swift in Sources */,
 				4FBCEB2D27C626FD00BCF88C /* Injectable.swift in Sources */,
+				4FB85F96288272E300D03E22 /* SlideOverWindowState.swift in Sources */,
 				4FBCEAFC27C1FA3300BCF88C /* SlideOverViewController.swift in Sources */,
 				4F88368A2841B8CB003C6333 /* FeaturePresentViewController.swift in Sources */,
 				4FBE658F282218E90001FB4E /* AntialiasedImageView.swift in Sources */,

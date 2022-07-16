@@ -69,12 +69,13 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         observeHideWindowNotification()
         observeMouseEvent()
         observeZoomNotifications()
+        observeDisplaySlideOverNotification()
         setWillMoveNotification()
         setRightMouseUpSubject()
         resizeWindow()
         registerSwitchWindowVisibilityShortcutKey()
         
-        if let latestPosition = userSettingService.latestPosition, let latestWindowSize = userSettingService.latestWindowSize {
+        if let latestPosition = userSettingService.latestPosition, let latestWindowSize = userSettingService.latestWindowSize, latestWindowSize.width != 0 {
             presenter.initialArrangeWindow(type: latestPosition, size: latestWindowSize)
         } else if let latestPosition = userSettingService.latestPosition {
             presenter.fixWindow(type: latestPosition)
@@ -307,6 +308,12 @@ extension SlideOverWindowInteractor {
         
         notificationManager.observe(name: .zoomResetWebView) { [weak self] _ in
             self?.presenter.resetZoom()
+        }
+    }
+    
+    private func observeDisplaySlideOverNotification() {
+        notificationManager.observe(name: .displaySlideOver) { [weak self] _ in
+            self?.requestAppearWindow()
         }
     }
 }

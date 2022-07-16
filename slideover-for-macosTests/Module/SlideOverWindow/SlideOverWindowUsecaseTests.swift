@@ -49,7 +49,7 @@ class SlideOverWindowUseCaseTests: XCTestCase {
             setUp()
             subject.setUp()
             
-            XCTAssertEqual(notificationManager.observeCallCount, 9)
+            XCTAssertEqual(notificationManager.observeCallCount, 10)
             XCTAssertEqual(notificationManager.observeArgValues.first, .reload)
             XCTAssertEqual(notificationManager.observeArgValues[1], .clearCache)
             XCTAssertEqual(notificationManager.observeArgValues[2], .openUrl)
