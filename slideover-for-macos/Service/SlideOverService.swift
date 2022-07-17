@@ -1,5 +1,6 @@
 import Foundation
 import AppKit
+import Injectable
 
 enum SlideOverKind: Int {
     case left

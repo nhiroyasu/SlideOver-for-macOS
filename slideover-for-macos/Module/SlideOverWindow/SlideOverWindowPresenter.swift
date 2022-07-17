@@ -1,5 +1,6 @@
 import Foundation
 import QuartzCore
+import Injectable
 
 /// @mockable
 protocol SlideOverWindowPresenter {
@@ -151,12 +152,12 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     }
     
     func setResizeHandler(handler: @escaping (NSSize, NSSize) -> (NSSize, SlideOverKind)) {
-        var window = output
-        window?.windowWillResizeHandler = { [weak self] currentWindow, next in
-            let (nextSize, type) = handler(currentWindow.frame.size, next)
-            self?.slideOverService.arrangeWindowPosition(for: currentWindow, windowSize: nextSize, type: type)
-            return nextSize
-        }
+//        var window = output
+//        window?.windowWillResizeHandler = { [weak self] currentWindow, next in
+//            let (nextSize, type) = handler(currentWindow.frame.size, next)
+//            self?.slideOverService.arrangeWindowPosition(for: currentWindow, windowSize: nextSize, type: type)
+//            return nextSize
+//        }
     }
     
     func focusSearchBar() {

@@ -1,4 +1,5 @@
 import Foundation
+import Injectable
 
 /// @mockable
 protocol SlideOverWindowAction {

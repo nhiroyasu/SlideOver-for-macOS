@@ -1,6 +1,7 @@
 import Foundation
 import AppKit
 import Combine
+import Injectable
 
 /// @mockable
 protocol SlideOverWindowUseCase {
@@ -152,10 +153,10 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     }
     
     private func resizeWindow() {
-        presenter.setResizeHandler { [weak self] current, next in
-            guard let currentPosition = self?.userSettingService.latestPosition, let screen = NSScreen.main else { return (next, .right) }
-            return (currentPosition.state.computeResize(screenSize: screen.visibleFrame.size, from: current, to: next), currentPosition)
-        }
+//        presenter.setResizeHandler { [weak self] current, next in
+//            guard let currentPosition = self?.userSettingService.latestPosition, let screen = NSScreen.main else { return (next, .right) }
+//            return (currentPosition.state.computeResize(screenSize: screen.visibleFrame.size, from: current, to: next), currentPosition)
+//        }
     }
     
     func requestChangingPosition(type: SlideOverKind) {

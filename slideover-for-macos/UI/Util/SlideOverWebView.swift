@@ -1,15 +1,16 @@
 import Foundation
 import WebKit
+import Injectable
 
 /// @mockable
 protocol SlideOverWebViewMenuDelegate {
     func didTapCopyLink()
     func didTapOpenBrowser()
-    func didTapRegisterInitialPage()
     func didTapWindowLayout(type: SlideOverKind)
     func didTapUserAgent(_ userAgent: UserAgent)
     func didTapHideWindow()
     func didTapHelp()
+    func didTapSetting()
 }
 
 class SlideOverWebView: WKWebView {
@@ -59,7 +60,8 @@ class SlideOverWebView: WKWebView {
             })),
             .item(data: .init(title: NSLocalizedString("Hide Window", comment: ""), action: #selector(didTapHideWindow), keyEquivalent: "s", keyEquivalentModify: [.command, .control], image: NSImage(systemSymbolName: "eye.slash", accessibilityDescription: nil))),
             .separator,
-            .item(data: .init(title: NSLocalizedString("Help", comment: ""), action: #selector(didTapHelp), keyEquivalent: "", image: NSImage(systemSymbolName: "questionmark.circle", accessibilityDescription: nil)))
+            .item(data: .init(title: NSLocalizedString("Help", comment: ""), action: #selector(didTapHelp), keyEquivalent: "", image: NSImage(systemSymbolName: "questionmark.circle", accessibilityDescription: nil))),
+            .item(data: .init(title: NSLocalizedString("Setting", comment: ""), action: #selector(didTapSetting), keyEquivalent: ",", image: NSImage(systemSymbolName: "gearshape", accessibilityDescription: nil)))
         ]
         buildMenu(from: menuTree, for: menu)
         super.willOpenMenu(menu, with: event)
@@ -72,11 +74,7 @@ class SlideOverWebView: WKWebView {
     @objc func didTapOpenBrowser() {
         delegate?.didTapOpenBrowser()
     }
-    
-    @objc func didTapRegisterInitialPage() {
-        delegate?.didTapRegisterInitialPage()
-    }
-    
+
     @objc func didTapWindowLayoutForRight() {
         delegate?.didTapWindowLayout(type: .right)
     }
@@ -115,5 +113,9 @@ class SlideOverWebView: WKWebView {
 
     @objc func didTapHelp() {
         delegate?.didTapHelp()
+    }
+    
+    @objc func didTapSetting() {
+        delegate?.didTapSetting()
     }
 }
