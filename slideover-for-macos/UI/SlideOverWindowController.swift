@@ -14,7 +14,6 @@ protocol SlideOverWindowControllable {
     var progressBar: NSProgressIndicator? { get }
     var action: SlideOverAction { get }
     var contentView: SlideOverViewable? { get }
-    var webDisplayTypeItem: NSToolbarItem! { get }
 }
 
 class SlideOverWindowController: NSWindowController {
@@ -26,14 +25,21 @@ class SlideOverWindowController: NSWindowController {
             browserReloadItem.action = #selector(didTapBrowserReloadItem(_:))
         }
     }
-    @IBOutlet weak var registerInitialPageItem: NSToolbarItem!
     @IBOutlet weak var searchBar: NSSearchField! {
         didSet {
             searchBar.delegate = self
         }
     }
-    @IBOutlet weak var webDisplayTypeItem: NSToolbarItem!
-    @IBOutlet weak var bookmarkItem: NSToolbarItem!
+    @IBOutlet weak var actionItem: NSToolbarItem! {
+        didSet {
+            actionItem.action = #selector(didTapActionItem(_:))
+        }
+    }
+    @IBOutlet weak var actionPopupButton: NSPopUpButton! {
+        didSet {
+            setUpPopUpButton()
+        }
+    }
     private let state: SlideOverState
     
     let action: SlideOverAction
@@ -161,6 +167,52 @@ class SlideOverWindowController: NSWindowController {
     @objc func didTapBrowserReloadItem(_ sender: Any) {
         contentView?.browserReload()
     }
+    
+    @objc func didTapActionItem(_ sender: Any) {}
+    
+    @objc func didTapWindowLayoutForRight() {
+        action.didTapWindowLayoutForRightMenuItem()
+    }
+    
+    @objc func didTapWindowLayoutForLeft() {
+        action.didTapWindowLayoutForLeftMenuItem()
+    }
+    
+    @objc func didTapWindowLayoutForRightTop() {
+        action.didTapWindowLayoutForRightTopMenuItem()
+    }
+    
+    @objc func didTapWindowLayoutForRightBottom() {
+        action.didTapWindowLayoutForRightBottomMenuItem()
+    }
+    
+    @objc func didTapWindowLayoutForLeftTop() {
+        action.didTapWindowLayoutForLeftTopMenuItem()
+    }
+    
+    @objc func didTapWindowLayoutForLeftBottom() {
+        action.didTapWindowLayoutForLeftBottomMenuItem()
+    }
+    
+    @objc func didTapUserAgentForMobile() {
+        action.didTapUserAgentForMobileMenuItem()
+    }
+    
+    @objc func didTapUserAgentForDesktop() {
+        action.didTapUserAgentForDesktopMenuItem()
+    }
+    
+    @objc func didTapHideWindow() {
+        action.didTapHideWindowMenuItem()
+    }
+    
+    @objc func didTapHelp() {
+        action.didTapHelpMenuItem()
+    }
+    
+    @objc func didTapSetting() {
+        action.didTapSettingMenuItem()
+    }
 }
 
 extension SlideOverWindowController: NSWindowDelegate {
@@ -241,3 +293,37 @@ extension SlideOverWindowController: SlideOverWindowControllable {
     }
 }
 
+extension SlideOverWindowController {
+    private func setUpPopUpButton() {
+        let menuTree: [MenuItemType] = [
+            .separator,
+            .subMenu(data: .init(title: NSLocalizedString("Window Layout", comment: ""), image: NSImage(systemSymbolName: "uiwindow.split.2x1", accessibilityDescription: nil), items: [
+                .init(title: NSLocalizedString("Left", comment: ""), action: #selector(didTapWindowLayoutForRight), keyEquivalent: "", image: NSImage(named: "window_layout_right"), value: SlideOverKind.right),
+                .init(title: NSLocalizedString("Right", comment: ""), action: #selector(didTapWindowLayoutForLeft), keyEquivalent: "", image: NSImage(named: "window_layout_left"), value: SlideOverKind.left),
+                .init(title: NSLocalizedString("Top Right", comment: ""), action: #selector(didTapWindowLayoutForRightTop), keyEquivalent: "", image: NSImage(named: "window_layout_right_top"), value: SlideOverKind.topRight),
+                .init(title: NSLocalizedString("Bottom Right", comment: ""), action: #selector(didTapWindowLayoutForRightBottom), keyEquivalent: "", image: NSImage(named: "window_layout_right_bottom"), value: SlideOverKind.bottomRight),
+                .init(title: NSLocalizedString("Top Left", comment: ""), action: #selector(didTapWindowLayoutForLeftTop), keyEquivalent: "", image: NSImage(named: "window_layout_left_top"), value: SlideOverKind.topLeft),
+                .init(title: NSLocalizedString("Bottom Left", comment: ""), action: #selector(didTapWindowLayoutForLeftBottom), keyEquivalent: "", image: NSImage(named: "window_layout_left_bottom"), value: SlideOverKind.bottomLeft),
+            ], customHandler: { [weak self] data, menuItem in
+                if self?.userSettingService.latestPosition == data.value as? SlideOverKind {
+                    menuItem.state = .on
+                }
+            })),
+            .subMenu(data: .init(title: NSLocalizedString("Switch Display", comment: ""), image: NSImage(systemSymbolName: "display.2", accessibilityDescription: nil), items: [
+                .init(title: NSLocalizedString("Mobile", comment: ""), action: #selector(didTapUserAgentForMobile), keyEquivalent: "", image: NSImage(systemSymbolName: "iphone", accessibilityDescription: nil), value: UserAgent.phone),
+                .init(title: NSLocalizedString("Desktop", comment: ""), action: #selector(didTapUserAgentForDesktop), keyEquivalent: "", image: NSImage(systemSymbolName: "laptopcomputer", accessibilityDescription: nil), value: UserAgent.desktop),
+            ], customHandler: { [weak self] data, menuItem in
+                if self?.userSettingService.latestUserAgent == data.value as? UserAgent {
+                    menuItem.state = .on
+                }
+            })),
+            .item(data: .init(title: NSLocalizedString("Hide Window", comment: ""), action: #selector(didTapHideWindow), keyEquivalent: "s", keyEquivalentModify: [.command, .control], image: NSImage(systemSymbolName: "eye.slash", accessibilityDescription: nil))),
+            .separator,
+            .item(data: .init(title: NSLocalizedString("Help", comment: ""), action: #selector(didTapHelp), keyEquivalent: "", image: NSImage(systemSymbolName: "questionmark.circle", accessibilityDescription: nil))),
+            .item(data: .init(title: NSLocalizedString("Setting", comment: ""), action: #selector(didTapSetting), keyEquivalent: ",", image: NSImage(systemSymbolName: "gearshape", accessibilityDescription: nil)))
+        ]
+        let menu = actionPopupButton.menu!
+        buildMenu(from: menuTree, for: menu)
+        actionPopupButton.menu = menu
+    }
+}

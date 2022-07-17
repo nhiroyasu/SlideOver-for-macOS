@@ -2,6 +2,7 @@ import Foundation
 import Injectable
 
 protocol SlideOverAction {
+    // view
     func showWindow()
     func windowWillClose(size: NSSize?)
     func windowDidEndLiveResize(_ frame: NSRect)
@@ -12,7 +13,19 @@ protocol SlideOverAction {
     func didTapHelp()
     func didTapSetting()
     func didTapReappearButton()
-    
+    // menu
+    func didTapWindowLayoutForRightMenuItem()
+    func didTapWindowLayoutForLeftMenuItem()
+    func didTapWindowLayoutForRightTopMenuItem()
+    func didTapWindowLayoutForRightBottomMenuItem()
+    func didTapWindowLayoutForLeftTopMenuItem()
+    func didTapWindowLayoutForLeftBottomMenuItem()
+    func didTapUserAgentForMobileMenuItem()
+    func didTapUserAgentForDesktopMenuItem()
+    func didTapHideWindowMenuItem()
+    func didTapHelpMenuItem()
+    func didTapSettingMenuItem()
+    // notification
     func leftClickUpMouseButton()
     func doubleRightClickMouseButton()
     func reloadNotification()
@@ -140,5 +153,49 @@ class SlideOverActionImpl: SlideOverAction {
     
     func zoomResetNotification() {
         useCase.zoomReset()
+    }
+    
+    func didTapWindowLayoutForRightMenuItem() {
+        useCase.requestChangingPosition(type: .right)
+    }
+    
+    func didTapWindowLayoutForLeftMenuItem() {
+        useCase.requestChangingPosition(type: .left)
+    }
+    
+    func didTapWindowLayoutForRightTopMenuItem() {
+        useCase.requestChangingPosition(type: .topRight)
+    }
+    
+    func didTapWindowLayoutForRightBottomMenuItem() {
+        useCase.requestChangingPosition(type: .bottomRight)
+    }
+    
+    func didTapWindowLayoutForLeftTopMenuItem() {
+        useCase.requestChangingPosition(type: .topLeft)
+    }
+    
+    func didTapWindowLayoutForLeftBottomMenuItem() {
+        useCase.requestChangingPosition(type: .bottomLeft)
+    }
+    
+    func didTapUserAgentForMobileMenuItem() {
+        useCase.updateUserAgent(.phone)
+    }
+    
+    func didTapUserAgentForDesktopMenuItem() {
+        useCase.updateUserAgent(.desktop)
+    }
+    
+    func didTapHideWindowMenuItem() {
+        useCase.disappear(for: ObjectFrame(from: state.cacheFrame))
+    }
+    
+    func didTapHelpMenuItem() {
+        useCase.showHelp()
+    }
+    
+    func didTapSettingMenuItem() {
+        useCase.showSetting()
     }
 }

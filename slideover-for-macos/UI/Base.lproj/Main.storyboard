@@ -527,15 +527,30 @@ DQ
                                     </searchField>
                                 </searchToolbarItem>
                                 <toolbarItem implicitItemIdentifier="DCE70A8D-5BAF-4A07-BE94-981DC7F16036" label="Reload" paletteLabel="Reload" tag="-1" image="arrow.clockwise" catalog="system" bordered="YES" sizingBehavior="auto" navigational="YES" id="B9i-cD-GM3"/>
-                                <toolbarItem implicitItemIdentifier="315E3839-F71A-43C6-9498-9DB592ACAC83" label="Register Initial Page" paletteLabel="Register Initial Page" tag="-1" image="checkmark.circle" catalog="system" bordered="YES" title="Register Initial Page" sizingBehavior="auto" id="2ro-Pl-SFg"/>
-                                <toolbarItem implicitItemIdentifier="8BD77F7F-EE82-4879-9AFE-672C9D3BEBF3" label="Bookmark" paletteLabel="Bookmark" tag="-1" image="bookmark" catalog="system" bordered="YES" sizingBehavior="auto" id="Hvw-ot-PPu"/>
-                                <toolbarItem implicitItemIdentifier="9191882B-BBCF-45D7-B7E4-9F9C989CC1A8" label="Mobile" paletteLabel="Mobile" tag="-1" image="iphone" catalog="system" bordered="YES" sizingBehavior="auto" navigational="YES" id="LsU-ll-Bnm"/>
+                                <toolbarItem implicitItemIdentifier="C62D32AF-1CCA-426A-82FE-D13E2C23EC08" label="Action" paletteLabel="Action" image="ellipsis.circle" catalog="system" sizingBehavior="auto" id="RSZ-k7-hNP">
+                                    <nil key="toolTip"/>
+                                    <popUpButton key="view" id="3nQ-y6-LLI">
+                                        <rect key="frame" x="0.0" y="14" width="45" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <popUpButtonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" inset="2" pullsDown="YES" arrowPosition="noArrow" id="64D-30-Dfn">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                            <menu key="menu" id="dwh-qi-jwo">
+                                                <items>
+                                                    <menuItem state="on" image="ellipsis.circle" catalog="system" hidden="YES" id="ECN-9W-yT8" userLabel="TopItem"/>
+                                                </items>
+                                            </menu>
+                                        </popUpButtonCell>
+                                        <color key="contentTintColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    </popUpButton>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="oD3-pz-Emn"/>
                                 <toolbarItem reference="bxw-Kz-tTh"/>
                                 <toolbarItem reference="B9i-cD-GM3"/>
                                 <searchToolbarItem reference="Ad6-IK-6Y7"/>
+                                <toolbarItem reference="RSZ-k7-hNP"/>
                             </defaultToolbarItems>
                         </toolbar>
                         <connections>
@@ -543,13 +558,12 @@ DQ
                         </connections>
                     </window>
                     <connections>
-                        <outlet property="bookmarkItem" destination="Hvw-ot-PPu" id="TiK-Nk-uky"/>
+                        <outlet property="actionItem" destination="RSZ-k7-hNP" id="4GZ-gg-vdY"/>
+                        <outlet property="actionPopupButton" destination="3nQ-y6-LLI" id="Xqm-2h-4YY"/>
                         <outlet property="browserBackItem" destination="oD3-pz-Emn" id="5o1-1K-lAt"/>
                         <outlet property="browserForwardItem" destination="bxw-Kz-tTh" id="kLi-pa-BjK"/>
                         <outlet property="browserReloadItem" destination="B9i-cD-GM3" id="tDH-5U-jpl"/>
-                        <outlet property="registerInitialPageItem" destination="2ro-Pl-SFg" id="jow-cq-xbk"/>
                         <outlet property="searchBar" destination="lVO-rk-hs3" id="fca-6w-2h8"/>
-                        <outlet property="webDisplayTypeItem" destination="LsU-ll-Bnm" id="6dr-Ly-4Iu"/>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
                     </connections>
                 </windowController>
@@ -622,10 +636,8 @@ DQ
         <image name="arrow.backward" catalog="system" width="16" height="12"/>
         <image name="arrow.clockwise" catalog="system" width="14" height="16"/>
         <image name="arrow.forward" catalog="system" width="16" height="12"/>
-        <image name="bookmark" catalog="system" width="13" height="16"/>
-        <image name="checkmark.circle" catalog="system" width="15" height="15"/>
+        <image name="ellipsis.circle" catalog="system" width="15" height="15"/>
         <image name="feature_1.4.0" width="513" height="512"/>
-        <image name="iphone" catalog="system" width="13" height="16"/>
         <image name="reappear" width="248" height="710"/>
         <image name="reappear reverse" width="248" height="710"/>
         <namedColor name="AccentColor">

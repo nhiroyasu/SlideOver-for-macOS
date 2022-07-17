@@ -140,15 +140,6 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
     func setUserAgent(_ userAgent: UserAgent) {
         self.output?.contentView?.webView.customUserAgent = userAgent.context
         self.output?.contentView?.webView.reloadFromOrigin()
-        
-        switch userAgent {
-        case .desktop:
-            self.output?.webDisplayTypeItem.image = NSImage(systemSymbolName: "iphone", accessibilityDescription: nil)
-            self.output?.webDisplayTypeItem.label = NSLocalizedString("Mobile", comment: "")
-        case .phone:
-            self.output?.webDisplayTypeItem.image = NSImage(systemSymbolName: "laptopcomputer", accessibilityDescription: nil)
-            self.output?.webDisplayTypeItem.label = NSLocalizedString("Desktop", comment: "")
-        }
     }
     
     func setResizeHandler(handler: @escaping (NSSize, NSSize) -> (NSSize, SlideOverKind)) {
