@@ -455,90 +455,49 @@ DQ
             <objects>
                 <viewController id="R0b-pJ-cfP" customClass="SettingViewController" customModule="Fixture_in_Picture" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="io1-O5-rkE">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="763" height="431"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JVb-mx-aCk">
-                                <rect key="frame" x="109" y="105" width="263" height="60"/>
-                                <subviews>
-                                    <stackView distribution="fillProportionally" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GJq-dP-pIy">
-                                        <rect key="frame" x="0.0" y="38" width="188" height="22"/>
-                                        <subviews>
-                                            <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="0pk-Ts-pbd">
-                                                <rect key="frame" x="-2" y="-2" width="42" height="25"/>
-                                                <connections>
-                                                    <action selector="didTapHideWindowShortcutSwitch:" target="R0b-pJ-cfP" id="igg-Hg-lN4"/>
-                                                </connections>
-                                            </switch>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F5Z-Of-sPK">
-                                                <rect key="frame" x="44" y="3" width="146" height="17"/>
-                                                <textFieldCell key="cell" lineBreakMode="clipping" title="⌘+⌃+s : hide window" id="ceQ-jV-8r8">
-                                                    <font key="font" metaFont="system" size="14"/>
-                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                            </textField>
-                                        </subviews>
-                                        <visibilityPriorities>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                        </visibilityPriorities>
-                                        <customSpacing>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                        </customSpacing>
-                                    </stackView>
-                                    <stackView distribution="fillProportionally" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p7C-6Y-dd4">
-                                        <rect key="frame" x="0.0" y="0.0" width="263" height="22"/>
-                                        <subviews>
-                                            <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="KWD-Q2-I7a">
-                                                <rect key="frame" x="-2" y="-2" width="42" height="25"/>
-                                                <connections>
-                                                    <action selector="didTapShowALittleWhenHideWindowSwitch:" target="R0b-pJ-cfP" id="Kec-aG-0ne"/>
-                                                </connections>
-                                            </switch>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="neT-9L-c10">
-                                                <rect key="frame" x="44" y="3" width="221" height="17"/>
-                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Show a little when &quot;Hide window&quot;" id="Df5-dj-PCz">
-                                                    <font key="font" metaFont="system" size="14"/>
-                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                            </textField>
-                                        </subviews>
-                                        <visibilityPriorities>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                        </visibilityPriorities>
-                                        <customSpacing>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                        </customSpacing>
-                                    </stackView>
-                                </subviews>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
-                            </stackView>
+                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgP-Lk-Aib">
+                                <rect key="frame" x="0.0" y="0.0" width="763" height="431"/>
+                                <clipView key="contentView" id="RE0-P7-JPs">
+                                    <rect key="frame" x="1" y="1" width="761" height="429"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView id="r9h-Ux-O21">
+                                            <rect key="frame" x="0.0" y="0.0" width="761" height="158"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="mrk-Ze-l1b">
+                                                <size key="itemSize" width="50" height="50"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </collectionView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="hD3-Cb-2bu">
+                                    <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="dAD-Yn-uUW">
+                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="JVb-mx-aCk" firstAttribute="centerY" secondItem="io1-O5-rkE" secondAttribute="centerY" id="MMb-kQ-jCq"/>
-                            <constraint firstItem="JVb-mx-aCk" firstAttribute="centerX" secondItem="io1-O5-rkE" secondAttribute="centerX" id="Pae-6l-lJr"/>
+                            <constraint firstItem="QgP-Lk-Aib" firstAttribute="top" secondItem="io1-O5-rkE" secondAttribute="top" id="HKC-ia-cmS"/>
+                            <constraint firstAttribute="trailing" secondItem="QgP-Lk-Aib" secondAttribute="trailing" id="PeY-6U-sLg"/>
+                            <constraint firstItem="QgP-Lk-Aib" firstAttribute="leading" secondItem="io1-O5-rkE" secondAttribute="leading" id="lDY-JK-28X"/>
+                            <constraint firstAttribute="bottom" secondItem="QgP-Lk-Aib" secondAttribute="bottom" id="mLx-BM-EWT"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="hideWindowShortcutSwitchButton" destination="0pk-Ts-pbd" id="YqF-9u-AFh"/>
-                        <outlet property="showALittleWhenHideWindowSwitch" destination="KWD-Q2-I7a" id="5im-eG-iAz"/>
+                        <outlet property="collectionView" destination="r9h-Ux-O21" id="alQ-VL-x6t"/>
                     </connections>
                 </viewController>
                 <customObject id="MZ2-TU-oBJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1459" y="32"/>
+            <point key="canvasLocation" x="1582" y="32"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">

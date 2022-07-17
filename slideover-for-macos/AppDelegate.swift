@@ -21,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             injector: Injector(container: container),
             state: initState
         )
+        container.register(SlideOverTransition.self) { _ in self.slideOverCoordinator }
         let windowController = slideOverCoordinator.create()
         windowController.showWindow(self)
     }

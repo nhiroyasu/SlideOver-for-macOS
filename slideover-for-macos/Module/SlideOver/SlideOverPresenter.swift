@@ -1,6 +1,10 @@
 import Foundation
 import Injectable
 
+protocol SlideOverTransition {
+    func openSettingWindow()
+}
+
 protocol SlideOverPresenter {
     func fix(at frame: NSRect)
     func fixWithDisappear(at frame: NSRect)
@@ -17,16 +21,17 @@ protocol SlideOverPresenter {
 
 class SlideOverPresenterImpl: SlideOverPresenter {
     
+    private let injector: Injectable
     private let state: SlideOverState
     private let applicationService: ApplicationService
     private var userSettingService: UserSettingService
-    private let windowManager: WindowManager
+    private lazy var transition: SlideOverTransition? = injector.buildSafe()
     
     internal init(injector: Injectable = Injector.shared, state: SlideOverState) {
+        self.injector = injector
         self.state = state
-        self.applicationService = injector.build(ApplicationService.self)
+        self.applicationService = injector.build()
         self.userSettingService = injector.build()
-        self.windowManager = injector.build()
     }
     
     func fix(at frame: NSRect) {
@@ -78,6 +83,6 @@ class SlideOverPresenterImpl: SlideOverPresenter {
     }
     
     func openSettingWindow() {
-        windowManager.lunch(.setting)
+        transition?.openSettingWindow()
     }
 }

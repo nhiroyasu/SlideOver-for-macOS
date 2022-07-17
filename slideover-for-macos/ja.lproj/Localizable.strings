@@ -18,3 +18,6 @@
 "Setting" = "設定";
 "⌘+⌃+s : hide window" = "⌘+⌃+s でウィンドウを隠す";
 "Please restart the application" = "アプリを再起動してください";
+"Show a little when 'Hide window'" = "'ウィンドウを隠す'をした際、一部分だけ表示しておく";
+"The 'Hide Window' function can be invoked by pressing ⌘ (command key), ^ (control key) and s (S key) simultaneously." = "'ウィンドウを隠す' 機能を⌘(コマンドキー), ^(コントロールキー), s(Sキー)の同時押しで呼び出すことができます。";
+"When the 'Hide Window' function is executed, a portion of the window remains on the screen." = "'ウィンドウを隠す' 機能を実行すると、ウィンドウの一部が画面上に残ります。";

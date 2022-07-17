@@ -24,13 +24,11 @@ class SlideOverContainerBuilder {
 }
 
 class SlideOverCoordinator: Coordinator {
-    private var windowController: SlideOverWindowController!
+    private var windowController: SlideOverWindowController?
+    private lazy var settingCoordinator: SettingCoordinator = .init(injector: injector)
     private let injector: Injectable
     private let state: SlideOverState
-    private let notificationObserver: SlideOverNotificationObserver 
-    private lazy var action: SlideOverAction = injector.build()
-    private lazy var useCase: SlideOverUseCase = injector.build()
-    private lazy var presenter: SlideOverPresenter = injector.build()
+    private let notificationObserver: SlideOverNotificationObserver
     
     init(injector: Injectable, state: SlideOverState) {
         self.injector = injector
@@ -39,10 +37,21 @@ class SlideOverCoordinator: Coordinator {
     }
     
     func create() -> NSWindowController {
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)
-        windowController = storyboard.instantiateController(identifier: "slideOverWindowController") { coder in
-            SlideOverWindowController(coder: coder, injector: self.injector, state: self.state)
+        if let windowController = windowController {
+            return windowController
+        } else {
+            let storyboard = NSStoryboard(name: "Main", bundle: nil)
+            windowController = storyboard.instantiateController(identifier: "slideOverWindowController") { coder in
+                SlideOverWindowController(coder: coder, injector: self.injector, state: self.state)
+            }
+            return windowController!
         }
-        return windowController
+    }
+}
+
+extension SlideOverCoordinator: SlideOverTransition {
+    func openSettingWindow() {
+        let windowController = settingCoordinator.create()
+        windowController.showWindow(self)
     }
 }
