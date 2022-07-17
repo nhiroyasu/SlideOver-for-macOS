@@ -122,8 +122,8 @@ class SlideOverInteractor: SlideOverUseCase {
     /// SlideOverを非表示にする
     func disappear(for windowFrame: ObjectFrame) {
         let newFrame: NSRect
-        if userSettingService.isCompletelyHideWindow {
-            newFrame = slideOverComputation.disappearCompletely(for: windowFrame, type: userSettingService.latestPosition ?? defaultSlideOverPosition)
+        if userSettingService.hiddenActionIsMiniaturized {
+            newFrame = windowFrame.frame
         } else {
             newFrame = slideOverComputation.disappearOutside(for: windowFrame, type: userSettingService.latestPosition ?? defaultSlideOverPosition)
         }

@@ -177,7 +177,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
                 return
             }
             
-            if self.userSetting.isCompletelyHideWindow {
+            if self.userSetting.hiddenActionIsMiniaturized {
                 self.windowSizeBeforeHideCompletely = window.frame.size
                 let isSuccess = self.slideOverService.hideWindowCompletely(for: window, type: position)
                 NSApplication.shared.hide(nil)
@@ -218,7 +218,7 @@ class SlideOverWindowPresenterImpl: SlideOverWindowPresenter {
                 return
             }
             
-            if self.userSetting.isCompletelyHideWindow {
+            if self.userSetting.hiddenActionIsMiniaturized {
                 NSApplication.shared.unhide(nil)
                 if let windowSize = self.windowSizeBeforeHideCompletely {
                     self.slideOverService.arrangeWindow(for: window, windowSize: windowSize, type: position)

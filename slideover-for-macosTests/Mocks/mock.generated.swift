@@ -236,7 +236,7 @@ class UserSettingServiceMock: UserSettingService {
         self.latestWindowSize = latestWindowSize
         self.latestUserAgent = latestUserAgent
         self.isNotAllowedGlobalShortcut = isNotAllowedGlobalShortcut
-        self.isCompletelyHideWindow = isCompletelyHideWindow
+        self.hiddenActionIsMiniaturized = isCompletelyHideWindow
         self.latestShownFeatureVersion = latestShownFeatureVersion
     }
 
@@ -260,7 +260,7 @@ class UserSettingServiceMock: UserSettingService {
     var isNotAllowedGlobalShortcut: Bool = false { didSet { isNotAllowedGlobalShortcutSetCallCount += 1 } }
 
     private(set) var isCompletelyHideWindowSetCallCount = 0
-    var isCompletelyHideWindow: Bool = false { didSet { isCompletelyHideWindowSetCallCount += 1 } }
+    var hiddenActionIsMiniaturized: Bool = false { didSet { isCompletelyHideWindowSetCallCount += 1 } }
 
     private(set) var latestShownFeatureVersionSetCallCount = 0
     var latestShownFeatureVersion: String? = nil { didSet { latestShownFeatureVersionSetCallCount += 1 } }

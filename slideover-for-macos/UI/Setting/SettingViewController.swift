@@ -27,23 +27,23 @@ class SettingViewController: NSViewController {
             action: { [weak self] isOn in
                 if isOn {
                     self?.userSetting?.isNotAllowedGlobalShortcut = false
-                    self?.alertService?.alert(msg: NSLocalizedString("Please restart the application", comment: ""), completionHandler: {})
                 } else {
                     self?.userSetting?.isNotAllowedGlobalShortcut = true
-                    self?.alertService?.alert(msg: NSLocalizedString("Please restart the application", comment: ""), completionHandler: {})
                 }
+                self?.alertService?.alert(msg: NSLocalizedString("Please restart the application", comment: ""), completionHandler: {})
             }
         ),
         .init(
-            isOn: !(userSetting?.isCompletelyHideWindow ?? false),
+            isOn: !(userSetting?.hiddenActionIsMiniaturized ?? true),
             title: NSLocalizedString("Show a little when 'Hide window'", comment: ""),
-            description: NSLocalizedString("When the 'Hide Window' function is executed, a portion of the window remains on the screen.", comment: ""),
+            description: NSLocalizedString("When the 'Hide Window' function is executed, a portion of the window remains on the screen.\nIf the switch is turned OFF, the window is minimized.", comment: ""),
             action: { [weak self] isOn in
                 if isOn {
-                    self?.userSetting?.isCompletelyHideWindow = false
+                    self?.userSetting?.hiddenActionIsMiniaturized = false
                 } else {
-                    self?.userSetting?.isCompletelyHideWindow = true
+                    self?.userSetting?.hiddenActionIsMiniaturized = true
                 }
+                self?.alertService?.alert(msg: NSLocalizedString("Please restart the application", comment: ""), completionHandler: {})
             }
         )
     ]

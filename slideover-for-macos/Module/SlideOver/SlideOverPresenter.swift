@@ -25,6 +25,7 @@ class SlideOverPresenterImpl: SlideOverPresenter {
     private let state: SlideOverState
     private let applicationService: ApplicationService
     private var userSettingService: UserSettingService
+    private let alertService: AlertService
     private lazy var transition: SlideOverTransition? = injector.buildSafe()
     
     internal init(injector: Injectable = Injector.shared, state: SlideOverState) {
@@ -32,6 +33,7 @@ class SlideOverPresenterImpl: SlideOverPresenter {
         self.state = state
         self.applicationService = injector.build()
         self.userSettingService = injector.build()
+        self.alertService = injector.build()
     }
     
     func fix(at frame: NSRect) {

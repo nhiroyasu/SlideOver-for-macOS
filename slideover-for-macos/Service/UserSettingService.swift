@@ -8,7 +8,7 @@ protocol UserSettingService {
     var latestWindowSize: NSSize? { get set }
     var latestUserAgent: UserAgent? { get set }
     var isNotAllowedGlobalShortcut: Bool { get set }
-    var isCompletelyHideWindow: Bool { get set }
+    var hiddenActionIsMiniaturized: Bool { get set }
     var latestShownFeatureVersion: String? { get set }
 }
 
@@ -66,12 +66,16 @@ class UserSettingServiceImpl: UserSettingService {
         }
     }
     
-    var isCompletelyHideWindow: Bool {
+    var hiddenActionIsMiniaturized: Bool {
         get {
-            userDefaults.bool(forKey: "isCompletelyHideWindow")
+            if userDefaults.object(forKey: "hiddenActionIsMiniaturized") == nil {
+                return true
+            } else {
+                return userDefaults.bool(forKey: "hiddenActionIsMiniaturized")
+            }
         }
         set {
-            userDefaults.set(newValue, forKey: "isCompletelyHideWindow")
+            userDefaults.set(newValue, forKey: "hiddenActionIsMiniaturized")
         }
     }
     

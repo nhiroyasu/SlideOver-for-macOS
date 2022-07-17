@@ -58,12 +58,15 @@ class SlideOverWindowController: NSWindowController {
         window?.contentViewController as? SlideOverViewable
     }
     
+    // state observation
     private var frameObservation: NSKeyValueObservation?
     private var isHiddenOutsideObservation: NSKeyValueObservation?
     private var isHiddenCompletelyObservation: NSKeyValueObservation?
     private var userAgentObservation: NSKeyValueObservation?
     private var urlObservation: NSKeyValueObservation?
     private var zoomObservation: NSKeyValueObservation?
+    // window observation
+    private var isMiniaturizedObservation: NSKeyValueObservation?
     
     private func observeState() {
         frameObservation = state.observe(\.frame, options: [.initial, .new]) { [weak self] state, changeValue in
@@ -73,13 +76,11 @@ class SlideOverWindowController: NSWindowController {
         
         isHiddenOutsideObservation = state.observe(\.isHidden, options: [.initial, .new]) { [weak self] state, changeValue in
             guard let self = self, let value = changeValue.newValue else { return }
-            if self.userSettingService.isCompletelyHideWindow {
+            if self.userSettingService.hiddenActionIsMiniaturized {
                 if value {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                        NSApplication.shared.hide(nil)
-                    }
+                    self.window?.miniaturize(nil)
                 } else {
-                    NSApplication.shared.unhide(nil)
+                    self.window?.deminiaturize(nil)
                 }
             } else {
                 if value {
@@ -136,7 +137,11 @@ class SlideOverWindowController: NSWindowController {
     
     override func windowDidLoad() {
         window?.level = .floating
-        window?.styleMask = [.borderless, .utilityWindow, .titled, .closable, .miniaturizable, .resizable]
+        if userSettingService.hiddenActionIsMiniaturized {
+            window?.styleMask = [.borderless, .utilityWindow, .titled, .closable, .miniaturizable, .resizable]
+        } else {
+            window?.styleMask = [.borderless, .utilityWindow, .titled, .closable, .resizable]
+        }
         window?.collectionBehavior = [.canJoinAllSpaces]
     }
     
@@ -167,6 +172,14 @@ extension SlideOverWindowController: NSWindowDelegate {
     func windowDidEndLiveResize(_ notification: Notification) {
         guard let windowFrame = window?.frame else { return }
         action.windowDidEndLiveResize(windowFrame)
+    }
+    
+    func windowDidMiniaturize(_ notification: Notification) {
+        state.isHidden = true
+    }
+    
+    func windowDidDeminiaturize(_ notification: Notification) {
+        state.isHidden = false
     }
 }
 
