@@ -1,4 +1,5 @@
 import Cocoa
+import Injectable
 
 class FeaturePresentViewController: NSViewController {
     

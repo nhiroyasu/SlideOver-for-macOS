@@ -166,7 +166,7 @@ class SlideOverWindowPresenterTests: XCTestCase {
             XCTContext.runActivity(named: "right") { _ in
                 setUp()
                 userSetting.latestPosition = .right
-                slideOverService.hideWindowHandler = { _, _ in true }
+                slideOverService.hideWindowOnlyHalfHandler = { _, _ in true }
                 output.isMiniaturized = false
 
                 contentView.showReappearLeftButtonHandler = { $0() }
@@ -174,7 +174,7 @@ class SlideOverWindowPresenterTests: XCTestCase {
                 subject.disappearWindow { isSuccess = $0 }
                 
                 XCTAssertEqual(output.fixWindowCallCount, 1)
-                XCTAssertEqual(slideOverService.hideWindowCallCount, 1)
+                XCTAssertEqual(slideOverService.hideWindowOnlyHalfCallCount, 1)
                 XCTAssertEqual(contentView.hideReappearRightButtonCallCount, 1)
                 XCTAssertEqual(contentView.showReappearLeftButtonCallCount, 1)
                 XCTAssertEqual(contentView.showReappearRightButtonCallCount, 0)
@@ -186,14 +186,14 @@ class SlideOverWindowPresenterTests: XCTestCase {
             XCTContext.runActivity(named: "topRight") { _ in
                 setUp()
                 userSetting.latestPosition = .topRight
-                slideOverService.hideWindowHandler = { _, _ in true }
+                slideOverService.hideWindowOnlyHalfHandler = { _, _ in true }
                 output.isMiniaturized = false
 
                 contentView.showReappearLeftButtonHandler = { $0() }
                 subject.disappearWindow { _ in }
                 
                 XCTAssertEqual(output.fixWindowCallCount, 1)
-                XCTAssertEqual(slideOverService.hideWindowCallCount, 1)
+                XCTAssertEqual(slideOverService.hideWindowOnlyHalfCallCount, 1)
                 XCTAssertEqual(contentView.hideReappearRightButtonCallCount, 1)
                 XCTAssertEqual(contentView.showReappearLeftButtonCallCount, 1)
                 XCTAssertEqual(contentView.showReappearRightButtonCallCount, 0)
@@ -204,14 +204,14 @@ class SlideOverWindowPresenterTests: XCTestCase {
             XCTContext.runActivity(named: "bottomRight") { _ in
                 setUp()
                 userSetting.latestPosition = .bottomRight
-                slideOverService.hideWindowHandler = { _, _ in true }
+                slideOverService.hideWindowOnlyHalfHandler = { _, _ in true }
                 output.isMiniaturized = false
 
                 contentView.showReappearLeftButtonHandler = { $0() }
                 subject.disappearWindow { _ in }
                 
                 XCTAssertEqual(output.fixWindowCallCount, 1)
-                XCTAssertEqual(slideOverService.hideWindowCallCount, 1)
+                XCTAssertEqual(slideOverService.hideWindowOnlyHalfCallCount, 1)
                 XCTAssertEqual(contentView.hideReappearRightButtonCallCount, 1)
                 XCTAssertEqual(contentView.showReappearLeftButtonCallCount, 1)
                 XCTAssertEqual(contentView.showReappearRightButtonCallCount, 0)
@@ -226,14 +226,14 @@ class SlideOverWindowPresenterTests: XCTestCase {
             XCTContext.runActivity(named: "left") { _ in
                 setUp()
                 userSetting.latestPosition = .left
-                slideOverService.hideWindowHandler = { _, _ in true }
+                slideOverService.hideWindowOnlyHalfHandler = { _, _ in true }
                 output.isMiniaturized = false
                 
                 contentView.showReappearRightButtonHandler = { $0() }
                 subject.disappearWindow { _ in }
 
                 XCTAssertEqual(output.fixWindowCallCount, 1)
-                XCTAssertEqual(slideOverService.hideWindowCallCount, 1)
+                XCTAssertEqual(slideOverService.hideWindowOnlyHalfCallCount, 1)
                 XCTAssertEqual(contentView.hideReappearRightButtonCallCount, 0)
                 XCTAssertEqual(contentView.showReappearLeftButtonCallCount, 0)
                 XCTAssertEqual(contentView.showReappearRightButtonCallCount, 1)
@@ -244,14 +244,14 @@ class SlideOverWindowPresenterTests: XCTestCase {
             XCTContext.runActivity(named: "topLeft") { _ in
                 setUp()
                 userSetting.latestPosition = .topLeft
-                slideOverService.hideWindowHandler = { _, _ in true }
+                slideOverService.hideWindowOnlyHalfHandler = { _, _ in true }
                 output.isMiniaturized = false
 
                 contentView.showReappearRightButtonHandler = { $0() }
                 subject.disappearWindow { _ in }
 
                 XCTAssertEqual(output.fixWindowCallCount, 1)
-                XCTAssertEqual(slideOverService.hideWindowCallCount, 1)
+                XCTAssertEqual(slideOverService.hideWindowOnlyHalfCallCount, 1)
                 XCTAssertEqual(contentView.hideReappearRightButtonCallCount, 0)
                 XCTAssertEqual(contentView.showReappearLeftButtonCallCount, 0)
                 XCTAssertEqual(contentView.showReappearRightButtonCallCount, 1)
@@ -262,14 +262,14 @@ class SlideOverWindowPresenterTests: XCTestCase {
             XCTContext.runActivity(named: "bottomLeft") { _ in
                 setUp()
                 userSetting.latestPosition = .bottomLeft
-                slideOverService.hideWindowHandler = { _, _ in true }
+                slideOverService.hideWindowOnlyHalfHandler = { _, _ in true }
                 output.isMiniaturized = false
 
                 contentView.showReappearRightButtonHandler = { $0() }
                 subject.disappearWindow { _ in }
 
                 XCTAssertEqual(output.fixWindowCallCount, 1)
-                XCTAssertEqual(slideOverService.hideWindowCallCount, 1)
+                XCTAssertEqual(slideOverService.hideWindowOnlyHalfCallCount, 1)
                 XCTAssertEqual(contentView.hideReappearRightButtonCallCount, 0)
                 XCTAssertEqual(contentView.showReappearLeftButtonCallCount, 0)
                 XCTAssertEqual(contentView.showReappearRightButtonCallCount, 1)
@@ -282,14 +282,14 @@ class SlideOverWindowPresenterTests: XCTestCase {
         XCTContext.runActivity(named: "hideWindowに失敗したら何もしないこと") { _ in
             setUp()
             userSetting.latestPosition = .bottomLeft
-            slideOverService.hideWindowHandler = { _, _ in false }
+            slideOverService.hideWindowOnlyHalfHandler = { _, _ in false }
             output.isMiniaturized = false
             
             var isSuccess: Bool?
             subject.disappearWindow { isSuccess = $0 }
             
             XCTAssertEqual(output.fixWindowCallCount, 1)
-            XCTAssertEqual(slideOverService.hideWindowCallCount, 1)
+            XCTAssertEqual(slideOverService.hideWindowOnlyHalfCallCount, 1)
             XCTAssertEqual(contentView.hideReappearRightButtonCallCount, 0)
             XCTAssertEqual(contentView.showReappearLeftButtonCallCount, 0)
             XCTAssertEqual(contentView.showReappearRightButtonCallCount, 0)
@@ -300,14 +300,14 @@ class SlideOverWindowPresenterTests: XCTestCase {
         XCTContext.runActivity(named: "ウィンドウが最小されているとき") { _ in
             setUp()
             userSetting.latestPosition = .bottomLeft
-            slideOverService.hideWindowHandler = { _, _ in true }
+            slideOverService.hideWindowOnlyHalfHandler = { _, _ in true }
             output.isMiniaturized = true
             
             var isSuccess: Bool?
             subject.disappearWindow { isSuccess = $0 }
             
             XCTAssertEqual(output.fixWindowCallCount, 0)
-            XCTAssertEqual(slideOverService.hideWindowCallCount, 0)
+            XCTAssertEqual(slideOverService.hideWindowOnlyHalfCallCount, 0)
             XCTAssertEqual(contentView.hideReappearRightButtonCallCount, 0)
             XCTAssertEqual(contentView.showReappearLeftButtonCallCount, 0)
             XCTAssertEqual(contentView.showReappearRightButtonCallCount, 0)

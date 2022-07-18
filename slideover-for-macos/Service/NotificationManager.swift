@@ -12,6 +12,7 @@ extension Notification.Name {
     static let zoomInWebView = Notification.Name("zoomInWebView")
     static let zoomOutWebView = Notification.Name("zoomOutWebView")
     static let zoomResetWebView = Notification.Name("zoomResetWebView")
+    static let displaySlideOver = Notification.Name("displaySlideOver")
 }
 
 /// @mockable

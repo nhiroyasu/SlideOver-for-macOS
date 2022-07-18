@@ -10,7 +10,7 @@ let hideOffsetSpace: CGFloat = 40.0
 protocol SlideOverComputable {
     func computeWindowRect(screenSize: CGSize, screenOffset: CGPoint) -> CGRect
     func computeWindowPoint(windowSize: CGSize, screenSize: CGSize, screenOffset: CGPoint) -> CGPoint
-    func computeResize(screenSize: CGSize, from current: NSSize, to next: NSSize) -> NSSize
+    func computeResize(screenSize: CGSize, to next: NSSize) -> NSSize
 }
 
 class SlideOver {
@@ -33,7 +33,7 @@ class SlideOver {
             return bestHeightSize
         }
         
-        func computeResize(screenSize: CGSize, from current: NSSize, to next: NSSize) -> NSSize {
+        func computeResize(screenSize: CGSize, to next: NSSize) -> NSSize {
             var resultWidth = next.width
             if next.width > maxWidthSize {
                 resultWidth = maxWidthSize
@@ -41,7 +41,7 @@ class SlideOver {
             if next.width < minWidthSize {
                 resultWidth = minWidthSize
             }
-            return NSSize(width: resultWidth, height: current.height)
+            return NSSize(width: resultWidth, height: computeWindowHeight(screenHeight: screenSize.height))
         }
     }
     
@@ -118,7 +118,7 @@ class SlideOver {
             }
         }
         
-        func computeResize(screenSize: CGSize, from current: NSSize, to next: NSSize) -> NSSize {
+        func computeResize(screenSize: CGSize, to next: NSSize) -> NSSize {
             let maxHeightSize = screenSize.height * maxHeightRatio
             let maxWidthSize = screenSize.width * maxWidthRatio
             var width = next.width
