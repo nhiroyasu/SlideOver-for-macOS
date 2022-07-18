@@ -1,27 +1,33 @@
 import Cocoa
 import Magnet
+import Injectable
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
     
-    private var mainWindowController: SlideOverWindowController?
     private var notificationManager: NotificationManager? {
         Injector.shared.buildSafe(NotificationManager.self)
     }
     private var userSetting: UserSettingService? {
         Injector.shared.buildSafe(UserSettingService.self)
     }
+    private var slideOverCoordinator: SlideOverCoordinator!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)
-        mainWindowController = storyboard.instantiateController(identifier: "slideOverWindowController") { coder in
-            SlideOverWindowController(coder: coder, injector: Injector.shared)
-        }
-        if let mainWindowController = mainWindowController {
-            Injector.shared.container.register(SlideOverWindowControllable.self, impl: mainWindowController).inObjectScope(.container)
-            mainWindowController.showWindow(self)
-        }
+        let initState = SlideOverState()
+        let container = SlideOverContainerBuilder.build(parent: Injector.shared.container, state: initState)
+        slideOverCoordinator = .init(
+            injector: Injector(container: container),
+            state: initState
+        )
+        container.register(SlideOverTransition.self) { _ in self.slideOverCoordinator }
+        let windowController = slideOverCoordinator.create()
+        windowController.showWindow(self)
+    }
+    
+    func applicationDidUnhide(_ notification: Notification) {
+        notificationManager?.push(name: .displaySlideOver, param: nil)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

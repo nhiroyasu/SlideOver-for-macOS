@@ -1,6 +1,7 @@
 import Foundation
 import AppKit
 import Combine
+import Injectable
 
 /// @mockable
 protocol SlideOverWindowUseCase {
@@ -69,12 +70,13 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
         observeHideWindowNotification()
         observeMouseEvent()
         observeZoomNotifications()
+        observeDisplaySlideOverNotification()
         setWillMoveNotification()
         setRightMouseUpSubject()
         resizeWindow()
         registerSwitchWindowVisibilityShortcutKey()
         
-        if let latestPosition = userSettingService.latestPosition, let latestWindowSize = userSettingService.latestWindowSize {
+        if let latestPosition = userSettingService.latestPosition, let latestWindowSize = userSettingService.latestWindowSize, latestWindowSize.width != 0 {
             presenter.initialArrangeWindow(type: latestPosition, size: latestWindowSize)
         } else if let latestPosition = userSettingService.latestPosition {
             presenter.fixWindow(type: latestPosition)
@@ -151,10 +153,10 @@ class SlideOverWindowInteractor: SlideOverWindowUseCase {
     }
     
     private func resizeWindow() {
-        presenter.setResizeHandler { [weak self] current, next in
-            guard let currentPosition = self?.userSettingService.latestPosition, let screen = NSScreen.main else { return (next, .right) }
-            return (currentPosition.state.computeResize(screenSize: screen.visibleFrame.size, from: current, to: next), currentPosition)
-        }
+//        presenter.setResizeHandler { [weak self] current, next in
+//            guard let currentPosition = self?.userSettingService.latestPosition, let screen = NSScreen.main else { return (next, .right) }
+//            return (currentPosition.state.computeResize(screenSize: screen.visibleFrame.size, from: current, to: next), currentPosition)
+//        }
     }
     
     func requestChangingPosition(type: SlideOverKind) {
@@ -307,6 +309,12 @@ extension SlideOverWindowInteractor {
         
         notificationManager.observe(name: .zoomResetWebView) { [weak self] _ in
             self?.presenter.resetZoom()
+        }
+    }
+    
+    private func observeDisplaySlideOverNotification() {
+        notificationManager.observe(name: .displaySlideOver) { [weak self] _ in
+            self?.requestAppearWindow()
         }
     }
 }

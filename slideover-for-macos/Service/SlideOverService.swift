@@ -1,5 +1,6 @@
 import Foundation
 import AppKit
+import Injectable
 
 enum SlideOverKind: Int {
     case left
@@ -35,7 +36,8 @@ protocol SlideOverService {
     func arrangeWindow(for window: NSWindow, type: SlideOverKind)
     func arrangeWindow(for window: NSWindow, windowSize: NSSize, type: SlideOverKind)
     func arrangeWindowPosition(for window: NSWindow, windowSize: NSSize, type: SlideOverKind)
-    func hideWindow(for window: NSWindow, type: SlideOverKind) -> Bool
+    func hideWindowOnlyHalf(for window: NSWindow, type: SlideOverKind) -> Bool
+    func hideWindowCompletely(for window: NSWindow, type: SlideOverKind) -> Bool
 }
 
 class SlideOverServiceImpl: SlideOverService {
@@ -131,7 +133,7 @@ class SlideOverServiceImpl: SlideOverService {
         }
     }
     
-    func hideWindow(for window: NSWindow, type: SlideOverKind) -> Bool {
+    func hideWindowOnlyHalf(for window: NSWindow, type: SlideOverKind) -> Bool {
         switch type {
         case .left, .topLeft, .bottomLeft:
             let size = window.frame.size
@@ -161,6 +163,24 @@ class SlideOverServiceImpl: SlideOverService {
                 NSSound.beep()
                 return false
             }
+        }
+    }
+    
+    func hideWindowCompletely(for window: NSWindow, type: SlideOverKind) -> Bool {
+        let prevSize = window.frame.size
+        let prevPoint = window.frame.origin
+        
+        switch type {
+        case .right, .topRight, .bottomRight:
+            let nextWindowPoint = NSPoint(x: prevPoint.x + prevSize.width, y: prevPoint.y)
+            let nextWindowFrame = NSRect(origin: nextWindowPoint, size: NSSize(width: 0, height: prevSize.height))
+            window.setFrame(nextWindowFrame, display: false, animate: true)
+            return true
+        case .left, .topLeft, .bottomLeft:
+            let nextWindowPoint = NSPoint(x: prevPoint.x, y: prevPoint.y)
+            let nextWindowFrame = NSRect(origin: nextWindowPoint, size: NSSize(width: 0, height: prevSize.height))
+            window.setFrame(nextWindowFrame, display: false, animate: true)
+            return true
         }
     }
     

@@ -123,12 +123,12 @@ class SlideOverWindowActionMock: SlideOverWindowAction {
         
     }
 
-    private(set) var didTapHideWindowCallCount = 0
-    var didTapHideWindowHandler: (() -> ())?
+    private(set) var didTaphideWindowOnlyHalfCallCount = 0
+    var didTaphideWindowOnlyHalfHandler: (() -> ())?
     func didTapHideWindow()  {
-        didTapHideWindowCallCount += 1
-        if let didTapHideWindowHandler = didTapHideWindowHandler {
-            didTapHideWindowHandler()
+        didTaphideWindowOnlyHalfCallCount += 1
+        if let didTaphideWindowOnlyHalfHandler = didTaphideWindowOnlyHalfHandler {
+            didTaphideWindowOnlyHalfHandler()
         }
         
     }
@@ -229,13 +229,14 @@ class URLValidationServiceMock: URLValidationService {
 
 class UserSettingServiceMock: UserSettingService {
     init() { }
-    init(initialPage: URL? = nil, latestPage: URL? = nil, latestPosition: SlideOverKind? = nil, latestWindowSize: NSSize? = nil, latestUserAgent: UserAgent? = nil, isNotAllowedGlobalShortcut: Bool = false, latestShownFeatureVersion: String? = nil) {
+    init(initialPage: URL? = nil, latestPage: URL? = nil, latestPosition: SlideOverKind? = nil, latestWindowSize: NSSize? = nil, latestUserAgent: UserAgent? = nil, isNotAllowedGlobalShortcut: Bool = false, isCompletelyHideWindow: Bool = false, latestShownFeatureVersion: String? = nil) {
         self.initialPage = initialPage
         self.latestPage = latestPage
         self.latestPosition = latestPosition
         self.latestWindowSize = latestWindowSize
         self.latestUserAgent = latestUserAgent
         self.isNotAllowedGlobalShortcut = isNotAllowedGlobalShortcut
+        self.hiddenActionIsMiniaturized = isCompletelyHideWindow
         self.latestShownFeatureVersion = latestShownFeatureVersion
     }
 
@@ -257,6 +258,9 @@ class UserSettingServiceMock: UserSettingService {
 
     private(set) var isNotAllowedGlobalShortcutSetCallCount = 0
     var isNotAllowedGlobalShortcut: Bool = false { didSet { isNotAllowedGlobalShortcutSetCallCount += 1 } }
+
+    private(set) var isCompletelyHideWindowSetCallCount = 0
+    var hiddenActionIsMiniaturized: Bool = false { didSet { isCompletelyHideWindowSetCallCount += 1 } }
 
     private(set) var latestShownFeatureVersionSetCallCount = 0
     var latestShownFeatureVersion: String? = nil { didSet { latestShownFeatureVersionSetCallCount += 1 } }
@@ -592,12 +596,12 @@ class SlideOverWebViewMenuDelegateMock: SlideOverWebViewMenuDelegate {
         
     }
 
-    private(set) var didTapHideWindowCallCount = 0
-    var didTapHideWindowHandler: (() -> ())?
+    private(set) var didTaphideWindowOnlyHalfCallCount = 0
+    var didTaphideWindowOnlyHalfHandler: (() -> ())?
     func didTapHideWindow()  {
-        didTapHideWindowCallCount += 1
-        if let didTapHideWindowHandler = didTapHideWindowHandler {
-            didTapHideWindowHandler()
+        didTaphideWindowOnlyHalfCallCount += 1
+        if let didTaphideWindowOnlyHalfHandler = didTaphideWindowOnlyHalfHandler {
+            didTaphideWindowOnlyHalfHandler()
         }
         
     }
@@ -1219,14 +1223,26 @@ class SlideOverServiceMock: SlideOverService {
         
     }
 
-    private(set) var hideWindowCallCount = 0
-    var hideWindowArgValues = [(NSWindow, SlideOverKind)]()
-    var hideWindowHandler: ((NSWindow, SlideOverKind) -> (Bool))?
-    func hideWindow(for window: NSWindow, type: SlideOverKind) -> Bool {
-        hideWindowCallCount += 1
-        hideWindowArgValues.append((window, type))
-        if let hideWindowHandler = hideWindowHandler {
-            return hideWindowHandler(window, type)
+    private(set) var hideWindowOnlyHalfCallCount = 0
+    var hideWindowOnlyHalfArgValues = [(NSWindow, SlideOverKind)]()
+    var hideWindowOnlyHalfHandler: ((NSWindow, SlideOverKind) -> (Bool))?
+    func hideWindowOnlyHalf(for window: NSWindow, type: SlideOverKind) -> Bool {
+        hideWindowOnlyHalfCallCount += 1
+        hideWindowOnlyHalfArgValues.append((window, type))
+        if let hideWindowOnlyHalfHandler = hideWindowOnlyHalfHandler {
+            return hideWindowOnlyHalfHandler(window, type)
+        }
+        return false
+    }
+
+    private(set) var hideWindowCompletelyCallCount = 0
+    var hideWindowCompletelyArgValues = [(NSWindow, SlideOverKind)]()
+    var hideWindowCompletelyHandler: ((NSWindow, SlideOverKind) -> (Bool))?
+    func hideWindowCompletely(for window: NSWindow, type: SlideOverKind) -> Bool {
+        hideWindowCompletelyCallCount += 1
+        hideWindowCompletelyArgValues.append((window, type))
+        if let hideWindowCompletelyHandler = hideWindowCompletelyHandler {
+            return hideWindowCompletelyHandler(window, type)
         }
         return false
     }

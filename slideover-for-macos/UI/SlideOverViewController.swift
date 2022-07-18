@@ -1,5 +1,6 @@
 import Cocoa
 import WebKit
+import Injectable
 
 /// @mockable
 protocol SlideOverViewable {
@@ -69,11 +70,23 @@ class SlideOverViewController: NSViewController {
         observers.append(webView.observe(\.canGoForward, options: [.new], changeHandler: { [weak self] webView, _ in
             self?.contentWindow?.setBrowserForward(enable: webView.canGoForward)
         }))
-        observers.append(webView.observe(\.url, options: [.new], changeHandler: { [weak self] webView, _ in
-            self?.contentWindow?.action.didChangePage(url: webView.url)
-        }))
         observers.append(webView.observe(\.estimatedProgress, options: [.new], changeHandler: { [weak self] webView, _ in
-            self?.contentWindow?.action.didUpdateProgress(value: webView.estimatedProgress)
+            let value = webView.estimatedProgress * 100.0
+            self?.progressBar?.layer?.opacity = 1.0
+            self?.progressBar?.doubleValue = value
+            if value == 100 {
+                guard let layer = self?.progressBar?.layer else { return }
+                DispatchQueue.main.mainAsyncAfter(deadline: .now() + 0.8) {
+                    let animation = CABasicAnimation(keyPath: "opacity")
+                    animation.duration = 0.8
+                    animation.fromValue = 1.0
+                    animation.toValue = 0.0
+                    animation.autoreverses = false
+                    animation.isRemovedOnCompletion = false
+                    animation.fillMode = .forwards
+                    layer.add(animation, forKey: nil)
+                }
+            }
         }))
     }
     
@@ -144,15 +157,9 @@ extension SlideOverViewController: SlideOverViewable {
     
     private func fadeOutViewIfNeeded(_ view: NSView, completion: @escaping () -> Void) {
         guard view.isHidden == false else { return }
-        view.alphaValue = 1.0
-        NSAnimationContext.runAnimationGroup { context in
-            context.duration = 0.4
-            view.animator().alphaValue = 0.0
-        } completionHandler: {
-            view.isHidden = true
-            view.alphaValue = 0.0
-            completion()
-        }
+        view.isHidden = true
+        view.alphaValue = 0.0
+        completion()
     }
 }
 
@@ -179,10 +186,6 @@ extension SlideOverViewController: SlideOverWebViewMenuDelegate {
         guard let url = webView.url else { return }
         NSWorkspace.shared.open(url)
     }
-    
-    func didTapRegisterInitialPage() {
-        contentWindow?.action.didTapInitialPageItem(currentUrl: webView.url)
-    }
 
     func didTapWindowLayout(type: SlideOverKind) {
         contentWindow?.action.didTapChangingPositionButton(type: type)
@@ -198,5 +201,9 @@ extension SlideOverViewController: SlideOverWebViewMenuDelegate {
     
     func didTapHelp() {
         contentWindow?.action.didTapHelp()
+    }
+    
+    func didTapSetting() {
+        contentWindow?.action.didTapSetting()
     }
 }

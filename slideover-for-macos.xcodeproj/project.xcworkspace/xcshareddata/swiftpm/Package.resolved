@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "injectable",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:nhiroyasu/Injectable.git",
+      "state" : {
+        "revision" : "580e4fb209fb65383810c277aeab0db4238babb9",
+        "version" : "1.0.0"
+      }
+    },
+    {
       "identity" : "magnet",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Clipy/Magnet.git",
