@@ -530,11 +530,11 @@ DQ
                                 <toolbarItem implicitItemIdentifier="C62D32AF-1CCA-426A-82FE-D13E2C23EC08" label="Action" paletteLabel="Action" image="ellipsis.circle" catalog="system" sizingBehavior="auto" id="RSZ-k7-hNP">
                                     <nil key="toolTip"/>
                                     <popUpButton key="view" id="3nQ-y6-LLI">
-                                        <rect key="frame" x="0.0" y="14" width="45" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <rect key="frame" x="8" y="14" width="26" height="15"/>
+                                        <autoresizingMask key="autoresizingMask"/>
                                         <popUpButtonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" inset="2" pullsDown="YES" arrowPosition="noArrow" id="64D-30-Dfn">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="dwh-qi-jwo">
                                                 <items>
                                                     <menuItem state="on" image="ellipsis.circle" catalog="system" hidden="YES" id="ECN-9W-yT8" userLabel="TopItem"/>
@@ -542,6 +542,9 @@ DQ
                                             </menu>
                                         </popUpButtonCell>
                                         <color key="contentTintColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                        <connections>
+                                            <action selector="didTap:" target="B8D-0N-5wS" id="veM-MZ-dVw"/>
+                                        </connections>
                                     </popUpButton>
                                 </toolbarItem>
                             </allowedToolbarItems>

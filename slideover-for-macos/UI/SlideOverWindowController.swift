@@ -37,7 +37,9 @@ class SlideOverWindowController: NSWindowController {
     }
     @IBOutlet weak var actionPopupButton: NSPopUpButton! {
         didSet {
-            setUpPopUpButton()
+            NotificationCenter.default.addObserver(forName: NSPopUpButton.willPopUpNotification, object: actionPopupButton, queue: .main) { [weak self] notification in
+                self?.setUpPopUpButton()
+            }
         }
     }
     private let state: SlideOverState
@@ -168,7 +170,9 @@ class SlideOverWindowController: NSWindowController {
         contentView?.browserReload()
     }
     
-    @objc func didTapActionItem(_ sender: Any) {}
+    @objc func didTapActionItem(_ sender: Any) {
+        setUpPopUpButton()
+    }
     
     @objc func didTapWindowLayoutForRight() {
         action.didTapWindowLayoutForRightMenuItem()
@@ -295,7 +299,15 @@ extension SlideOverWindowController: SlideOverWindowControllable {
 
 extension SlideOverWindowController {
     private func setUpPopUpButton() {
-        let menuTree: [MenuItemType] = [
+        let menu = actionPopupButton.menu!
+        menu.removeAllItems()
+        buildMenu(from: menuTree, for: menu)
+        actionPopupButton.menu = menu
+    }
+    
+    private var menuTree: [MenuItemType] {
+        [
+            .item(data: .init(title: "Action", action: nil, keyEquivalent: "", image: NSImage(systemSymbolName: "ellipsis.circle", accessibilityDescription: nil))),
             .separator,
             .subMenu(data: .init(title: NSLocalizedString("Window Layout", comment: ""), image: NSImage(systemSymbolName: "uiwindow.split.2x1", accessibilityDescription: nil), items: [
                 .init(title: NSLocalizedString("Left", comment: ""), action: #selector(didTapWindowLayoutForRight), keyEquivalent: "", image: NSImage(named: "window_layout_right"), value: SlideOverKind.right),
@@ -322,8 +334,5 @@ extension SlideOverWindowController {
             .item(data: .init(title: NSLocalizedString("Help", comment: ""), action: #selector(didTapHelp), keyEquivalent: "", image: NSImage(systemSymbolName: "questionmark.circle", accessibilityDescription: nil))),
             .item(data: .init(title: NSLocalizedString("Setting", comment: ""), action: #selector(didTapSetting), keyEquivalent: ",", image: NSImage(systemSymbolName: "gearshape", accessibilityDescription: nil)))
         ]
-        let menu = actionPopupButton.menu!
-        buildMenu(from: menuTree, for: menu)
-        actionPopupButton.menu = menu
     }
 }
